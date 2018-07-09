@@ -13,22 +13,16 @@ public class Voice_Commands : MonoBehaviour {
 
     public void Show_HUD()
     {
-        SocketManager.Instance.SendUdpDatagram("" + Parameters.Instance.get_EXT_PWR() + ";" + Parameters.Instance.get_BAT() + ";"/* + Parameters.Instance.get_BAT1() + ";" + Parameters.Instance.get_BAT2() + ";"*/ +
-        Parameters.Instance.get_APU_GEN() + ";" + Parameters.Instance.get_APU_START() + ";" + Parameters.Instance.get_APU_M_SW() + ";" + Parameters.Instance.get_APU_BLEED() + ";" + Parameters.Instance.get_LTK_PUMPS_1() + ";" +
-        Parameters.Instance.get_LTK_PUMPS_2() + ";" + Parameters.Instance.get_PUMPS() + ";" + Parameters.Instance.get_RTK_PUMPS_1() + ";" + Parameters.Instance.get_RTK_PUMPS_2() + ";" + Parameters.Instance.get_ENG_START_SW() + ";" +
-        Parameters.Instance.get_ENG1() + ";" + Parameters.Instance.get_ENG2() + ";" + Parameters.Instance.get_BRK_PRK() + ";" + Parameters.Instance.get_ENG1_GEN() + ";" + Parameters.Instance.get_ENG2_GEN() + ";" +
-        Parameters.Instance.get_PACK1() + ";" + Parameters.Instance.get_PACK2() + ";" + Parameters.Instance.get_throttle1() + ";" + Parameters.Instance.get_throttle2() + ";" + Parameters.Instance.get_AUTO_BRK() + ";" +
-        Parameters.Instance.get_Spoiler_ARM() + ";" + Parameters.Instance.get_Spoiler_Speedbrake() + ";" + Parameters.Instance.get_gear() + ";" + Parameters.Instance.get_flaps() + ";1;");
+        Parameters.Instance.set_HUD(1);
+
+        SocketManager.Instance.SendUdpDatagram(Parameters.Instance.toFlightGear());
     }
 
     public void Hide_HUD()
     {
-        SocketManager.Instance.SendUdpDatagram("" + Parameters.Instance.get_EXT_PWR() + ";" + Parameters.Instance.get_BAT() + ";"/* + Parameters.Instance.get_BAT1() + ";" + Parameters.Instance.get_BAT2() + ";"*/ +
-        Parameters.Instance.get_APU_GEN() + ";" + Parameters.Instance.get_APU_START() + ";" + Parameters.Instance.get_APU_M_SW() + ";" + Parameters.Instance.get_APU_BLEED() + ";" + Parameters.Instance.get_LTK_PUMPS_1() + ";" +
-        Parameters.Instance.get_LTK_PUMPS_2() + ";" + Parameters.Instance.get_PUMPS() + ";" + Parameters.Instance.get_RTK_PUMPS_1() + ";" + Parameters.Instance.get_RTK_PUMPS_2() + ";" + Parameters.Instance.get_ENG_START_SW() + ";" +
-        Parameters.Instance.get_ENG1() + ";" + Parameters.Instance.get_ENG2() + ";" + Parameters.Instance.get_BRK_PRK() + ";" + Parameters.Instance.get_ENG1_GEN() + ";" + Parameters.Instance.get_ENG2_GEN() + ";" +
-        Parameters.Instance.get_PACK1() + ";" + Parameters.Instance.get_PACK2() + ";" + Parameters.Instance.get_throttle1() + ";" + Parameters.Instance.get_throttle2() + ";" + Parameters.Instance.get_AUTO_BRK() + ";" +
-        Parameters.Instance.get_Spoiler_ARM() + ";" + Parameters.Instance.get_Spoiler_Speedbrake() + ";" + Parameters.Instance.get_gear() + ";" + Parameters.Instance.get_flaps() + ";0;");
+        Parameters.Instance.set_HUD(0);
+
+        SocketManager.Instance.SendUdpDatagram(Parameters.Instance.toFlightGear());
     }
 
     public void Repeat_Text()
@@ -46,7 +40,7 @@ public class Voice_Commands : MonoBehaviour {
         MenuManager.Instance.CloseMenu();
     }
 	
-	public void Choose_Sequence(int value)
+	/*public void Choose_Sequence(int value)
 	{
 		if(MenuManager.Instance.isScaling && !MenuManager.Instance.isMenuOpen())
 		{
@@ -58,5 +52,5 @@ public class Voice_Commands : MonoBehaviour {
 			
 			boxScaling.ChooseSequence(value);
 		}
-	}
+	}*/
 }

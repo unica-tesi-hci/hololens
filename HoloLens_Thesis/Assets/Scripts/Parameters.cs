@@ -7,10 +7,17 @@ public class Parameters : MonoBehaviour {
 
     public static Parameters Instance { get; private set; }
 
-    private int EXT_PWR;
+    //Key: the parameter's path; Value: its current value.
+    private Dictionary<string, double> mapValue = new Dictionary<string, double>();
+    //Key: the parameter's path; Value: its corresponding data type (bool, int or double).
+    private Dictionary<string, string> mapType = new Dictionary<string, string>();
+    //Key: the parameter's path; Value: its corresponding IO value (Input, Output or Both).
+    private Dictionary<string, string> mapIO = new Dictionary<string, string>();
+
+    /*private int EXT_PWR;
     private int BAT;
-    /*private int BAT1;
-    private int BAT2;*/
+    private int BAT1;
+    private int BAT2;
     private int APU_GEN;
     private int APU_START;
     private int APU_M_SW;
@@ -43,20 +50,21 @@ public class Parameters : MonoBehaviour {
     private double vertical_view;
     private double horizontal_view;
 	private double velocity;
-	private double altitude;
+	private double altitude;*/
     private double initialAltitude;
     private int HUD;
 
     private string[] newParameters;
-    
+    private bool initAltitude;
+
     // Use this for initialization
     void Start () {
         Instance = this;
 
-        EXT_PWR = 0;
+        /*EXT_PWR = 0;
         BAT = 0;
-        /*BAT1 = 0;
-        BAT2 = 0;*/
+        BAT1 = 0;
+        BAT2 = 0;
         APU_GEN = 0;
         APU_START = 0;
         APU_M_SW = 0;
@@ -89,12 +97,84 @@ public class Parameters : MonoBehaviour {
         vertical_view = 0.00;
         horizontal_view = 0.00;
 		velocity = 0.00;
-		altitude = 0.00;
+		altitude = 0.00;*/
         initialAltitude = 0.00;
         HUD = 0;
+
+        initAltitude = true;
+    }
+
+    public void AddValue(string id_path, double value, string type, string IO)
+    {
+        mapValue.Add(id_path, value);
+        mapType.Add(id_path, type);
+        mapIO.Add(id_path, IO);
+    }
+
+    public int GetValueInt(string id_path)
+    {
+        return Convert.ToInt32(mapValue[id_path]);
+    }
+
+    public double GetValueDouble(string id_path)
+    {
+        return mapValue[id_path];
+    }
+
+    public bool UpdateValue(string path, double value, string type)
+    {
+        bool result = false;
+
+        try
+        {
+            if (type == "bool" && (value >= 0 && value < 2))
+            {
+                mapValue[path] = Convert.ToInt32(value);
+                result = true;
+            }
+            else if (type == "int")
+            {
+                mapValue[path] = Convert.ToInt32(value);
+                result = true;
+            }
+            else
+            {
+                mapValue[path] = value;
+                result = true;
+            }
+        }catch(Exception e)
+        {
+            Debug.Log(e);
+        }
+
+        return result;
     }
 
     public void set_new_parameters(string value)
+    {
+        int i = 0;
+        newParameters = value.Split(';');
+
+        foreach (KeyValuePair<string, string> kvp in mapType)
+        {
+            UpdateValue(kvp.Key, Convert.ToDouble(newParameters[i].Substring(newParameters[i].IndexOf('=') + 1)), kvp.Value);
+
+            if (kvp.Key == "/position/altitude-ft")
+            {
+                if (initAltitude)
+                {
+                    set_initialAltitude(mapValue[kvp.Key]);
+                    initAltitude = false;
+                }
+            }
+
+            ++i;
+        }
+
+        set_HUD(Convert.ToInt32(newParameters[i].Substring(newParameters[i].IndexOf('=') + 1)));
+    }
+
+    /*public void set_new_parameters(string value)
     {
         newParameters = value.Split(';');
 
@@ -169,11 +249,30 @@ public class Parameters : MonoBehaviour {
 		set_altitude(Convert.ToDouble(newParameters[34].Substring(3, newParameters[34].Length - 4)));
 
         set_HUD(Convert.ToInt32(newParameters[35].Substring(4, 1)));
-    }
+    }*/
 
     public string toFlightGear()
     {
-        return String.Format(
+        string s = "";
+
+        foreach (KeyValuePair<string, double> kvp in mapValue)
+        {
+            if (mapIO[kvp.Key] != "Output")
+            {
+                if (mapType[kvp.Key] == "int" || mapType[kvp.Key] == "bool")
+                {
+                    s += Convert.ToInt32(kvp.Value) + ";";
+                }
+                else
+                {
+                    s += kvp.Value + ";";
+                }
+            }
+        }
+
+        return s + get_HUD() + ";";
+
+        /*return String.Format(
             "{0};{1};{2};{3};{4};{5};{6};{7};{8};{9};" +
             "{10};{11};{12};{13};{14};{15};{16};{17};{18};{19};" +
             "{20};{21};{22};{23};{24};{25};{26};\r\n",
@@ -203,7 +302,7 @@ public class Parameters : MonoBehaviour {
             get_Spoiler_Speedbrake(),
             get_gear(),
             get_flaps(),
-            get_HUD());
+            get_HUD());*/
         //return "" + get_EXT_PWR() + ";" + get_BAT() + ";"/* + get_BAT1() + ";" + get_BAT2() + ";"*/ +
         //get_APU_GEN() + ";" + get_APU_START() + ";" + get_APU_M_SW() + ";" + get_APU_BLEED() + ";" + get_LTK_PUMPS_1() + ";" +
         //get_LTK_PUMPS_2() + ";" + get_PUMPS() + ";" + get_RTK_PUMPS_1() + ";" + get_RTK_PUMPS_2() + ";" + get_ENG_START_SW() + ";" +
@@ -212,7 +311,7 @@ public class Parameters : MonoBehaviour {
         //get_Spoiler_ARM() + ";" + get_Spoiler_Speedbrake() + ";" + get_gear() + ";" + get_flaps() + ";" + get_HUD() + ";";
     }
 
-    public int get_EXT_PWR()
+    /*public int get_EXT_PWR()
     {
         return EXT_PWR;
     }
@@ -232,7 +331,7 @@ public class Parameters : MonoBehaviour {
         BAT = value;
     }
 
-    /*public int get_BAT1()
+    public int get_BAT1()
     {
         return BAT1;
     }
@@ -250,7 +349,7 @@ public class Parameters : MonoBehaviour {
     public void set_BAT2(int value)
     {
         BAT2 = value;
-    }*/
+    }
 
     public int get_APU_GEN()
     {
@@ -606,7 +705,13 @@ public class Parameters : MonoBehaviour {
 	
 	public void set_altitude(double value){
 		altitude = value;
-	}
+
+        if (initAltitude)
+        {
+            set_initialAltitude(altitude);
+            initAltitude = false;
+        }
+	}*/
 
     public double get_initialAltitude()
     {

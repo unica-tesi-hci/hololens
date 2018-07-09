@@ -122,7 +122,7 @@ public class MarkerRing : MonoBehaviour
 		return tmpMarker;
 	}
 
-    public void SetObjectsIndicated(GameObject[] objects)
+    public void SetObjectsIndicated(GameObject[] objects, bool[] showRing)
     {
         int i;
 
@@ -136,8 +136,15 @@ public class MarkerRing : MonoBehaviour
             {
                 objectIndicated[i] = objects[i];
 
-                marker[i] = CreateMarker(objectIndicated[i]);
-                markerRenderer[i] = marker[i].GetComponent<MeshRenderer>();
+                if(showRing[i])
+				{
+					marker[i] = CreateMarker(objectIndicated[i]);
+					markerRenderer[i] = marker[i].GetComponent<MeshRenderer>();
+				}else
+				{
+					marker[i] = null;
+					markerRenderer[i] = null;
+				}
             }
         }
         else
@@ -176,15 +183,18 @@ public class MarkerRing : MonoBehaviour
 
         for (int i = 0; i < objectIndicated.Length; i++)
         {
-            if (!InputSequence.Instance.isObjectInCorrectState[i])
-            {
-                // The marking ring should only be visible if the target is visible.
-                markerRenderer[i].enabled = IsTargetVisible(objectIndicated[i]);
-            }
-            else
-            {
-                markerRenderer[i].enabled = false;
-            }
+            if(marker[i] != null)
+			{
+				if (!InputSequence.Instance.isObjectInCorrectState[i])
+				{
+					// The marking ring should only be visible if the target is visible.
+					markerRenderer[i].enabled = IsTargetVisible(objectIndicated[i]);
+				}
+				else
+				{
+					markerRenderer[i].enabled = false;
+				}
+			}
         }
     }
 

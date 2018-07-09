@@ -6,7 +6,7 @@ using UnityEngine;
 [Serializable]
 public class Container_Box_Json {
     
-    public int sequence;
+    public string sequence;
     public Vector3 positionLeft;
     public Vector3 rotationLeft;
     public Vector3 scaleLeft;
@@ -25,7 +25,7 @@ public class Container_Box_Json {
         
     }
 
-    public Container_Box_Json(int seq, Vector3 pos1, Vector3 rot1, Vector3 scl1, Vector3 pos2, Vector3 rot2, Vector3 scl2, Vector3 pos3, Vector3 rot3, Vector3 scl3, Vector3 pos4, Vector3 rot4, Vector3 scl4)
+    public Container_Box_Json(string seq, Vector3 pos1, Vector3 rot1, Vector3 scl1, Vector3 pos2, Vector3 rot2, Vector3 scl2, Vector3 pos3, Vector3 rot3, Vector3 scl3, Vector3 pos4, Vector3 rot4, Vector3 scl4)
     {
         sequence = seq;
         positionLeft = pos1;

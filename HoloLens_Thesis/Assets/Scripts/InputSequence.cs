@@ -6,7 +6,7 @@ using System;
 public class InputSequence : Singleton<InputSequence>
 {
 
-    private int[] sequence;
+    private List<string> sequence;
     private int sequenceIndex;
     HeadsUpDirectionIndicator dirInd;
     MarkerRing markRing;
@@ -22,7 +22,10 @@ public class InputSequence : Singleton<InputSequence>
     private GameObject ContainerBox;
     private GameObject FeedbackHolograms;
     private GameObject[] objectIndicated;
+    private CockpitFeedback[] objsData;
     private Billboard billboardText;
+    private List<FeedbackGroup> seqFromFile = null;
+    private FeedbackGroup currentSequence = null;
     [HideInInspector]
     public bool flag;
     [HideInInspector]
@@ -30,38 +33,38 @@ public class InputSequence : Singleton<InputSequence>
 
     private void Start()
     {
-        sequence = new int[]
+        sequence = new List<string>
         {
-            0,
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14,
-            15,
-            16,
-            17,
-            18,
-            19,
-            20,
-            21,
-            22,
-            23,
-            24,
-            25,
-            26,
-            27,
-            28,
-            29
+            "EXT_PWR_ON",
+            "BAT_ON",
+            "APU_MASTER_ON",
+            "APU_START_ON",
+            "APU_GEN_ON",
+            "EXT_PWR_OFF",
+            "APU_BLEED_ON",
+            "PUMPS_ON",
+            "ENG_SWITCH_START",
+            "ENG_ON",
+            "ENG_LOAD",
+            "ENG_SWITCH_NORM",
+            "GENERATOR_ON",
+            "APU_BLEED_OFF",
+            "PACK_ON",
+            "APU_OFF",
+            "BRAKE_RELEASE",
+            "AUTOBRAKE_MAX",
+            "SPOILER_ARM",
+            "FLAPS",
+            "PACK_OFF",
+            "THROTTLE_FULL",
+            "ACCELERATION",
+            "TAKEOFF",
+            "GEAR_OFF",
+            "VELOCITY",
+            "SPOILER_DISARM_AND_FLAPS",
+            "VELOCITY2",
+            "FLAPS2",
+            "END"
         };
 
         sequenceIndex = 0;
@@ -104,22 +107,31 @@ public class InputSequence : Singleton<InputSequence>
         Invoke("updateComponents", 3);
     }
 
-    public int getSeq()
+    public string getSeq()
     {
         return sequence[sequenceIndex];
     }
-	
-	public int getSeqLength()
-	{
-		return sequence.Length;
-	}
+
+    public string getSeq(int i)
+    {
+        return sequence[i];
+    }
+
+    public int getSeqLength()
+    {
+        return sequence.Count;
+    }
+
+    public FeedbackGroup getCurrentSequence()
+    {
+        return currentSequence;
+    }
 
     private void nextSeq()
     {
-        flag = true;
-
-        if (sequence[sequenceIndex] < (sequence.Length - 1))
+        if (sequence[sequenceIndex] != "END")
         {
+            flag = true;
             correctSelection();
             ++sequenceIndex;
             Invoke("updateComponents", 3);
@@ -136,7 +148,6 @@ public class InputSequence : Singleton<InputSequence>
         billboardText.enabled = true;
         feed.InitializeTextPosition();
         Speak_Text();
-        setStage();
         flag = false;
         CancelInvoke();
     }
@@ -154,333 +165,28 @@ public class InputSequence : Singleton<InputSequence>
         textSpeak = "Good!";
         TextManager.Instance.setFlag(false);
         Speak_Text();
-
-        if (getSeq() == 10)
-        {
-            feed.DestroyObjectsIndicated();
-            feed.InstantiateCheckMark();
-            feed.SetObjectsIndicated(objectIndicated);
-        }
     }
 
     private void setAdvice()
     {
-        string option1, option2, option3, option4, option5;
-
-        switch (sequence[sequenceIndex])
+        adviceText = currentSequence.adviceText;
+        if (currentSequence.showParamInAdviceText)
         {
-            case 0:
-                adviceText = "Turn on EXT PWR.";
-                parameterText = "EXT PWR";
-                textSpeak = "Turn on the External Power to give us the electrical power.";
-                break;
-            case 1:
-                adviceText = "Turn on BAT1 and BAT2.";
-                parameterText = "BAT";
-                textSpeak = "Turn on batteries 1 and 2.";
-                break;
-            case 2:
-                adviceText = "Turn on MASTER SWITCH in APU.";
-                parameterText = "APU MASTER SW";
-                textSpeak = "Turn the APU Master switch on to start the engines.";
-                break;
-            case 3:
-                adviceText = "Turn on START in APU.";
-                parameterText = "APU START";
-                textSpeak = "Turn the APU Start switch on.";
-                break;
-            case 4:
-                adviceText = "Turn on APU GEN.";
-                parameterText = "APU GEN";
-                textSpeak = "Turn on the APU Generator to give the airplane the electrical power without external assistance.";
-                break;
-            case 5:
-                adviceText = "Turn off EXT PWR.";
-                parameterText = "EXT PWR";
-                textSpeak = "Turn off the External Power, since we don't need it anymore.";
-                break;
-            case 6:
-                adviceText = "Turn on APU BLEED.";
-                parameterText = "APU BLEED";
-                textSpeak = "Turn on the APU BLEED.";
-                break;
-            case 7:
-                if (isObjectInCorrectState[0])
+            String options = "";
+            objsData = currentSequence.objectIndicated.ToArray();
+            for (int i = 0; i < objsData.Length; i++)
+            {
+                if (!isObjectInCorrectState[i])
                 {
-                    option1 = "";
+                    options = options + "\n<b>• " + objsData[i].name + ";</b>";
                 }
-                else
-                {
-                    option1 = "<b>• LTK PUMPS 1;</b>\n";
-                }
+            }
 
-                if (isObjectInCorrectState[1])
-                {
-                    option2 = "";
-                }
-                else
-                {
-                    option2 = "<b>• LTK PUMPS 2;</b>\n";
-                }
-
-                if (isObjectInCorrectState[2])
-                {
-                    option3 = "";
-                }
-                else
-                {
-                    option3 = "<b>• PUMP 1 and PUMP 2;</b>\n";
-                }
-
-                if (isObjectInCorrectState[3])
-                {
-                    option4 = "";
-                }
-                else
-                {
-                    option4 = "<b>• RTK PUMPS 1;</b>\n";
-                }
-
-                if (isObjectInCorrectState[4])
-                {
-                    option5 = "";
-                }
-                else
-                {
-                    option5 = "<b>• RTK PUMPS 2;</b>\n";
-                }
-
-                adviceText = "Set on all the following fuel's PUMPS:\n\n" + option1 + option2 + option3 + option4 + option5;
-                parameterText = "FUEL PUMPS";
-                textSpeak = "Set on all the fuel's Pumps.";
-                break;
-            case 8:
-                adviceText = "Set ENG SWITCH on START.";
-                parameterText = "ENG SW";
-                textSpeak = "Set the Engines Switch to the value 'START'.";
-                break;
-            case 9:
-                if (isObjectInCorrectState[0])
-                {
-                    option1 = "";
-                }
-                else
-                {
-                    option1 = "<b>• ENG1;</b>\n";
-                }
-
-                if (isObjectInCorrectState[1])
-                {
-                    option2 = "";
-                }
-                else
-                {
-                    option2 = "<b>• ENG2;</b>\n";
-                }
-
-                adviceText = "Switch on the following components:\n\n" + option1 + option2;
-                parameterText = "ENG1 / ENG2";
-                textSpeak = "Switch the engines master 1 and 2 to start the respective engines.";
-                break;
-            case 10:
-                adviceText = "Wait until the engines reach the value 30% on the monitor.";
-                textSpeak = "Now wait the engines to spool up to 30%, so that they become responsive.";
-                break;
-            case 11:
-                adviceText = "Switch ENG SWITCH on NORM.";
-                parameterText = "ENG SW";
-                textSpeak = "Switch the Engine Switch back to the value 'NORM'.";
-                break;
-            case 12:
-                if (isObjectInCorrectState[0])
-                {
-                    option1 = "";
-                }
-                else
-                {
-                    option1 = "<b>• GEN1;</b>\n";
-                }
-
-                if (isObjectInCorrectState[1])
-                {
-                    option2 = "";
-                }
-                else
-                {
-                    option2 = "<b>• GEN2;</b>\n";
-                }
-
-                adviceText = "Turn on the following components:\n\n" + option1 + option2;
-                parameterText = "GEN1 / GEN2";
-                textSpeak = "Turn on the engine generators 1 and 2.";
-                break;
-            case 13:
-                adviceText = "Turn off APU BLEED.";
-                parameterText = "APU BLEED";
-                textSpeak = "Turn off the APU BLEED.";
-                break;
-            case 14:
-                if (isObjectInCorrectState[0])
-                {
-                    option1 = "";
-                }
-                else
-                {
-                    option1 = "<b>• PACK1;</b>\n";
-                }
-
-                if (isObjectInCorrectState[1])
-                {
-                    option2 = "";
-                }
-                else
-                {
-                    option2 = "<b>• PACK2;</b>\n";
-                }
-
-                adviceText = "Turn on the following components:\n\n" + option1 + option2;
-                parameterText = "PACK1 / PACK2";
-                textSpeak = "Turn on Pack 1 and Pack 2.";
-                break;
-            case 15:
-                if (isObjectInCorrectState[0])
-                {
-                    option1 = "";
-                }
-                else
-                {
-                    option1 = "<b>• APU GEN;</b>\n";
-                }
-
-                if (isObjectInCorrectState[1])
-                {
-                    option2 = "";
-                }
-                else
-                {
-                    option2 = "<b>• APU MASTER SWITCH;</b>\n";
-                }
-
-                if (isObjectInCorrectState[2])
-                {
-                    option3 = "";
-                }
-                else
-                {
-                    option3 = "<b>• APU START;</b>\n";
-                }
-
-                adviceText = "Turn off the following components:\n\n" + option1 + option2 + option3;
-                parameterText = "APU";
-                textSpeak = "Since we are generating electrical power through the engines, turn off the APU Generator, APU Start and APU Master switches.";
-                break;
-            case 16:
-                adviceText = "Release the parking brake.";
-                parameterText = "BRAKE";
-                textSpeak = "Release the parking brake.";
-                break;
-            case 17:
-                adviceText = "Set the Auto Brake to MAX.";
-                parameterText = "AUTO BRAKE";
-                textSpeak = "Set the Auto Brake to MAX.";
-                break;
-            case 18:
-                adviceText = "Set the spoiler armed.";
-                parameterText = "SPOILER";
-                textSpeak = "Set the spoiler armed.";
-                break;
-            case 19:
-                adviceText = "Set the flaps to 2.";
-                parameterText = "FLAPS";
-                textSpeak = "Set the flaps to 2.";
-                break;
-            case 20:
-                if (isObjectInCorrectState[0])
-                {
-                    option1 = "";
-                }
-                else
-                {
-                    option1 = "<b>• PACK1;</b>\n";
-                }
-
-                if (isObjectInCorrectState[1])
-                {
-                    option2 = "";
-                }
-                else
-                {
-                    option2 = "<b>• PACK2;</b>\n";
-                }
-
-                adviceText = "Turn off the following components:\n\n" + option1 + option2;
-                parameterText = "PACK1 / PACK2";
-                textSpeak = "Turn off Pack 1 and Pack 2.";
-                break;
-            case 21:
-                adviceText = "Full in the Throttles to apply full power.";
-                parameterText = "THROTTLE";
-                textSpeak = "Full in the Throttles to apply full power.";
-                break;
-            case 22:
-                adviceText = "Wait until the airplane gains sufficient speed.";
-                parameterText = "";
-                textSpeak = "Wait until the airplane gains sufficient speed.";
-                break;
-            case 23:
-                adviceText = "Pull back the yoke to take off. Go up until you reach 500 foot.";
-                parameterText = "";
-                textSpeak = "Pull back the yoke to take off. Go up until you reach 500 foot.";
-                break;
-            case 24:
-                adviceText = "Retract the landing gear.";
-                parameterText = "GEAR";
-                textSpeak = "Retract the landing gear.";
-                break;
-            case 25:
-                adviceText = "";
-                parameterText = "";
-                textSpeak = "";
-                break;
-            case 26:
-                adviceText = "";
-                textSpeak = "";
-
-                if (!isObjectInCorrectState[0] && !isObjectInCorrectState[1])
-                {
-                    adviceText = "Set the flaps to 1 and disarm the spoilers.";
-                    textSpeak = "Set the flaps to 1 and disarm the spoilers.";
-                }
-                else if (!isObjectInCorrectState[0] && isObjectInCorrectState[1])
-                {
-                    adviceText = "Set the flaps to 1.";
-                    textSpeak = "Set the flaps to 1.";
-                }
-                else if (isObjectInCorrectState[0] && !isObjectInCorrectState[1])
-                {
-                    adviceText = "Disarm the spoilers.";
-                    textSpeak = "Disarm the spoilers.";
-                }
-
-                parameterText = "FLAPS/SPOILER";
-                break;
-            case 27:
-                adviceText = "";
-                parameterText = "";
-                textSpeak = "";
-                break;
-            case 28:
-                adviceText = "Set the flaps to 0.";
-                parameterText = "FLAPS";
-                textSpeak = "Set the flaps to 0.";
-                break;
-            default:
-                adviceText = "";
-                parameterText = "";
-                textSpeak = "Tutorial completed!";
-                TextManager.Instance.enableAdviceText(false);
-                break;
+            adviceText = adviceText + "\n" + options;
         }
+        textSpeak = currentSequence.textSpeak;
+        parameterText = currentSequence.parameterText;
+        stageText = currentSequence.stageText;
 
         TextManager.Instance.setFlag(true);
         TextManager.Instance.resetTextSize();
@@ -488,6 +194,12 @@ public class InputSequence : Singleton<InputSequence>
         TextManager.Instance.updateBackgroundSize();
         TextManager.Instance.setFlag(false);
         TextManager.Instance.updateParametersText(parameterText);
+        TextManager.Instance.updateStageText(stageText);
+
+        if (getSeq().Equals("End"))
+        {
+            TextManager.Instance.enableAdviceText(false);
+        }
     }
 
     public void Speak_Text()
@@ -498,135 +210,37 @@ public class InputSequence : Singleton<InputSequence>
         }
     }
 
-    private void setStage()
-    {
-        switch (sequence[sequenceIndex])
-        {
-            case 0:
-                stageText = "1)Preliminary cockpit preparation";
-                break;
-            case 1:
-                stageText = "1)Preliminary cockpit preparation";
-                break;
-            case 2:
-                stageText = "1)Preliminary cockpit preparation";
-                break;
-            case 3:
-                stageText = "1)Preliminary cockpit preparation";
-                break;
-            case 4:
-                stageText = "1)Preliminary cockpit preparation";
-                break;
-            case 5:
-                stageText = "1)Preliminary cockpit preparation";
-                break;
-            case 6:
-                stageText = "1)Preliminary cockpit preparation";
-                break;
-            case 7:
-                stageText = "2)Engine start";
-                break;
-            case 8:
-                stageText = "2)Engine start";
-                break;
-            case 9:
-                stageText = "2)Engine start";
-                break;
-            case 10:
-                stageText = "2)Engine start";
-                break;
-            case 11:
-                stageText = "2)Engine start";
-                break;
-            case 12:
-                stageText = "2)Engine start";
-                break;
-            case 13:
-                stageText = "2)Engine start";
-                break;
-            case 14:
-                stageText = "2)Engine start";
-                break;
-            case 15:
-                stageText = "2)Engine start";
-                break;
-            case 16:
-                stageText = "3)Before taxi";
-                break;
-            case 17:
-                stageText = "3)During taxi";
-                break;
-            case 18:
-                stageText = "3)During taxi";
-                break;
-            case 19:
-                stageText = "3)During taxi";
-                break;
-            case 20:
-                stageText = "3)During taxi";
-                break;
-            case 21:
-                stageText = "4)Takeoff";
-                break;
-            case 22:
-                stageText = "4)Takeoff";
-                break;
-            case 23:
-                stageText = "4)Takeoff";
-                break;
-            case 24:
-                stageText = "4)Takeoff";
-                break;
-            case 25:
-                stageText = "4)Takeoff";
-                break;
-            case 26:
-                stageText = "4)Takeoff";
-                break;
-            case 27:
-                stageText = "4)Takeoff";
-                break;
-            case 28:
-                stageText = "4)Takeoff";
-                break;
-            case 29:
-                stageText = "";
-                break;
-            default:
-                break;
-        }
-
-        TextManager.Instance.updateStageText(stageText);
-    }
-
     public void setIndicationObjects()
     {
+        List<bool> list = new List<bool>();
+        int i;
+
         objectIndicated = null;
 
-        getObjectsFromSequence(out objectIndicated);
+        currentSequence = GetSequence(getSeq());
+
+        getObjectsFromSequence(out objectIndicated, out objsData);
 
         //Make these objects as the next to be indicated and marked, if required.
         dirInd.SetObjectsIndicated(objectIndicated);
 
-        if (getSeq() != 10)
+        for(i = 0; i < objsData.Length; i++)
         {
-            markRing.SetObjectsIndicated(objectIndicated);
+            list.Add(objsData[i].showRing);
         }
+        markRing.SetObjectsIndicated(objectIndicated, list.ToArray());
 
-        if (getSeq() == 7 || getSeq() == 10 || getSeq() == 12 || getSeq() == 14 || getSeq() == 15 || getSeq() == 20 || getSeq() == 26)
-        {
-            contBox.SetObjectsIndicated(objectIndicated, true);
-        }
-        else
-        {
-            contBox.SetObjectsIndicated(objectIndicated, false);
-        }
+        list.Clear();
 
-        if (getSeq() == 10)
+        for (i = 0; i < objsData.Length; i++)
         {
-            feed.InstantiateWaitingObject();
+			list.Add(objsData[i].insideBox);
         }
-        feed.SetObjectsIndicated(objectIndicated);
+        contBox.SetObjectsIndicated(objectIndicated, list.ToArray(), currentSequence.showBox);
+
+        list.Clear();
+
+        feed.SetObjectsIndicated(objectIndicated, objsData);
     }
 
     public void DestroyIndicationObjects()
@@ -638,205 +252,131 @@ public class InputSequence : Singleton<InputSequence>
         TextManager.Instance.enableAdviceText(false);
     }
 
-    private void getObjectsFromSequence(out GameObject[] objectIndicated)
+    public List<FeedbackGroup> GetSequenceObjects()
+    {
+        return seqFromFile;
+    }
+
+    public void AddSequenceObject(FeedbackGroup feedGrp, int idx)
+    {
+        if(idx < 0)
+        {
+            return;
+        }
+
+        if (idx >= sequence.Count)
+        {
+            seqFromFile.Add(feedGrp);
+        }
+        else
+        {
+            seqFromFile.Insert(idx, feedGrp);
+
+            if (idx <= sequenceIndex)
+            {
+                ++sequenceIndex;
+            }
+        }
+    }
+
+    public bool RemoveSequence(string seq_id)
+    {
+        if(currentSequence.sequence == seq_id)
+        {
+            return false;
+        }
+
+        foreach (FeedbackGroup seq in seqFromFile)
+        {
+            if (seq.sequence.Equals(seq_id))
+            {
+                seqFromFile.Remove(seq);
+
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public FeedbackGroup GetSequence(string seq_id)
+    {
+        foreach (FeedbackGroup seq in seqFromFile)
+        {
+            if (seq.sequence.Equals(seq_id))
+            {
+                return seq;
+            }
+        }
+
+        return null;
+    }
+
+    public bool UpdateSequence(string seq_id, FeedbackGroup feed_grp)
+    {
+        if (currentSequence.sequence == seq_id)
+        {
+            return false;
+        }
+
+        foreach (FeedbackGroup seq in seqFromFile)
+        {
+            if (seq.sequence.Equals(seq_id))
+            {
+                seq.objectIndicated = feed_grp.objectIndicated;
+                seq.showBox = feed_grp.showBox;
+                seq.adviceText = feed_grp.adviceText;
+                seq.parameterText = feed_grp.parameterText;
+                seq.stageText = feed_grp.stageText;
+                seq.textSpeak = feed_grp.textSpeak;
+                seq.showParamInAdviceText = feed_grp.showParamInAdviceText;
+                seq.isOnOhPanel = feed_grp.isOnOhPanel;
+
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public void InitSequenceObjects(List<FeedbackGroup> seq_objs)
+    {
+        seqFromFile = seq_objs;
+    }
+
+    private void getObjectsFromSequence(out GameObject[] objectIndicated, out CockpitFeedback[] objectData)
     {
         GameObject[] objects = null;
+        objectData = currentSequence.objectIndicated.ToArray();
 
-        switch (getSeq())
+        if (objectData.Length > 0)
         {
-            case 0:
-                objects = new GameObject[] { gameObject.transform.Find("External Power").gameObject };
-                isObjectInCorrectState = new bool[] { false };
-                break;
-            case 1:
-                objects = new GameObject[] { gameObject.transform.Find("Battery").gameObject };
-                isObjectInCorrectState = new bool[] { false };
-                break;
-            case 2:
-                objects = new GameObject[] { gameObject.transform.Find("APU Master SW").gameObject };
-                isObjectInCorrectState = new bool[] { false };
-                break;
-            case 3:
-                objects = new GameObject[] { gameObject.transform.Find("APU Start").gameObject };
-                isObjectInCorrectState = new bool[] { false };
-                break;
-            case 4:
-                objects = new GameObject[] { gameObject.transform.Find("APU Gen").gameObject };
-                isObjectInCorrectState = new bool[] { false };
-                break;
-            case 5:
-                objects = new GameObject[] { gameObject.transform.Find("External Power").gameObject };
-                isObjectInCorrectState = new bool[] { false };
-                break;
-            case 6:
-                objects = new GameObject[] { gameObject.transform.Find("APU Bleed").gameObject };
-                isObjectInCorrectState = new bool[] { false };
-                break;
-            case 7:
-                objects = new GameObject[] { gameObject.transform.Find("LTK_PUMPS_1").gameObject, gameObject.transform.Find("LTK_PUMPS_2").gameObject, gameObject.transform.Find("Pumps").gameObject, gameObject.transform.Find("RTK_PUMPS_1").gameObject, gameObject.transform.Find("RTK_PUMPS_2").gameObject };
-                isObjectInCorrectState = new bool[] { false, false, false, false, false };
-                break;
-            case 8:
-                objects = new GameObject[] { gameObject.transform.Find("ENG Start Switch").gameObject };
-                isObjectInCorrectState = new bool[] { false };
-                break;
-            case 9:
-                objects = new GameObject[] { gameObject.transform.Find("Engine1").gameObject, gameObject.transform.Find("Engine2").gameObject };
-                isObjectInCorrectState = new bool[] { false, false };
-                break;
-            case 10:
-                objects = new GameObject[] { gameObject.transform.Find("Monitor").gameObject };
-                isObjectInCorrectState = new bool[] { false };
-                break;
-            case 11:
-                objects = new GameObject[] { gameObject.transform.Find("ENG Start Switch").gameObject };
-                isObjectInCorrectState = new bool[] { false };
-                break;
-            case 12:
-                objects = new GameObject[] { gameObject.transform.Find("Engine1 Gen").gameObject, gameObject.transform.Find("Engine2 Gen").gameObject };
-                isObjectInCorrectState = new bool[] { false, false };
-                break;
-            case 13:
-                objects = new GameObject[] { gameObject.transform.Find("APU Bleed").gameObject };
-                isObjectInCorrectState = new bool[] { false };
-                break;
-            case 14:
-                objects = new GameObject[] { gameObject.transform.Find("Pack1").gameObject, gameObject.transform.Find("Pack2").gameObject };
-                isObjectInCorrectState = new bool[] { false, false };
-                break;
-            case 15:
-                objects = new GameObject[] { gameObject.transform.Find("APU Gen").gameObject, gameObject.transform.Find("APU Master SW").gameObject, gameObject.transform.Find("APU Start").gameObject };
-                isObjectInCorrectState = new bool[] { false, false, false };
-                break;
-            case 16:
-                objects = new GameObject[] { gameObject.transform.Find("Brake Parking").gameObject };
-                isObjectInCorrectState = new bool[] { false };
-                break;
-            case 17:
-                objects = new GameObject[] { gameObject.transform.Find("Auto_Brake").gameObject };
-                isObjectInCorrectState = new bool[] { false };
-                break;
-            case 18:
-                objects = new GameObject[] { gameObject.transform.Find("Spoiler").gameObject };
-                isObjectInCorrectState = new bool[] { false };
-                break;
-            case 19:
-                objects = new GameObject[] { gameObject.transform.Find("Flaps").gameObject };
-                isObjectInCorrectState = new bool[] { false };
-                break;
-            case 20:
-                objects = new GameObject[] { gameObject.transform.Find("Pack1").gameObject, gameObject.transform.Find("Pack2").gameObject };
-                isObjectInCorrectState = new bool[] { false, false };
-                break;
-            case 21:
-                objects = new GameObject[] { gameObject.transform.Find("Throttle").gameObject };
-                isObjectInCorrectState = new bool[] { false };
-                break;
-            case 23:
-                Parameters.Instance.set_initialAltitude(Parameters.Instance.get_altitude());
-                break;
-            case 24:
-                objects = new GameObject[] { gameObject.transform.Find("Gears").gameObject };
-                isObjectInCorrectState = new bool[] { false };
-                break;
-            case 26:
-                objects = new GameObject[] { gameObject.transform.Find("Flaps").gameObject, gameObject.transform.Find("Spoiler").gameObject };
-                isObjectInCorrectState = new bool[] { false, false };
-                break;
-            case 28:
-                objects = new GameObject[] { gameObject.transform.Find("Flaps").gameObject };
-                isObjectInCorrectState = new bool[] { false };
-                break;
-            default:
-                break;
+            objects = new GameObject[objectData.Length];
+            isObjectInCorrectState = new bool[objectData.Length];
+
+            for (int i = 0; i < objectData.Length; i++)
+            {
+                objects[i] = gameObject.transform.Find(objectData[i].name).gameObject;
+                isObjectInCorrectState[i] = false;
+            }
         }
 
         objectIndicated = objects;
     }
-	
-	public GameObject[] getObjectsFromSequence(int seq)
+
+    public GameObject[] getObjectsFromSequence(string seq)
     {
         GameObject[] objects = null;
+        CockpitFeedback[] components = GetSequence(seq).objectIndicated.ToArray();
 
-        switch (seq)
+        if (components.Length > 0)
         {
-            case 0:
-                objects = new GameObject[] { gameObject.transform.Find("External Power").gameObject };
-                break;
-            case 1:
-                objects = new GameObject[] { gameObject.transform.Find("Battery").gameObject };
-                break;
-            case 2:
-                objects = new GameObject[] { gameObject.transform.Find("APU Master SW").gameObject };
-                break;
-            case 3:
-                objects = new GameObject[] { gameObject.transform.Find("APU Start").gameObject };
-                break;
-            case 4:
-                objects = new GameObject[] { gameObject.transform.Find("APU Gen").gameObject };
-                break;
-            case 5:
-                objects = new GameObject[] { gameObject.transform.Find("External Power").gameObject };
-                break;
-            case 6:
-                objects = new GameObject[] { gameObject.transform.Find("APU Bleed").gameObject };
-                break;
-            case 7:
-                objects = new GameObject[] { gameObject.transform.Find("LTK_PUMPS_1").gameObject, gameObject.transform.Find("LTK_PUMPS_2").gameObject, gameObject.transform.Find("Pumps").gameObject, gameObject.transform.Find("RTK_PUMPS_1").gameObject, gameObject.transform.Find("RTK_PUMPS_2").gameObject };
-                break;
-            case 8:
-                objects = new GameObject[] { gameObject.transform.Find("ENG Start Switch").gameObject };
-                break;
-            case 9:
-                objects = new GameObject[] { gameObject.transform.Find("Engine1").gameObject, gameObject.transform.Find("Engine2").gameObject };
-                break;
-            case 10:
-                objects = new GameObject[] { gameObject.transform.Find("Monitor").gameObject };
-                break;
-            case 11:
-                objects = new GameObject[] { gameObject.transform.Find("ENG Start Switch").gameObject };
-                break;
-            case 12:
-                objects = new GameObject[] { gameObject.transform.Find("Engine1 Gen").gameObject, gameObject.transform.Find("Engine2 Gen").gameObject };
-                break;
-            case 13:
-                objects = new GameObject[] { gameObject.transform.Find("APU Bleed").gameObject };
-                break;
-            case 14:
-                objects = new GameObject[] { gameObject.transform.Find("Pack1").gameObject, gameObject.transform.Find("Pack2").gameObject };
-                break;
-            case 15:
-                objects = new GameObject[] { gameObject.transform.Find("APU Gen").gameObject, gameObject.transform.Find("APU Master SW").gameObject, gameObject.transform.Find("APU Start").gameObject };
-                break;
-            case 16:
-                objects = new GameObject[] { gameObject.transform.Find("Brake Parking").gameObject };
-                break;
-            case 17:
-                objects = new GameObject[] { gameObject.transform.Find("Auto_Brake").gameObject };
-                break;
-            case 18:
-                objects = new GameObject[] { gameObject.transform.Find("Spoiler").gameObject };
-                break;
-            case 19:
-                objects = new GameObject[] { gameObject.transform.Find("Flaps").gameObject };
-                break;
-            case 20:
-                objects = new GameObject[] { gameObject.transform.Find("Pack1").gameObject, gameObject.transform.Find("Pack2").gameObject };
-                break;
-            case 21:
-                objects = new GameObject[] { gameObject.transform.Find("Throttle").gameObject };
-                break;
-            case 24:
-                objects = new GameObject[] { gameObject.transform.Find("Gears").gameObject };
-                break;
-            case 26:
-                objects = new GameObject[] { gameObject.transform.Find("Flaps").gameObject, gameObject.transform.Find("Spoiler").gameObject };
-                break;
-            case 28:
-                objects = new GameObject[] { gameObject.transform.Find("Flaps").gameObject };
-                break;
-            default:
-                break;
+            objects = new GameObject[components.Length];
+
+            for (int i = 0; i < components.Length; i++)
+            {
+                objects[i] = gameObject.transform.Find(components[i].name).gameObject;
+            }
         }
 
         return objects;
@@ -844,12 +384,54 @@ public class InputSequence : Singleton<InputSequence>
 
     public bool isOnOhPanel()
     {
-        return getSeq() == 0 || getSeq() == 1 || getSeq() == 2 || getSeq() == 3 || getSeq() == 4 || getSeq() == 5 || getSeq() == 6 || getSeq() == 7 || getSeq() == 12 || getSeq() == 13 || getSeq() == 14 || getSeq() == 15 || getSeq() == 20;
+        return currentSequence.isOnOhPanel;
     }
 
     public void checkNextSeq()
     {
-        switch (sequence[sequenceIndex])
+        if (getSeq().Equals("End"))
+        {
+            flag = true;
+            textSpeak = "There is no other indication to give. The tutorial is finished.";
+            Destroy(DirectionalIndicator);
+            Destroy(MarkerRing);
+            Destroy(FeedbackHolograms);
+            Destroy(TextManager.Instance.gameObject);
+
+            return;
+        }
+
+        if(objectIndicated.Length > 0)
+        {
+            double requiredValue;
+            bool oldValue;
+            bool updateAdvice = false;
+            bool taskCompleted = true;
+
+            for (int i = 0; i < objectIndicated.Length; i++)
+            {
+                requiredValue = objsData[i].requiredValue;
+                oldValue = isObjectInCorrectState[i];
+
+                isObjectInCorrectState[i] = CheckObjectState(objectIndicated[i].GetComponent<NewParameterManager>().getPath(), currentSequence.objectIndicated[i].sub_parameters, objectIndicated[i].GetComponent<NewParameterManager>().getDataType(), requiredValue);
+
+                taskCompleted = taskCompleted && isObjectInCorrectState[i];
+
+                updateAdvice = updateAdvice || (oldValue != isObjectInCorrectState[i]) ? true : false;
+            }
+
+            if (currentSequence.showParamInAdviceText && updateAdvice)
+            {
+                setAdvice();
+            }
+
+            if (taskCompleted)
+            {
+                nextSeq();
+            }
+        }
+
+        /*switch (sequence[sequenceIndex])
         {
             case 0:
                 if (Parameters.Instance.get_EXT_PWR() == 1)
@@ -1283,176 +865,66 @@ public class InputSequence : Singleton<InputSequence>
                 Destroy(FeedbackHolograms);
                 Destroy(TextManager.Instance.gameObject);
                 break;
+        }*/
+    }
+
+    public bool CheckObjectState(string[] path, bool[] subParam, string[] dataType, double requiredValue)
+    {
+        bool result = true;
+
+        for (int i = 0; i < path.Length; i++)
+        {
+            if (!subParam[i])
+            {
+                continue;
+            }
+
+            var param = dataType[i] == "double" ? 0.00 : 0;
+
+            if (dataType[i] == "double")
+            {
+                if (path[i] == "/position/altitude-ft")
+                {
+                    param = Math.Abs(Parameters.Instance.GetValueDouble(path[i]) - Parameters.Instance.get_initialAltitude());
+                }
+                else
+                {
+                    param = Math.Abs(Parameters.Instance.GetValueDouble(path[i]));
+                }
+
+                result = result && param == requiredValue;
+            }
+            else
+            {
+                param = Parameters.Instance.GetValueInt(path[i]);
+
+                result = result && param == Convert.ToInt32(requiredValue);
+            }
         }
+
+        return result;
     }
 
     public bool checkIfSeq(ComponentsEnums.Components value)
     {
-        if (sequence[sequenceIndex] >= (sequence.Length - 1))
+        if (value == ComponentsEnums.Components.None)
+        {
+            return false;
+        }
+
+        if (getSeq().Equals("End"))
         {
             return true;
         }
 
-        switch (value)
+        foreach(GameObject obj in objectIndicated)
         {
-            case ComponentsEnums.Components.External_Power:
-                if (sequence[sequenceIndex] == 0 || sequence[sequenceIndex] == 5)
-                {
-                    return true;
-                }
-                break;
-            case ComponentsEnums.Components.Battery:
-                if (sequence[sequenceIndex] == 1)
-                {
-                    return true;
-                }
-                break;
-            case ComponentsEnums.Components.APU_Gen:
-                if (sequence[sequenceIndex] == 4)
-                {
-                    return true;
-                }
-                else if (sequence[sequenceIndex] == 15)
-                {
-                    return true;
-                }
-                break;
-            case ComponentsEnums.Components.APU_Start:
-                if (sequence[sequenceIndex] == 3)
-                {
-                    return true;
-                }
-                else if (sequence[sequenceIndex] == 15)
-                {
-                    return true;
-                }
-                break;
-            case ComponentsEnums.Components.APU_Master_SW:
-                if (sequence[sequenceIndex] == 2)
-                {
-                    return true;
-                }
-                else if (sequence[sequenceIndex] == 15)
-                {
-                    return true;
-                }
-                break;
-            case ComponentsEnums.Components.APU_Bleed:
-                if (sequence[sequenceIndex] == 6 || sequence[sequenceIndex] == 13)
-                {
-                    return true;
-                }
-                break;
-            case ComponentsEnums.Components.ENG_Start_Switch:
-                if (sequence[sequenceIndex] == 8 || sequence[sequenceIndex] == 11)
-                {
-                    return true;
-                }
-                break;
-            case ComponentsEnums.Components.Engine1:
-                if (sequence[sequenceIndex] == 9)
-                {
-                    return true;
-                }
-                break;
-            case ComponentsEnums.Components.Engine2:
-                if (sequence[sequenceIndex] == 9)
-                {
-                    return true;
-                }
-                break;
-            case ComponentsEnums.Components.Brake_Parking:
-                if (sequence[sequenceIndex] == 16)
-                {
-                    return true;
-                }
-                break;
-            case ComponentsEnums.Components.Engine1_Gen:
-                if (sequence[sequenceIndex] == 12)
-                {
-                    return true;
-                }
-                break;
-            case ComponentsEnums.Components.Engine2_Gen:
-                if (sequence[sequenceIndex] == 12)
-                {
-                    return true;
-                }
-                break;
-            case ComponentsEnums.Components.Pack1:
-                if (sequence[sequenceIndex] == 14 || sequence[sequenceIndex] == 20)
-                {
-                    return true;
-                }
-                break;
-            case ComponentsEnums.Components.Pack2:
-                if (sequence[sequenceIndex] == 14 || sequence[sequenceIndex] == 20)
-                {
-                    return true;
-                }
-                break;
-            case ComponentsEnums.Components.LTK_PUMPS_1:
-                if (sequence[sequenceIndex] == 7)
-                {
-                    return true;
-                }
-                break;
-            case ComponentsEnums.Components.LTK_PUMPS_2:
-                if (sequence[sequenceIndex] == 7)
-                {
-                    return true;
-                }
-                break;
-            case ComponentsEnums.Components.Pumps:
-                if (sequence[sequenceIndex] == 7)
-                {
-                    return true;
-                }
-                break;
-            case ComponentsEnums.Components.RTK_PUMPS_1:
-                if (sequence[sequenceIndex] == 7)
-                {
-                    return true;
-                }
-                break;
-            case ComponentsEnums.Components.RTK_PUMPS_2:
-                if (sequence[sequenceIndex] == 7)
-                {
-                    return true;
-                }
-                break;
-            case ComponentsEnums.Components.Auto_Brake:
-                if (sequence[sequenceIndex] == 17)
-                {
-                    return true;
-                }
-                break;
-            case ComponentsEnums.Components.Spoiler:
-                if (sequence[sequenceIndex] == 18 || sequence[sequenceIndex] == 26)
-                {
-                    return true;
-                }
-                break;
-            case ComponentsEnums.Components.Flaps:
-                if (sequence[sequenceIndex] == 19 || sequence[sequenceIndex] == 26 || sequence[sequenceIndex] == 28)
-                {
-                    return true;
-                }
-                break;
-            case ComponentsEnums.Components.Throttle:
-                if (sequence[sequenceIndex] == 21)
-                {
-                    return true;
-                }
-                break;
-            case ComponentsEnums.Components.Gears:
-                if (sequence[sequenceIndex] == 24)
-                {
-                    return true;
-                }
-                break;
-            default:
-                break;
+            foreach(ComponentsEnums.Components id in obj.GetComponent<NewParameterManager>().getID())
+
+            if(value == id)
+            {
+                return true;
+            }
         }
 
         return false;

@@ -172,22 +172,6 @@ public class MenuManager : Singleton<MenuManager> {
         boxScaling.SetBox();
     }
 
-    private void CreateNewComponent()
-    {
-        GameObject newComponent = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        newComponent.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
-        newComponent.transform.position = Camera.main.transform.position + Camera.main.transform.forward * 1f;
-        newComponent.AddComponent<Interactible>();
-        newComponent.AddComponent<TapToPlace>().enabled = false;
-        newComponent.AddComponent<HoldToRotate>().enabled = false;
-        newComponent.GetComponent<MeshRenderer>().enabled = false;
-        newComponent.GetComponent<MeshRenderer>().material = Resources.Load("Cockpit_Buttons", typeof(Material)) as Material;
-        newComponent.GetComponent<TapToPlace>().PlacementMaterial = Resources.Load("PlaceableShadow", typeof(Material)) as Material;
-        newComponent.GetComponent<HoldToRotate>().PlacementMaterial = Resources.Load("PlaceableShadow", typeof(Material)) as Material;
-
-        newComponent.transform.SetParent(cockpit.transform);
-    }
-
     public void ObjectPlacement()
     {
         if (isRotating)
@@ -331,7 +315,34 @@ public class MenuManager : Singleton<MenuManager> {
 
     public void AddComponent()
     {
-        
+        Material material;
+        GameObject o = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        GameObject component = Instantiate(o);
+        component.AddComponent<Interactible>();
+        component.AddComponent<TapToPlace>().enabled = false;
+        component.AddComponent<HoldToRotate>().enabled = false;
+        component.AddComponent<TapToRemove>().enabled = false;
+        component.AddComponent<NewParameterManager>();
+        component.GetComponent<MeshRenderer>().enabled = true;
+        material = Resources.Load("Cockpit_Buttons", typeof(Material)) as Material;
+        component.GetComponent<MeshRenderer>().material = material;
+        material = Resources.Load("PlaceableShadow", typeof(Material)) as Material;
+        component.GetComponent<TapToPlace>().PlacementMaterial = material;
+        component.GetComponent<HoldToRotate>().PlacementMaterial = material;
+
+        component.name = "Obj_" + FileDataReader.Instance.GetNextObjectNumber();
+        component.transform.position = new Vector3(0f, 0f, 0.5f);
+        component.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, 0f));
+        component.transform.localScale = new Vector3(0.03f, 0.03f, 0.03f);
+        component.GetComponent<NewParameterManager>().setID(new ComponentsEnums.Components[] { ComponentsEnums.Components.None });
+        component.GetComponent<NewParameterManager>().setDataType(new string[] { "double" });
+
+        component.transform.SetParent(cockpit.transform);
+        FileDataWriter.Instance.AddIntoList(component.name);
+
+        Destroy(o);
+
+        CloseMenu();
     }
 
     public void RemoveComponent()

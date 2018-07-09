@@ -12,21 +12,16 @@ using System.Net.Sockets;
 #endif
 
 
-
-
-
 public class SocketManager : MonoBehaviour
 {
 
     public static SocketManager Instance { get; private set; }
     // test hololens
 #if !UNITY_EDITOR
-    private const string HOST = "192.168.1.138";
+    private const string HOST = "192.168.0.144";
 #else
     private const string HOST = "127.0.0.1";
 #endif
-    // test locale
-    //private const string HOST = "127.0.0.1"; 
     private const int PORTIN = 6925;
     private const int PORTOUT = 6926;
 
@@ -45,8 +40,14 @@ public class SocketManager : MonoBehaviour
 #else
         manager = new DotNetSocketManager();
 #endif
+
         manager.init(HOST, PORTIN, PORTOUT);
+
+#if WINDOWS_UWP
+        InvokeRepeating("UpdateParameters", 1.0f, 1.0f);
+#else
         manager.OnDataReceived += Manager_OnDataReceived;
+#endif
     }
 
 
@@ -186,9 +187,7 @@ public class UWPSocketManager : IConcreteSocketManager
 
     public void init(string host, int inputPort, int outputPort)
     {
-
         this.initSockets(host, inputPort, outputPort);
-        InvokeRepeating("RaiseUpdate", 1.0f, 1.0f);
     }
 
     private async void initSockets(string host, int inputPort, int outputPort)
@@ -220,7 +219,7 @@ public class UWPSocketManager : IConcreteSocketManager
         throw new NotImplementedException();
     }
 
-    public void SendUdpDatagram(string msg)
+    public async void SendUdpDatagram(string msg)
     {
         try
         {

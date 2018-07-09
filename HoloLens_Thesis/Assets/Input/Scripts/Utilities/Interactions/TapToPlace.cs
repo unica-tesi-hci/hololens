@@ -317,7 +317,7 @@ public class TapToPlace : MonoBehaviour, IInputClickHandler
     {
         rings = markerRing.GetFromObjects(obj);
 
-        box = contBox.GetFromObjects(obj);
+        box = contBox.GetFromObjects(obj, new bool[] { true });
 
         feedbackHolograms = feed.GetFromObjects(obj);
     }

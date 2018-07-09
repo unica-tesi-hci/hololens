@@ -20,7 +20,12 @@ public class FileDataWriter : Singleton<FileDataWriter>
         Vector3 position;
         Vector3 rotation;
         Vector3 scale;
-        string parameter;
+        string[] parameter;
+        string[] dataType;
+        string[] path;
+        string[] interaction;
+        double[][] possible_values;
+        string[] IO_Data;
         NewParameterManager newParameterManager;
         int i = 0;
 
@@ -35,11 +40,22 @@ public class FileDataWriter : Singleton<FileDataWriter>
                 position = component.position;
                 rotation = component.rotation.eulerAngles;
                 scale = component.localScale;
-                parameter = ComponentsEnums.GetStringFromEnum(component.GetComponent<NewParameterManager>().getID());
+                parameter = component.GetComponent<NewParameterManager>().getIDAsString();
+                dataType = component.GetComponent<NewParameterManager>().getDataType();
+                path = component.GetComponent<NewParameterManager>().getPath();
+                interaction = component.GetComponent<NewParameterManager>().getInteraction();
+                possible_values = component.GetComponent<NewParameterManager>().getPossibleValues();
+                IO_Data = component.GetComponent<NewParameterManager>().getIOData();
 
-                file.components.Add(new Cockpit_Component_Json(cockpit_components[i], position, rotation, scale, parameter));
+                file.components.Add(new Cockpit_Component_Json(cockpit_components[i], position, rotation, scale, parameter, dataType, path, interaction, possible_values, IO_Data));
                 ++i;
             }
+        }
+
+        List<FeedbackGroup> sequences = InputSequence.Instance.GetSequenceObjects();
+        foreach (FeedbackGroup feed_grp in sequences)
+        {
+            file.feedback_group.Add(feed_grp);
         }
 
         ContainerBox contBox = GameObject.FindWithTag("ContainerBox").GetComponent<ContainerBox>();
@@ -50,17 +66,11 @@ public class FileDataWriter : Singleton<FileDataWriter>
             contBox.InitializeBoxFromFile();
         }
 
-        Vector3[][] boxFromFile = contBox.getBoxFromFile();
-        Vector3[] boxFile;
+        Container_Box_Json[] boxFromFile = contBox.getBoxFromFile();
 
         for (i = 0; i < len; i++)
         {
-            boxFile = boxFromFile[i];
-
-            if (boxFile.Length != 0)
-            {
-                file.boxes.Add(new Container_Box_Json(i, boxFile[0], boxFile[1], boxFile[2], boxFile[3], boxFile[4], boxFile[5], boxFile[6], boxFile[7], boxFile[8], boxFile[9], boxFile[10], boxFile[11]));
-            }
+            file.boxes.Add(boxFromFile[i]);
         }
 
 #if !UNITY_EDITOR
@@ -88,7 +98,22 @@ public class FileDataWriter : Singleton<FileDataWriter>
         {
             Debug.Log(e.Message);
         }
-        
+
+        string path = String.Format("/savedObjects.json");
+
+        FileStream fs = new FileStream(Application.persistentDataPath + path, FileMode.Create);
+
+        using (StreamWriter writer = new StreamWriter(fs, Encoding.UTF8))
+        {
+            try
+            {
+                writer.WriteLine(JsonUtility.ToJson(file));
+            }
+            catch (Exception e)
+            {
+                Debug.Log(e.Message);
+            }
+        }
     }
 #endif
 
@@ -135,4 +160,5 @@ public class FileDataWriter : Singleton<FileDataWriter>
     {
         cockpit_components.Remove(value);
     }
+
 }

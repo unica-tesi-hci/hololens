@@ -15,15 +15,17 @@ public class ContainerBox : MonoBehaviour
     [Tooltip("The material used for the container box.")]
     public Material boxMaterial;
 
-    // The objects encapsulated by the Container Box.
+    // Array containing a list of objects indicated by the current sequence task.
     private GameObject[] objectIndicated = null;
-
+	//This boolean array specifies which object in objectIndicated is encapsulated by the Container Box.
+	private bool[] insideBox = null;
+	
     // The box instantiated when the respective objects are visible.
     private GameObject[] box = null;
     // Cache the MeshRenderer for the container box since it will be enabled and disabled frequently.
     private MeshRenderer[] boxRenderer;
 	//The list of Container Box stored on file.
-	private Vector3[][] boxFromFile = null;
+	private Container_Box_Json[] boxFromFile = null;
 
     //Check during the process if all the objectIndicated are in the correct state.
     private bool areAllObjectsCorrect;
@@ -106,7 +108,7 @@ public class ContainerBox : MonoBehaviour
         }
     }
 	
-	public GameObject[] GetFromObjects(GameObject[] objects, int? _seq = null){
+	public GameObject[] GetFromObjects(GameObject[] objects, bool[] in_box, string seq = ""){
 		if(objects == null)
 		{
 			return objects;
@@ -125,66 +127,77 @@ public class ContainerBox : MonoBehaviour
         maxX = Mathf.NegativeInfinity;
         maxY = Mathf.NegativeInfinity;
         maxZ = Mathf.NegativeInfinity;
+
+        bool inside_box = false;
 			
 		for (i = 0; i < objects.Length; i++)
 		{
-			if (objects[i].transform.position.x < minX)
+			if(in_box[i])
 			{
-				minX = objects[i].transform.position.x;
-				minX_scale = objects[i].transform.localScale.x / 2;
-			}
+				if (objects[i].transform.position.x < minX)
+				{
+					minX = objects[i].transform.position.x;
+					minX_scale = objects[i].transform.localScale.x / 2;
+				}
 
-			if (objects[i].transform.position.x > maxX)
-			{
-				maxX = objects[i].transform.position.x;
-				maxX_scale = objects[i].transform.localScale.x / 2;
-			}
+				if (objects[i].transform.position.x > maxX)
+				{
+					maxX = objects[i].transform.position.x;
+					maxX_scale = objects[i].transform.localScale.x / 2;
+				}
 
-			if (objects[i].transform.position.y < minY)
-			{
-				minY = objects[i].transform.position.y;
-				minY_scale = objects[i].transform.localScale.y / 2;
-			}
+				if (objects[i].transform.position.y < minY)
+				{
+					minY = objects[i].transform.position.y;
+					minY_scale = objects[i].transform.localScale.y / 2;
+				}
 
-			if (objects[i].transform.position.y > maxY)
-			{
-				maxY = objects[i].transform.position.y;
-				maxY_scale = objects[i].transform.localScale.y / 2;
-			}
+				if (objects[i].transform.position.y > maxY)
+				{
+					maxY = objects[i].transform.position.y;
+					maxY_scale = objects[i].transform.localScale.y / 2;
+				}
 
-			if (objects[i].transform.position.z < minZ)
-			{
-				minZ = objects[i].transform.position.z;
-				minZ_scale = objects[i].transform.localScale.z / 2;
-			}
+				if (objects[i].transform.position.z < minZ)
+				{
+					minZ = objects[i].transform.position.z;
+					minZ_scale = objects[i].transform.localScale.z / 2;
+				}
 
-			if (objects[i].transform.position.z > maxZ)
-			{
-				maxZ = objects[i].transform.position.z;
-				maxZ_scale = objects[i].transform.localScale.z / 2;
+				if (objects[i].transform.position.z > maxZ)
+				{
+					maxZ = objects[i].transform.position.z;
+					maxZ_scale = objects[i].transform.localScale.z / 2;
+				}
+
+                inside_box = true;
 			}
 		}
+
+        if (!inside_box)
+        {
+            return null;
+        }
 		
 		GameObject[] tmpBox;
 		
-		if(boxFromFile != null && _seq != null){
+		if(boxFromFile != null && seq != ""){
 			tmpBox = CreateBox();
-			
-			int seq = (int)_seq;
-			Vector3[] properties = boxFromFile[seq];
-			
-			tmpBox[0].transform.position = properties[0];
-			tmpBox[0].transform.rotation = Quaternion.Euler(properties[1]);
-			tmpBox[0].transform.localScale = properties[2];
-			tmpBox[1].transform.position = properties[3];
-			tmpBox[1].transform.rotation = Quaternion.Euler(properties[4]);
-			tmpBox[1].transform.localScale = properties[5];
-			tmpBox[2].transform.position = properties[6];
-			tmpBox[2].transform.rotation = Quaternion.Euler(properties[7]);
-			tmpBox[2].transform.localScale = properties[8];
-			tmpBox[3].transform.position = properties[9];
-			tmpBox[3].transform.rotation = Quaternion.Euler(properties[10]);
-			tmpBox[3].transform.localScale = properties[11];
+
+            Container_Box_Json properties = GetBoxFromId(seq);
+
+            tmpBox[0].transform.position = properties.positionLeft;
+			tmpBox[0].transform.rotation = Quaternion.Euler(properties.rotationLeft);
+			tmpBox[0].transform.localScale = properties.scaleLeft;
+			tmpBox[1].transform.position = properties.positionTop;
+			tmpBox[1].transform.rotation = Quaternion.Euler(properties.rotationTop);
+			tmpBox[1].transform.localScale = properties.scaleTop;
+			tmpBox[2].transform.position = properties.positionRight;
+			tmpBox[2].transform.rotation = Quaternion.Euler(properties.rotationRight);
+			tmpBox[2].transform.localScale = properties.scaleRight;
+			tmpBox[3].transform.position = properties.positionBottom;
+			tmpBox[3].transform.rotation = Quaternion.Euler(properties.rotationBottom);
+			tmpBox[3].transform.localScale = properties.scaleBottom;
 			
 			minX = minX - minX_scale;
 			maxX = maxX + maxX_scale;
@@ -208,7 +221,7 @@ public class ContainerBox : MonoBehaviour
 			
 			tmpBox = CreateBox();
 			SetBoxPosition(tmpBox);
-			SetBoxRotation(tmpBox, objects);
+			SetBoxRotation(tmpBox, objects, in_box);
 			
 			for(i = 0; i < tmpBox.Length; i++){
 				tmpBox[i].transform.localScale = new Vector3(tmpBox[i].transform.localScale.x, tmpBox[i].transform.localScale.y, BoxObject.transform.localScale.z);
@@ -219,11 +232,12 @@ public class ContainerBox : MonoBehaviour
 		return tmpBox;
 	}
 
-    public void SetObjectsIndicated(GameObject[] objects, bool showBox)
+    public void SetObjectsIndicated(GameObject[] objects, bool[] in_box, bool showBox)
     {
         if (objects != null)
         {
             int i;
+            bool inside_box = false;
             float minX_scale = 0;
             float maxX_scale = 0;
             float minY_scale = 0;
@@ -237,66 +251,77 @@ public class ContainerBox : MonoBehaviour
             maxY = Mathf.NegativeInfinity;
             maxZ = Mathf.NegativeInfinity;
             objectIndicated = new GameObject[objects.Length];
+			insideBox = in_box;
 
             for (i = 0; i < objects.Length; i++)
             {
                 objectIndicated[i] = objects[i];
                 
+                if(insideBox[i])
+				{
+					if (objectIndicated[i].transform.position.x < minX)
+					{
+						minX = objectIndicated[i].transform.position.x;
+						minX_scale = objectIndicated[i].transform.localScale.x / 2;
+					}
 
-                if (objectIndicated[i].transform.position.x < minX)
-                {
-                    minX = objectIndicated[i].transform.position.x;
-                    minX_scale = objectIndicated[i].transform.localScale.x / 2;
-                }
+					if (objectIndicated[i].transform.position.x > maxX)
+					{
+						maxX = objectIndicated[i].transform.position.x;
+						maxX_scale = objectIndicated[i].transform.localScale.x / 2;
+					}
 
-                if (objectIndicated[i].transform.position.x > maxX)
-                {
-                    maxX = objectIndicated[i].transform.position.x;
-                    maxX_scale = objectIndicated[i].transform.localScale.x / 2;
-                }
+					if (objectIndicated[i].transform.position.y < minY)
+					{
+						minY = objectIndicated[i].transform.position.y;
+						minY_scale = objectIndicated[i].transform.localScale.y / 2;
+					}
 
-                if (objectIndicated[i].transform.position.y < minY)
-                {
-                    minY = objectIndicated[i].transform.position.y;
-                    minY_scale = objectIndicated[i].transform.localScale.y / 2;
-                }
+					if (objectIndicated[i].transform.position.y > maxY)
+					{
+						maxY = objectIndicated[i].transform.position.y;
+						maxY_scale = objectIndicated[i].transform.localScale.y / 2;
+					}
 
-                if (objectIndicated[i].transform.position.y > maxY)
-                {
-                    maxY = objectIndicated[i].transform.position.y;
-                    maxY_scale = objectIndicated[i].transform.localScale.y / 2;
-                }
+					if (objectIndicated[i].transform.position.z < minZ)
+					{
+						minZ = objectIndicated[i].transform.position.z;
+						minZ_scale = objectIndicated[i].transform.localScale.z / 2;
+					}
 
-                if (objectIndicated[i].transform.position.z < minZ)
-                {
-                    minZ = objectIndicated[i].transform.position.z;
-                    minZ_scale = objectIndicated[i].transform.localScale.z / 2;
-                }
+					if (objectIndicated[i].transform.position.z > maxZ)
+					{
+						maxZ = objectIndicated[i].transform.position.z;
+						maxZ_scale = objectIndicated[i].transform.localScale.z / 2;
+					}
 
-                if (objectIndicated[i].transform.position.z > maxZ)
-                {
-                    maxZ = objectIndicated[i].transform.position.z;
-                    maxZ_scale = objectIndicated[i].transform.localScale.z / 2;
-                }
+                    inside_box = true;
+				}
 			}
+
+            if (!inside_box)
+            {
+                objectIndicated = null;
+                return;
+            }
 			
 			if(boxFromFile != null){
 				box = CreateBox();
 				
-				Vector3[] properties = boxFromFile[InputSequence.Instance.getSeq()];
+				Container_Box_Json properties = GetBoxFromId(InputSequence.Instance.getSeq());
 				
-				box[0].transform.position = properties[0];
-				box[0].transform.rotation = Quaternion.Euler(properties[1]);
-				box[0].transform.localScale = properties[2];
-				box[1].transform.position = properties[3];
-				box[1].transform.rotation = Quaternion.Euler(properties[4]);
-				box[1].transform.localScale = properties[5];
-				box[2].transform.position = properties[6];
-				box[2].transform.rotation = Quaternion.Euler(properties[7]);
-				box[2].transform.localScale = properties[8];
-				box[3].transform.position = properties[9];
-				box[3].transform.rotation = Quaternion.Euler(properties[10]);
-				box[3].transform.localScale = properties[11];
+				box[0].transform.position = properties.positionLeft;
+				box[0].transform.rotation = Quaternion.Euler(properties.rotationLeft);
+				box[0].transform.localScale = properties.scaleLeft;
+				box[1].transform.position = properties.positionTop;
+				box[1].transform.rotation = Quaternion.Euler(properties.rotationTop);
+				box[1].transform.localScale = properties.scaleTop;
+				box[2].transform.position = properties.positionRight;
+				box[2].transform.rotation = Quaternion.Euler(properties.rotationRight);
+				box[2].transform.localScale = properties.scaleRight;
+				box[3].transform.position = properties.positionBottom;
+				box[3].transform.rotation = Quaternion.Euler(properties.rotationBottom);
+				box[3].transform.localScale = properties.scaleBottom;
 				
 				minX = minX - minX_scale;
 				maxX = maxX + maxX_scale;
@@ -393,8 +418,21 @@ public class ContainerBox : MonoBehaviour
     {
         return box;
     }
+
+    public Container_Box_Json GetBoxFromId(string id)
+    {
+        foreach (Container_Box_Json boxdata in boxFromFile)
+        {
+            if (boxdata.sequence.Equals(id))
+            {
+                return boxdata;
+            }
+        }
+
+        return null;
+    }
 	
-	public void InitializeBoxFromFile(Vector3[][] boxFile = null)
+	public void InitializeBoxFromFile(Container_Box_Json[] boxFile = null)
 	{
 		//If there is a file that can initialize boxFromFile then use it, otherwise set the default properties.
 		if(boxFile != null)
@@ -408,16 +446,27 @@ public class ContainerBox : MonoBehaviour
 			}
 			
 			int len = InputSequence.Instance.getSeqLength();
-			Vector3[][] tmpBoxFromFile = new Vector3[len][];
+			Container_Box_Json[] tmpBoxFromFile = new Container_Box_Json[len];
 			GameObject[] tmpBox;
+            CockpitFeedback[] oi;
+            bool[] in_box;
+            string sequence_id;
 			
 			for(int i = 0; i < len; i++)
 			{
-				tmpBox = GetFromObjects(InputSequence.Instance.getObjectsFromSequence(i));
+                sequence_id = InputSequence.Instance.getSeq(i);
+
+                oi = InputSequence.Instance.GetSequence(sequence_id).objectIndicated.ToArray();
+                in_box = new bool[oi.Length];
+                for(int j = 0; j < oi.Length; j++)
+                {
+                    in_box[j] = oi[j].insideBox;
+                }
+				tmpBox = GetFromObjects(InputSequence.Instance.getObjectsFromSequence(sequence_id), in_box);
 				
 				if(tmpBox != null)
 				{
-					tmpBoxFromFile[i] = new Vector3[]{tmpBox[0].transform.position, tmpBox[0].transform.rotation.eulerAngles, tmpBox[0].transform.localScale, tmpBox[1].transform.position, tmpBox[1].transform.rotation.eulerAngles, tmpBox[1].transform.localScale, tmpBox[2].transform.position, tmpBox[2].transform.rotation.eulerAngles, tmpBox[2].transform.localScale, tmpBox[3].transform.position, tmpBox[3].transform.rotation.eulerAngles, tmpBox[3].transform.localScale};
+					tmpBoxFromFile[i] = new Container_Box_Json(sequence_id, tmpBox[0].transform.position, tmpBox[0].transform.rotation.eulerAngles, tmpBox[0].transform.localScale, tmpBox[1].transform.position, tmpBox[1].transform.rotation.eulerAngles, tmpBox[1].transform.localScale, tmpBox[2].transform.position, tmpBox[2].transform.rotation.eulerAngles, tmpBox[2].transform.localScale, tmpBox[3].transform.position, tmpBox[3].transform.rotation.eulerAngles, tmpBox[3].transform.localScale);
 					
 					Destroy(tmpBox[0]);
 					Destroy(tmpBox[1]);
@@ -425,7 +474,7 @@ public class ContainerBox : MonoBehaviour
 					Destroy(tmpBox[3]);
 				}else
 				{
-					tmpBoxFromFile[i] = new Vector3[]{};
+					tmpBoxFromFile[i] = null;
 				}
 			}
 			
@@ -433,24 +482,36 @@ public class ContainerBox : MonoBehaviour
 		}
 	}
 	
-	public void UpdateBoxFromFile(GameObject[] obj, int seq){
+	public void UpdateBoxFromFile(GameObject[] obj, string seq){
 		GameObject[] fileBox;
-		Vector3[] boxData;
+		Container_Box_Json boxData;
 		
 		if(!BoxFromFileExists()){
 			InitializeBoxFromFile();
 		}
 		
 		fileBox = obj;
-		boxData = new Vector3[]{fileBox[0].transform.position, fileBox[0].transform.rotation.eulerAngles, fileBox[0].transform.localScale, fileBox[1].transform.position, fileBox[1].transform.rotation.eulerAngles, fileBox[1].transform.localScale, fileBox[2].transform.position, fileBox[2].transform.rotation.eulerAngles, fileBox[2].transform.localScale, fileBox[3].transform.position, fileBox[3].transform.rotation.eulerAngles, fileBox[3].transform.localScale};
-		boxFromFile[seq] = boxData;
+		boxData = new Container_Box_Json(seq, fileBox[0].transform.position, fileBox[0].transform.rotation.eulerAngles, fileBox[0].transform.localScale, fileBox[1].transform.position, fileBox[1].transform.rotation.eulerAngles, fileBox[1].transform.localScale, fileBox[2].transform.position, fileBox[2].transform.rotation.eulerAngles, fileBox[2].transform.localScale, fileBox[3].transform.position, fileBox[3].transform.rotation.eulerAngles, fileBox[3].transform.localScale);
+
+        for (int i = 0; i < boxFromFile.Length; i++)
+        {
+            if (boxFromFile[i].sequence.Equals(seq))
+            {
+                boxFromFile[i] = boxData;
+                break;
+            }
+        }
+        
 	}
 	
 	public void Update_BFF_From_Modify(GameObject obj)
 	{
 		GameObject[] objects;
 		GameObject[] fileBox = null;
-		Vector3[] boxData;
+		Container_Box_Json boxData;
+        CockpitFeedback[] oi;
+        bool[] in_box;
+        string sequence_id;
 
         if (!BoxFromFileExists())
         {
@@ -459,12 +520,27 @@ public class ContainerBox : MonoBehaviour
 
         for (int i = 0; i < InputSequence.Instance.getSeqLength(); i++)
 		{
-			objects = InputSequence.Instance.getObjectsFromSequence(i);
+            sequence_id = InputSequence.Instance.getSeq(i);
+
+            objects = InputSequence.Instance.getObjectsFromSequence(sequence_id);
 			
 			if(objects != null && objects.Contains(obj))
 			{
-				fileBox = GetFromObjects(objects);
-				boxData = new Vector3[]{fileBox[0].transform.position, fileBox[0].transform.rotation.eulerAngles, fileBox[0].transform.localScale, fileBox[1].transform.position, fileBox[1].transform.rotation.eulerAngles, fileBox[1].transform.localScale, fileBox[2].transform.position, fileBox[2].transform.rotation.eulerAngles, fileBox[2].transform.localScale, fileBox[3].transform.position, fileBox[3].transform.rotation.eulerAngles, fileBox[3].transform.localScale};
+                oi = InputSequence.Instance.GetSequence(sequence_id).objectIndicated.ToArray();
+                in_box = new bool[oi.Length];
+                for (int j = 0; j < oi.Length; j++)
+                {
+                    in_box[j] = oi[j].insideBox;
+                }
+
+                fileBox = GetFromObjects(objects, in_box);
+
+                if(fileBox == null)
+                {
+                    continue;
+                }
+
+				boxData = new Container_Box_Json(sequence_id, fileBox[0].transform.position, fileBox[0].transform.rotation.eulerAngles, fileBox[0].transform.localScale, fileBox[1].transform.position, fileBox[1].transform.rotation.eulerAngles, fileBox[1].transform.localScale, fileBox[2].transform.position, fileBox[2].transform.rotation.eulerAngles, fileBox[2].transform.localScale, fileBox[3].transform.position, fileBox[3].transform.rotation.eulerAngles, fileBox[3].transform.localScale);
 				boxFromFile[i] = boxData;
 
                 for (int j = 0; j < fileBox.Length; j++)
@@ -480,7 +556,7 @@ public class ContainerBox : MonoBehaviour
 		return boxFromFile != null;
 	}
 	
-	public Vector3[][] getBoxFromFile()
+	public Container_Box_Json[] getBoxFromFile()
 	{
 		return boxFromFile;
 	}
@@ -496,7 +572,10 @@ public class ContainerBox : MonoBehaviour
 
         for (int i = 0; i < objectIndicated.Length; i++)
         {
-            areAllObjectsCorrect = (areAllObjectsCorrect && InputSequence.Instance.isObjectInCorrectState[i]);
+            if(insideBox[i])
+			{
+				areAllObjectsCorrect = (areAllObjectsCorrect && InputSequence.Instance.isObjectInCorrectState[i]);
+			}
         }
 
         if (areAllObjectsCorrect)
@@ -530,6 +609,7 @@ public class ContainerBox : MonoBehaviour
 
     private void SetBoxRotation()
     {
+		int len = 0;
         float x = 0;
         float y = 0;
         float z = 0;
@@ -537,16 +617,21 @@ public class ContainerBox : MonoBehaviour
 
         for (int i = 0; i < objectIndicated.Length; i++)
         {
-            quaternion = objectIndicated[i].transform.rotation;
+            if(insideBox[i])
+			{
+				quaternion = objectIndicated[i].transform.rotation;
 
-            x += quaternion.eulerAngles.x;
-            y += quaternion.eulerAngles.y;
-            z += quaternion.eulerAngles.z;
+				x += quaternion.eulerAngles.x;
+				y += quaternion.eulerAngles.y;
+				z += quaternion.eulerAngles.z;
+				
+				++len;
+			}
         }
 
-        x /= (float)(objectIndicated.Length);
-        y /= (float)(objectIndicated.Length);
-        z /= (float)(objectIndicated.Length);
+        x /= (float)(len);
+        y /= (float)(len);
+        z /= (float)(len);
         Vector3 averageEuler = new Vector3(x, y, z);
         quaternion = Quaternion.Euler(averageEuler);
 
@@ -582,8 +667,9 @@ public class ContainerBox : MonoBehaviour
 		return tmpObj;
     }
 
-    private GameObject[] SetBoxRotation(GameObject[] tmpObj, GameObject[] objects)
+    private GameObject[] SetBoxRotation(GameObject[] tmpObj, GameObject[] objects, bool[] in_box)
     {
+		int len = 0;
         float x = 0;
         float y = 0;
         float z = 0;
@@ -591,16 +677,21 @@ public class ContainerBox : MonoBehaviour
 
         for (int i = 0; i < objects.Length; i++)
         {
-            quaternion = objects[i].transform.rotation;
+            if(in_box[i])
+			{
+				quaternion = objects[i].transform.rotation;
 
-            x += quaternion.eulerAngles.x;
-            y += quaternion.eulerAngles.y;
-            z += quaternion.eulerAngles.z;
+				x += quaternion.eulerAngles.x;
+				y += quaternion.eulerAngles.y;
+				z += quaternion.eulerAngles.z;
+				
+				++len;
+			}
         }
 
-        x /= (float)(objects.Length);
-        y /= (float)(objects.Length);
-        z /= (float)(objects.Length);
+        x /= (float)(len);
+        y /= (float)(len);
+        z /= (float)(len);
         Vector3 averageEuler = new Vector3(x, y, z);
         quaternion = Quaternion.Euler(averageEuler);
 

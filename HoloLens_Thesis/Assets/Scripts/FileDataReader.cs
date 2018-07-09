@@ -14,11 +14,12 @@ public class FileDataReader : Singleton<FileDataReader>
     private JsonSaveObject file;
     private GameObject component;
     public GameObject cockpit;
+    private int max = -1;
 
     // Use this for initialization
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -47,11 +48,12 @@ public class FileDataReader : Singleton<FileDataReader>
 
         GameObject component_instantiated;
         int i = 0;
+        int value;
 
         file = new JsonSaveObject();
 
 #if !UNITY_EDITOR
-        Load().Wait();
+        Load();
 #else
         LoadUnity();
 #endif
@@ -65,38 +67,63 @@ public class FileDataReader : Singleton<FileDataReader>
                 component_instantiated.transform.position = cockpit_component.position;
                 component_instantiated.transform.rotation = Quaternion.Euler(cockpit_component.rotation);
                 component_instantiated.transform.localScale = cockpit_component.scale;
-                component_instantiated.GetComponent<NewParameterManager>().setID(ComponentsEnums.GetEnumFromString(cockpit_component.parameter));
+                component_instantiated.GetComponent<NewParameterManager>().initID(cockpit_component.parameter);
+                component_instantiated.GetComponent<NewParameterManager>().setDataType(cockpit_component.dataType);
+                component_instantiated.GetComponent<NewParameterManager>().setPath(cockpit_component.param_path);
+                component_instantiated.GetComponent<NewParameterManager>().setInteraction(cockpit_component.interaction);
+                component_instantiated.GetComponent<NewParameterManager>().setPossibleValues(cockpit_component.possible_values);
+                component_instantiated.GetComponent<NewParameterManager>().setIOData(cockpit_component.IO_Data);
 
                 component_instantiated.transform.SetParent(cockpit.transform);
 
                 FileDataWriter.Instance.AddIntoList(component_instantiated.name);
+
+                value = Convert.ToInt32(component_instantiated.name.Substring(4));
+                if (value > max)
+                {
+                    max = value;
+                }
+
+                for(i = 0; i < cockpit_component.parameter.Length; i++)
+                {
+                    Parameters.Instance.AddValue(cockpit_component.param_path[i], 0, cockpit_component.dataType[i], cockpit_component.IO_Data[i]);
+                }
             }
 
             Destroy(component);
 
-            int len = InputSequence.Instance.getSeqLength();
             i = 0;
-            Vector3[][] boxFromFile = new Vector3[len][];
-            Vector3[] boxData;
+
+            int len = InputSequence.Instance.getSeqLength();
+
+            List<FeedbackGroup> sequenceFromFile = file.feedback_group;
+
+            InputSequence.Instance.InitSequenceObjects(sequenceFromFile);
+
+            Container_Box_Json[] boxFromFile = new Container_Box_Json[len];
 
             foreach (Container_Box_Json container_box in file.boxes)
             {
-                while (i != container_box.sequence)
+                while (sequenceFromFile[i].sequence != container_box.sequence)
                 {
-                    boxData = new Vector3[] { };
-                    boxFromFile[i] = boxData;
-                    ++i;
+                    if (sequenceFromFile[i].sequence != "End")
+                    {
+                        boxFromFile[i] = null;
+                        ++i;
+                    }
+                    else
+                    {
+                        break;
+                    }
                 }
 
-                boxData = new Vector3[12] { container_box.positionLeft, container_box.rotationLeft, container_box.scaleLeft, container_box.positionTop, container_box.rotationTop, container_box.scaleTop, container_box.positionRight, container_box.rotationRight, container_box.scaleRight, container_box.positionBottom, container_box.rotationBottom, container_box.scaleBottom };
-                boxFromFile[container_box.sequence] = boxData;
+                boxFromFile[i] = container_box;
                 ++i;
             }
 
-            while(i < len)
+            while (i < len)
             {
-                boxData = new Vector3[] { };
-                boxFromFile[i] = boxData;
+                boxFromFile[i] = null;
                 ++i;
             }
 
@@ -109,11 +136,47 @@ public class FileDataReader : Singleton<FileDataReader>
 
     }
 
-#if !UNITY_EDITOR
-    public async Task Load()
+    public int GetNextObjectNumber()
     {
-        StorageFolder storageFolder = KnownFolders.CameraRoll;
-        StorageFile sf;
+        ++max;
+
+        return max;
+    }
+
+#if !UNITY_EDITOR
+    public void Load()
+    {
+        string path = String.Format("/savedObjects.json");
+
+        /*if (!Directory.Exists(Application.persistentDataPath + "/../ObjectsData"))
+        {
+            Directory.CreateDirectory(Application.persistentDataPath + "/../ObjectsData");
+        }*/
+
+        if (!File.Exists(Application.persistentDataPath + path))
+        {
+            path = String.Format("/defaultSavedObjects.json");
+
+            if (!File.Exists(Application.persistentDataPath + path))
+            {
+                File.Copy(KnownFolders.CameraRoll.Path + path, Application.persistentDataPath + path);
+            }
+        }
+
+        using (StreamReader reader = new StreamReader(new FileStream(Application.persistentDataPath + path, FileMode.Open)))
+        {
+            try
+            {
+                file = JsonUtility.FromJson<JsonSaveObject>(reader.ReadLine());
+            }
+            catch (Exception e)
+            {
+                Debug.Log(e.Message);
+            }
+        }
+
+        /*StorageFolder storageFolder = KnownFolders.CameraRoll;
+        StorageFile sf = null;
         if (await storageFolder.TryGetItemAsync("savedObjects.json") != null)
         {
             sf = await storageFolder.GetFileAsync("savedObjects.json");
@@ -123,7 +186,17 @@ public class FileDataReader : Singleton<FileDataReader>
             sf = await storageFolder.GetFileAsync("defaultSavedObjects.json");
         }
 
+        while(sf == null)
+        {
+            //Wait...
+        }
+
         var buffer = await FileIO.ReadBufferAsync(sf);
+
+        while(buffer == null)
+        {
+            //Wait...
+        }
 
         try
         {
@@ -135,7 +208,7 @@ public class FileDataReader : Singleton<FileDataReader>
         catch (Exception e)
         {
             Debug.Log(e.Message);
-        }
+        }*/
     }
 #endif
 

@@ -20,17 +20,23 @@ public class FeedbackHolograms : MonoBehaviour {
     [Tooltip("The ContainerBox's script.")]
     public ContainerBox contBox;
 
-    //The object currently instantiated.
-    private GameObject CurrentObject;
+    //The check mark currently instantiated.
+    private GameObject CheckMark;
+
+    //The loading animation currently instantiated.
+    private GameObject Loading;
 
     // The objects that the user has to interact.
     private GameObject[] objectIndicated = null;
 
+    // Some additional data of the current object indicated.
+    private CockpitFeedback[] objectIndicatedData = null;
+
     // The current object instances placed near the objectsIndicated during the process.
-    private GameObject[] currentObject = null;
+    private GameObject[] feedbackObject = null;
 
     // The MeshRenderer for the current objects placed near the objectsIndicated during the process.
-    private MeshRenderer[] currentRenderer;
+    private MeshRenderer[] feedbackRenderer;
 
     // Check if at least one object is visible.
     private bool isObjectVisible;
@@ -67,15 +73,6 @@ public class FeedbackHolograms : MonoBehaviour {
 
     public void InstantiateCheckMark()
     {
-        if (CurrentObject == CheckMarkObject)
-        {
-            return;
-        }
-        else
-        {
-            CurrentObject = null;
-        }
-
         MeshRenderer objectRenderer = CheckMarkObject.GetComponentInChildren<MeshRenderer>();
 
         if (objectRenderer == null)
@@ -105,20 +102,11 @@ public class FeedbackHolograms : MonoBehaviour {
         objectMaterial.SetColor("_TintColor", ObjectColor);
 #endif
 
-        CurrentObject = CheckMarkObject;
+        CheckMark = CheckMarkObject;
     }
 
     public void InstantiateWaitingObject()
     {
-        if (CurrentObject == WaitingObject)
-        {
-            return;
-        }
-        else
-        {
-            CurrentObject = null;
-        }
-
         // Remove any colliders and rigidbodies so the indicators do not interfere with Unity's physics system.
         foreach (Collider collider in WaitingObject.GetComponents<Collider>())
         {
@@ -130,7 +118,7 @@ public class FeedbackHolograms : MonoBehaviour {
             Destroy(rigidBody);
         }
 
-        CurrentObject = WaitingObject;
+        Loading = WaitingObject;
     }
 
     public void DestroyObjectsIndicated()
@@ -138,48 +126,64 @@ public class FeedbackHolograms : MonoBehaviour {
         int i;
         objectIndicated = null;
 
-        if (currentObject != null)
+        if (feedbackObject != null)
         {
-            for (i = 0; i < currentObject.Length; i++)
+            for (i = 0; i < feedbackObject.Length; i++)
             {
-                Destroy(currentObject[i]);
-                currentObject[i] = null;
+                Destroy(feedbackObject[i]);
+                feedbackObject[i] = null;
             }
         }
     }
 	
-	public GameObject[] GetFromObjects(GameObject[] objects){
+	public GameObject[] GetFromObjects(GameObject[] objects)
+    {
 		int i;
 		
-		GameObject[] tmpCurrentObject = null;
+		GameObject[] tmpFeedbackObject = null;
         MeshRenderer tmpRenderer = null;
 
         if (objects.Length <= 0 || objects == null)
         {
-            return tmpCurrentObject;
+            return tmpFeedbackObject;
         }
         else
         {
-            tmpCurrentObject = new GameObject[objects.Length];
+            tmpFeedbackObject = new GameObject[objects.Length];
         }
 		
 		for (i = 0; i < objects.Length; i++)
 		{
-			tmpCurrentObject[i] = CreateFeedbackHologram(objects[i]);
-            tmpRenderer = tmpCurrentObject[i].GetComponent<MeshRenderer>();
+            /*if (objsData[i].showLoading)
+            {
+                tmpFeedbackObject[i] = CreateLoadingHologram(objects[i]);
+                tmpRenderer = tmpFeedbackObject[i].GetComponent<MeshRenderer>();
+            }
+            else if (objsData.showCheckMark)
+            {*/
+                tmpFeedbackObject[i] = CreateCheckMarkHologram(objects[i]);
+                tmpRenderer = tmpFeedbackObject[i].GetComponent<MeshRenderer>();
+            /*}
+            else
+            {
+                tmpFeedbackObject[i] = null;
+                tmpRenderer = null;
+
+                continue;
+            }*/
 
             if (tmpRenderer == null)
             {
-                tmpRenderer = tmpCurrentObject[i].AddComponent<MeshRenderer>();
+                tmpRenderer = tmpFeedbackObject[i].AddComponent<MeshRenderer>();
             }
 
             tmpRenderer.enabled = true;
         }
 		
-		return tmpCurrentObject;
+		return tmpFeedbackObject;
 	}
 
-    public void SetObjectsIndicated(GameObject[] objects)
+    public void SetObjectsIndicated(GameObject[] objects, CockpitFeedback[] objsData)
     {
         if (objects != null)
         {
@@ -192,25 +196,32 @@ public class FeedbackHolograms : MonoBehaviour {
             maxZ = Mathf.NegativeInfinity;
 
             objectIndicated = new GameObject[objects.Length];
-            currentObject = new GameObject[objects.Length];
-            if (CurrentObject != WaitingObject)
-            {
-                currentRenderer = new MeshRenderer[objects.Length];
-            }
+            feedbackObject = new GameObject[objects.Length];
+            feedbackRenderer = new MeshRenderer[objects.Length];
+            objectIndicatedData = objsData;
 
             for (i = 0; i < objects.Length; i++)
             {
                 objectIndicated[i] = objects[i];
 
-                currentObject[i] = CreateFeedbackHologram(objectIndicated[i]);
-
-                if (CurrentObject != WaitingObject)
+                if(objectIndicatedData[i].showLoading)
                 {
-                    currentObject[i].transform.rotation = objectIndicated[i].transform.rotation;
-                    currentObject[i].transform.Rotate(100, -90, 90);
+                    feedbackObject[i] = CreateLoadingHologram(objectIndicated[i]);
+                }
+                else if(objectIndicatedData[i].showCheckMark)
+                {
+                    feedbackObject[i] = CreateCheckMarkHologram(objectIndicated[i]);
 
-                    currentRenderer[i] = currentObject[i].GetComponentInChildren<MeshRenderer>();
-                    currentRenderer[i].enabled = false;
+                    feedbackObject[i].transform.rotation = objectIndicated[i].transform.rotation;
+                    feedbackObject[i].transform.Rotate(100, -90, 90);
+
+                    feedbackRenderer[i] = feedbackObject[i].GetComponentInChildren<MeshRenderer>();
+                    feedbackRenderer[i].enabled = false;
+                }
+                else
+                {
+                    feedbackObject[i] = null;
+                    feedbackRenderer[i] = null;
                 }
             }
 			
@@ -267,12 +278,23 @@ public class FeedbackHolograms : MonoBehaviour {
         }
     }
 
-    private GameObject CreateFeedbackHologram(GameObject obj)
+    private GameObject CreateCheckMarkHologram(GameObject obj)
     {
         Vector3 position;
-        GetHologramPosition(obj, out position);
+        GameObject hologram = Instantiate(CheckMark);
 
-        GameObject hologram = Instantiate(CurrentObject);
+        GetHologramPosition(obj, hologram, out position);
+        hologram.transform.position = position;
+
+        return hologram;
+    }
+
+    private GameObject CreateLoadingHologram(GameObject obj)
+    {
+        Vector3 position;
+        GameObject hologram = Instantiate(Loading);
+
+        GetHologramPosition(obj, hologram, out position);
         hologram.transform.position = position;
 
         return hologram;
@@ -280,7 +302,7 @@ public class FeedbackHolograms : MonoBehaviour {
 
     public GameObject[] getCurrentObject()
     {
-        return currentObject;
+        return feedbackObject;
     }
 
     public void InitializeTextPosition()
@@ -300,7 +322,7 @@ public class FeedbackHolograms : MonoBehaviour {
             textTagAlong.enabled = false;
 			border = 1;
 			TextManager.Instance.updateAdviceTextPosition(pos, border);
-        }else if(InputSequence.Instance.getSeq() != 22 || InputSequence.Instance.getSeq() != 23 || InputSequence.Instance.getSeq() != 25 || InputSequence.Instance.getSeq() != 27 ||InputSequence.Instance.getSeq() != 29)
+        }else if(InputSequence.Instance.getCurrentSequence().objectIndicated.ToArray().Length <= 0)
         {
             pos = Camera.main.ViewportToWorldPoint(new Vector3(0.85f, 0.5f, 2.0f));
             TextManager.Instance.enableAdviceText(true);
@@ -312,7 +334,7 @@ public class FeedbackHolograms : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if (CurrentObject == null || objectIndicated == null)
+        if (CheckMarkObject == null || WaitingObject == null || objectIndicated == null)
         {
             return;
         }
@@ -323,16 +345,44 @@ public class FeedbackHolograms : MonoBehaviour {
 
         for (int i = 0; i < objectIndicated.Length; i++)
         {
-            if (CurrentObject == CheckMarkObject)
-            {
-                currentRenderer[i].enabled = InputSequence.Instance.isObjectInCorrectState[i];
-            }
-
             visible = IsTargetVisible(objectIndicated[i]);
             isObjectVisible = (isObjectVisible || visible || contBox.isContainerBoxVisible());
             visible = false;
 
             areAllObjectsCorrect = (areAllObjectsCorrect && InputSequence.Instance.isObjectInCorrectState[i]);
+
+            if (feedbackObject[i] == null)
+            {
+                continue;
+            }
+
+            if (feedbackObject[i] == CheckMarkObject)
+            {
+                feedbackRenderer[i].enabled = InputSequence.Instance.isObjectInCorrectState[i];
+            }else if(feedbackObject[i] == WaitingObject)
+            {
+                feedbackRenderer[i].enabled = !InputSequence.Instance.isObjectInCorrectState[i];
+
+                if (!feedbackRenderer[i].enabled)
+                {
+                    DestroyImmediate(feedbackObject[i]);
+
+                    if (objectIndicatedData[i].showCheckMark)
+                    {
+                        feedbackObject[i] = CreateCheckMarkHologram(objectIndicated[i]);
+
+                        feedbackObject[i].transform.rotation = objectIndicated[i].transform.rotation;
+                        feedbackObject[i].transform.Rotate(100, -90, 90);
+
+                        feedbackRenderer[i].enabled = true;
+                    }
+                    else
+                    {
+                        feedbackObject[i] = null;
+                        feedbackRenderer[i] = null;
+                    }
+                }
+            }
         }
 
         if (isObjectVisible)
@@ -432,12 +482,12 @@ public class FeedbackHolograms : MonoBehaviour {
             targetViewportPosition.z > 0);
     }
 
-    private void GetHologramPosition(GameObject obj, out Vector3 position)
+    private void GetHologramPosition(GameObject obj, GameObject hologram, out Vector3 position)
     {
         // Save the cursor transform position in a variable.
         Vector3 origin = obj.transform.position;
 
-        if(CurrentObject == WaitingObject)
+        if(hologram == WaitingObject)
         {
             position = origin + obj.transform.up * (obj.transform.localScale.y / 2 + 0.15f) - obj.transform.forward * 0.2f;
         }
