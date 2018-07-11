@@ -83,9 +83,9 @@ public class SocketManager : MonoBehaviour
         string data = manager.getData();
         if (data != null)
         {
-            Parameters.Instance.set_new_parameters(data);
             if (!InputSequence.Instance.flag)
             {
+                Parameters.Instance.set_new_parameters(data);
                 InputSequence.Instance.checkNextSeq();
             }
         }

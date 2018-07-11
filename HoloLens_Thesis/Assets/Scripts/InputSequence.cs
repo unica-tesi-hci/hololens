@@ -26,6 +26,7 @@ public class InputSequence : Singleton<InputSequence>
     private Billboard billboardText;
     private List<FeedbackGroup> seqFromFile = null;
     private FeedbackGroup currentSequence = null;
+    private Dictionary<GameObject, NewParameterManager> paramMap;
     [HideInInspector]
     public bool flag;
     [HideInInspector]
@@ -125,6 +126,11 @@ public class InputSequence : Singleton<InputSequence>
     public FeedbackGroup getCurrentSequence()
     {
         return currentSequence;
+    }
+
+    public void InitMap(Dictionary<GameObject, NewParameterManager> map)
+    {
+        paramMap = map;
     }
 
     private void nextSeq()
@@ -412,9 +418,9 @@ public class InputSequence : Singleton<InputSequence>
             {
                 requiredValue = objsData[i].requiredValue;
                 oldValue = isObjectInCorrectState[i];
-
-                isObjectInCorrectState[i] = CheckObjectState(objectIndicated[i].GetComponent<NewParameterManager>().getPath(), currentSequence.objectIndicated[i].sub_parameters, objectIndicated[i].GetComponent<NewParameterManager>().getDataType(), requiredValue);
-
+                
+                isObjectInCorrectState[i] = CheckObjectState(paramMap[objectIndicated[i]].getPath(), currentSequence.objectIndicated[i].sub_parameters, paramMap[objectIndicated[i]].getDataType(), requiredValue);
+                
                 taskCompleted = taskCompleted && isObjectInCorrectState[i];
 
                 updateAdvice = updateAdvice || (oldValue != isObjectInCorrectState[i]) ? true : false;
@@ -919,7 +925,7 @@ public class InputSequence : Singleton<InputSequence>
 
         foreach(GameObject obj in objectIndicated)
         {
-            foreach(ComponentsEnums.Components id in obj.GetComponent<NewParameterManager>().getID())
+            foreach(ComponentsEnums.Components id in paramMap[obj].getID())
 
             if(value == id)
             {

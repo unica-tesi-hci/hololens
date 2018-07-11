@@ -40,12 +40,12 @@ public class FileDataWriter : Singleton<FileDataWriter>
                 position = component.position;
                 rotation = component.rotation.eulerAngles;
                 scale = component.localScale;
-                parameter = component.GetComponent<NewParameterManager>().getIDAsString();
-                dataType = component.GetComponent<NewParameterManager>().getDataType();
-                path = component.GetComponent<NewParameterManager>().getPath();
-                interaction = component.GetComponent<NewParameterManager>().getInteraction();
-                possible_values = component.GetComponent<NewParameterManager>().getPossibleValues();
-                IO_Data = component.GetComponent<NewParameterManager>().getIOData();
+                parameter = newParameterManager.getIDAsString();
+                dataType = newParameterManager.getDataType();
+                path = newParameterManager.getPath();
+                interaction = newParameterManager.getInteraction();
+                possible_values = newParameterManager.getPossibleValues();
+                IO_Data = newParameterManager.getIOData();
 
                 file.components.Add(new Cockpit_Component_Json(cockpit_components[i], position, rotation, scale, parameter, dataType, path, interaction, possible_values, IO_Data));
                 ++i;

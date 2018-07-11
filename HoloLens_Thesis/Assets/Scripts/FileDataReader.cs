@@ -32,6 +32,8 @@ public class FileDataReader : Singleton<FileDataReader>
     public void LoadObjectsProperties()
     {
         Material material;
+        NewParameterManager newParameterManager;
+        Dictionary<GameObject, NewParameterManager> map = new Dictionary<GameObject, NewParameterManager>();
 
         component = GameObject.CreatePrimitive(PrimitiveType.Cube);
         component.AddComponent<Interactible>();
@@ -67,12 +69,13 @@ public class FileDataReader : Singleton<FileDataReader>
                 component_instantiated.transform.position = cockpit_component.position;
                 component_instantiated.transform.rotation = Quaternion.Euler(cockpit_component.rotation);
                 component_instantiated.transform.localScale = cockpit_component.scale;
-                component_instantiated.GetComponent<NewParameterManager>().initID(cockpit_component.parameter);
-                component_instantiated.GetComponent<NewParameterManager>().setDataType(cockpit_component.dataType);
-                component_instantiated.GetComponent<NewParameterManager>().setPath(cockpit_component.param_path);
-                component_instantiated.GetComponent<NewParameterManager>().setInteraction(cockpit_component.interaction);
-                component_instantiated.GetComponent<NewParameterManager>().setPossibleValues(cockpit_component.possible_values);
-                component_instantiated.GetComponent<NewParameterManager>().setIOData(cockpit_component.IO_Data);
+                newParameterManager = component_instantiated.GetComponent<NewParameterManager>();
+                newParameterManager.initID(cockpit_component.parameter);
+                newParameterManager.setDataType(cockpit_component.dataType);
+                newParameterManager.setPath(cockpit_component.param_path);
+                newParameterManager.setInteraction(cockpit_component.interaction);
+                newParameterManager.setPossibleValues(cockpit_component.possible_values);
+                newParameterManager.setIOData(cockpit_component.IO_Data);
 
                 component_instantiated.transform.SetParent(cockpit.transform);
 
@@ -88,7 +91,11 @@ public class FileDataReader : Singleton<FileDataReader>
                 {
                     Parameters.Instance.AddValue(cockpit_component.param_path[i], 0, cockpit_component.dataType[i], cockpit_component.IO_Data[i]);
                 }
+
+                map.Add(component_instantiated, newParameterManager);
             }
+
+            InputSequence.Instance.InitMap(map);
 
             Destroy(component);
 
