@@ -28,6 +28,8 @@ public class InputSequence : Singleton<InputSequence>
     private FeedbackGroup currentSequence = null;
     private Dictionary<GameObject, NewParameterManager> paramMap;
     [HideInInspector]
+    public bool nextTask;
+    [HideInInspector]
     public bool flag;
     [HideInInspector]
     public bool[] isObjectInCorrectState;
@@ -70,6 +72,7 @@ public class InputSequence : Singleton<InputSequence>
 
         sequenceIndex = 0;
         flag = true;
+        nextTask = false;
 
         DirectionalIndicator = GameObject.FindWithTag("DirectionalIndicator");
         MarkerRing = GameObject.FindWithTag("MarkerRing");
@@ -108,6 +111,15 @@ public class InputSequence : Singleton<InputSequence>
         Invoke("updateComponents", 3);
     }
 
+    private void Update()
+    {
+        if (nextTask)
+        {
+            nextTask = false;
+            nextSeq();
+        }
+    }
+
     public string getSeq()
     {
         return sequence[sequenceIndex];
@@ -137,7 +149,6 @@ public class InputSequence : Singleton<InputSequence>
     {
         if (sequence[sequenceIndex] != "END")
         {
-            flag = true;
             correctSelection();
             ++sequenceIndex;
             Invoke("updateComponents", 3);
@@ -433,7 +444,8 @@ public class InputSequence : Singleton<InputSequence>
 
             if (taskCompleted)
             {
-                nextSeq();
+                flag = true;
+                nextTask = true;
             }
         }
 

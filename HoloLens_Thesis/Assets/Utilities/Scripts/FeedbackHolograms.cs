@@ -38,6 +38,9 @@ public class FeedbackHolograms : MonoBehaviour {
     // The MeshRenderer for the current objects placed near the objectsIndicated during the process.
     private MeshRenderer[] feedbackRenderer;
 
+    //Array denoting which Feedback is used (Check Mark or Loading) in the same index position in feedbackObject.
+    private string[] feedString = null;
+
     // Check if at least one object is visible.
     private bool isObjectVisible;
     // Check if the single current object is visible.
@@ -61,6 +64,7 @@ public class FeedbackHolograms : MonoBehaviour {
         }
 
         InstantiateCheckMark();
+        InstantiateWaitingObject();
 
         textTagAlong = GameObject.FindWithTag("AdviceBackground").GetComponent<Tagalong>();
     }
@@ -198,6 +202,7 @@ public class FeedbackHolograms : MonoBehaviour {
             objectIndicated = new GameObject[objects.Length];
             feedbackObject = new GameObject[objects.Length];
             feedbackRenderer = new MeshRenderer[objects.Length];
+            feedString = new string[objects.Length];
             objectIndicatedData = objsData;
 
             for (i = 0; i < objects.Length; i++)
@@ -207,6 +212,7 @@ public class FeedbackHolograms : MonoBehaviour {
                 if(objectIndicatedData[i].showLoading)
                 {
                     feedbackObject[i] = CreateLoadingHologram(objectIndicated[i]);
+                    feedString[i] = "Loading";
                 }
                 else if(objectIndicatedData[i].showCheckMark)
                 {
@@ -217,11 +223,14 @@ public class FeedbackHolograms : MonoBehaviour {
 
                     feedbackRenderer[i] = feedbackObject[i].GetComponentInChildren<MeshRenderer>();
                     feedbackRenderer[i].enabled = false;
+
+                    feedString[i] = "CheckMark";
                 }
                 else
                 {
                     feedbackObject[i] = null;
                     feedbackRenderer[i] = null;
+                    feedString[i] = null;
                 }
             }
 			
@@ -356,10 +365,10 @@ public class FeedbackHolograms : MonoBehaviour {
                 continue;
             }
 
-            if (feedbackObject[i] == CheckMarkObject)
+            if (feedString[i] != null && feedString[i] == "CheckMark")
             {
                 feedbackRenderer[i].enabled = InputSequence.Instance.isObjectInCorrectState[i];
-            }else if(feedbackObject[i] == WaitingObject)
+            }else if(feedString[i] != null && feedString[i] == "Loading")
             {
                 feedbackRenderer[i].enabled = !InputSequence.Instance.isObjectInCorrectState[i];
 
