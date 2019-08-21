@@ -1,0 +1,229 @@
+{
+  "components": [
+    {
+      "parameter": [ "External_Power" ],
+      "dataType": [ "bool" ],
+      "param_path": [ "/controls/electric/external-power" ],
+      "interaction": [ "Tap" ],
+      "possible_values": [ [] ],
+      "IO_Data": [ "Both" ]
+    },
+    {
+      "parameter": [ "APU_Master_SW" ],
+      "dataType": [ "bool" ],
+      "param_path": [ "/controls/APU/master-switch" ],
+      "interaction": [ "Tap" ],
+      "possible_values": [ [] ],
+      "IO_Data": [ "Both" ]
+    },
+    {
+      "parameter": [ "APU_Start" ],
+      "dataType": [ "bool" ],
+      "param_path": [ "/controls/APU/starter" ],
+      "interaction": [ "Tap" ],
+      "possible_values": [ [] ],
+      "IO_Data": [ "Both" ]
+    },
+    {
+      "parameter": [ "APU_Gen" ],
+      "dataType": [ "bool" ],
+      "param_path": [ "/controls/electric/APU-generator" ],
+      "interaction": [ "Tap" ],
+      "possible_values": [ [] ],
+      "IO_Data": [ "Both" ]
+    },
+    {
+      "parameter": [ "APU_Bleed" ],
+      "dataType": [ "bool" ],
+      "param_path": [ "/controls/pneumatic/APU-bleed" ],
+      "interaction": [ "Tap" ],
+      "possible_values": [ [] ],
+      "IO_Data": [ "Both" ]
+    },
+    {
+      "parameter": [ "Battery" ],
+      "dataType": [ "bool" ],
+      "param_path": [ "/controls/electric/battery-switch" ],
+      "interaction": [ "Tap" ],
+      "possible_values": [ [] ],
+      "IO_Data": [ "Both" ]
+    },
+    {
+      "parameter": [ "ENG_Start_Switch" ],
+      "dataType": [ "int" ],
+      "param_path": [ "/controls/engines/engine-start-switch" ],
+      "interaction": [ "Navigation" ],
+      "possible_values": [ [ 0, 2, 1 ] ],
+      "IO_Data": [ "Both" ]
+    },
+    {
+      "parameter": [ "Engine1" ],
+      "dataType": [ "bool" ],
+      "param_path": [ "/controls/engines/engine/cutoff-switch" ],
+      "interaction": [ "Tap" ],
+      "possible_values": [ [] ],
+      "IO_Data": [ "Both" ]
+    },
+    {
+      "parameter": [ "Engine2" ],
+      "dataType": [ "bool" ],
+      "param_path": [ "/controls/engines/engine[1]/cutoff-switch" ],
+      "interaction": [ "Tap" ],
+      "possible_values": [ [] ],
+      "IO_Data": [ "Both" ]
+    },
+    {
+      "parameter": [ "Engine1_Gen" ],
+      "dataType": [ "bool" ],
+      "param_path": [ "/controls/electric/engine/generator" ],
+      "interaction": [ "Tap" ],
+      "possible_values": [ [] ],
+      "IO_Data": [ "Both" ]
+    },
+    {
+      "parameter": [ "Engine2_Gen" ],
+      "dataType": [ "bool" ],
+      "param_path": [ "/controls/electric/engine[1]/generator" ],
+      "interaction": [ "Tap" ],
+      "possible_values": [ [] ],
+      "IO_Data": [ "Both" ]
+    },
+    {
+	  "parameter": [ "Pack1" ],
+      "dataType": [ "bool" ],
+      "param_path": [ "/controls/pressurization/pack/pack-on" ],
+      "interaction": [ "Tap" ],
+      "possible_values": [ [] ],
+      "IO_Data": [ "Both" ]
+    },
+    {
+      "parameter": [ "Pack2" ],
+      "dataType": [ "bool" ],
+      "param_path": [ "/controls/pressurization/pack[1]/pack-on" ],
+      "interaction": [ "Tap" ],
+      "possible_values": [ [] ],
+      "IO_Data": [ "Both" ]
+    },
+    {
+      "parameter": [ "Brake_Parking" ],
+      "dataType": [ "bool" ],
+      "param_path": [ "/controls/gear/brake-parking" ],
+      "interaction": [ "Tap" ],
+      "possible_values": [ [] ],
+      "IO_Data": [ "Both" ]
+    },
+    {
+      "parameter": [ "Flaps" ],
+      "dataType": [ "double" ],
+      "param_path": [ "/controls/flight/flaps" ],
+      "interaction": [ "Uneven_Nav" ],
+      "possible_values": [ [ 0.00, 0.25, 0.375, 0.5, 0.875 ] ],
+      "IO_Data": [ "Both" ]
+    },
+    {
+      "parameter": [ "Gears" ],
+      "dataType": [ "bool" ],
+      "param_path": [ "/controls/gear/gear-down" ],
+      "interaction": [ "Tap" ],
+      "possible_values": [ [] ],
+      "IO_Data": [ "Both" ]
+    },
+    {
+      "parameter": [ "Throttle1", "Throttle2" ],
+      "dataType": [ "double", "double" ],
+      "param_path": [ "/controls/engines/engine/throttle", "/controls/engines/engine[1]/throttle" ],
+      "interaction": [ "Navigation", "Navigation" ],
+      "possible_values": [
+        [ 0, 1, 0.01 ],
+        [ 0, 1, 0.01 ]
+      ],
+      "IO_Data": [ "Both", "Both" ]
+    },
+    {
+      "parameter": [ "Monitor1", "Monitor2" ],
+      "dataType": [ "double", "double" ],
+      "param_path": [ "/engines/engine/n1", "/engines/engine[1]/n1" ],
+      "interaction": [ "None", "None" ],
+      "possible_values": [
+        [],
+        []
+      ],
+      "IO_Data": [ "Output", "Output" ]
+    },
+    {
+      "parameter": [ "LTK_PUMPS_1" ],
+      "dataType": [ "bool" ],
+      "param_path": [ "/consumables/fuel/tank/selected" ],
+      "interaction": [ "Tap" ],
+      "possible_values": [ [] ],
+      "IO_Data": [ "Both" ]
+    },
+    {
+      "parameter": [ "LTK_PUMPS_2" ],
+      "dataType": [ "bool" ],
+      "param_path": [ "/consumables/fuel/tank[1]/selected" ],
+      "interaction": [ "Tap" ],
+      "possible_values": [ [] ],
+      "IO_Data": [ "Both" ]
+    },
+    {
+      "parameter": [ "Pumps" ],
+      "dataType": [ "bool" ],
+      "param_path": [ "/consumables/fuel/tank[3]/selected" ],
+      "interaction": [ "Tap" ],
+      "possible_values": [ [] ],
+      "IO_Data": [ "Both" ]
+    },
+    {
+      "parameter": [ "RTK_PUMPS_1" ],
+      "dataType": [ "bool" ],
+      "param_path": [ "/consumables/fuel/tank[4]/selected" ],
+      "interaction": [ "Tap" ],
+      "possible_values": [ [] ],
+      "IO_Data": [ "Both" ]
+    },
+    {
+      "parameter": [ "RTK_PUMPS_2" ],
+      "dataType": [ "bool" ],
+      "param_path": [ "/consumables/fuel/tank[5]/selected" ],
+      "interaction": [ "Tap" ],
+      "possible_values": [ [] ],
+      "IO_Data": [ "Both" ]
+    },
+    {
+      "parameter": [ "Auto_Brake" ],
+      "dataType": [ "int" ],
+      "param_path": [ "/autopilot/autobrake/step" ],
+      "interaction": [ "Tap" ],
+      "possible_values": [ [ 3 ] ],
+      "IO_Data": [ "Both" ]
+    },
+    {
+      "parameter": [ "Spoiler", "Spoiler_ARM" ],
+      "dataType": [ "double", "bool" ],
+      "param_path": [ "/controls/flight/speedbrake", "/controls/flight/ground-spoilers-armed" ],
+      "interaction": [ "Navigation", "Tap" ],
+      "possible_values": [
+        [ 0, 1, 0.5 ],
+        []
+      ],
+      "IO_Data": [ "Both", "Both" ]
+    },
+    {
+      "parameter": [ "Anemometer" ],
+      "dataType": [ "double" ],
+      "param_path": [ "/velocities/airspeed-kt" ],
+      "interaction": [ "None" ],
+      "possible_values": [ [] ],
+      "IO_Data": [ "Output" ]
+    },
+    {
+      "parameter": [ "Altimeter" ],
+      "dataType": [ "double" ],
+      "param_path": [ "/position/altitude-ft" ],
+      "interaction": [ "None" ],
+      "possible_values": [ [] ],
+      "IO_Data": [ "Output" ]
+    }
+  ]
+}

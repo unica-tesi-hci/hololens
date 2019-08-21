@@ -370,7 +370,10 @@ public class FeedbackHolograms : MonoBehaviour {
                 feedbackRenderer[i].enabled = InputSequence.Instance.isObjectInCorrectState[i];
             }else if(feedString[i] != null && feedString[i] == "Loading")
             {
-                feedbackRenderer[i].enabled = !InputSequence.Instance.isObjectInCorrectState[i];
+                //modifica
+                feedbackRenderer[i] = feedbackObject[i].gameObject.GetComponent<MeshRenderer>();
+
+                feedbackRenderer[i].enabled = !InputSequence.Instance.isObjectInCorrectState[i];        //ERRORE
 
                 if (!feedbackRenderer[i].enabled)
                 {
@@ -456,9 +459,12 @@ public class FeedbackHolograms : MonoBehaviour {
                 }//Probably at this point the text should be visible when placed on the bottom of the object (or container box).
                 else
                 {
-                    //Move the advice text near the bottom of the object (or container box having the objects indicated).
-                    pos.Set((minX + maxX) / 2, minY - contBox.getContainerBox()[3].transform.up.y * 0.1f, minZ);
-                    border = 3;
+                    //Move the advice text near the bottom of the object (or container box having the objects indicated)
+                    if (contBox.getContainerBox() != null) //controllo messo per evitare crash, per qualche motivo  contBox alle volte puo risultare null
+                    {
+                        pos.Set((minX + maxX) / 2, minY - contBox.getContainerBox()[3].transform.up.y * 0.1f, minZ);
+                        border = 3;
+                    }
                 }
                 
                 TextManager.Instance.updateAdviceTextPosition(pos, border);

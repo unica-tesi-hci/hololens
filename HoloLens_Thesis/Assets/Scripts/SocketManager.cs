@@ -60,7 +60,6 @@ public class SocketManager : MonoBehaviour
     public void SendUdpDatagram(string msg)
     {
         manager.SendUdpDatagram(msg);
-
     }
 
     public string getData()
@@ -83,11 +82,12 @@ public class SocketManager : MonoBehaviour
         string data = manager.getData();
         if (data != null)
         {
-            if (!InputSequence.Instance.flag)
-            {
-                Parameters.Instance.set_new_parameters(data);
-                InputSequence.Instance.checkNextSeq();
-            }
+            if(Parameters.Instance != null && Parameters.Instance.mapValue.Count == 30)
+                if (!InputSequence.Instance.flag || Parameters.Instance.isAllZero())
+                {
+                    Parameters.Instance.set_new_parameters(data);
+                    InputSequence.Instance.checkNextSeq();
+                }
         }
     }
 
@@ -149,7 +149,7 @@ public class DotNetSocketManager : IConcreteSocketManager
         inputSocket.SendTo(byteMsg, inputEndPoint);
     }
 
-    private void receiveData()
+    public void receiveData()
     {
 
         t = new Thread(() =>

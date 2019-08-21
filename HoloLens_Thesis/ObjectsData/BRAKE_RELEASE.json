@@ -1,0 +1,178 @@
+{
+  "name": "BRAKE_RELEASE",
+  "tasks": [
+    {
+      "duration": "false",
+      "id": "20",
+      "name": "Display 3D info",
+      "nb_iteration": "0",
+      "optional": "false",
+      "type": "output",
+      "x": "78",
+      "y": "257",
+      "sequence": ""
+    },
+    {
+      "duration": "false",
+      "id": "12",
+      "name": "Relase Brake",
+      "nb_iteration": "0",
+      "optional": "false",
+      "type": "input",
+      "x": "832",
+      "y": "257",
+      "sequence": ""
+    },
+    {
+      "duration": "false",
+      "id": "19",
+      "name": "Display 3D confirmation",
+      "nb_iteration": "0",
+      "optional": "false",
+      "type": "output",
+      "x": "933",
+      "y": "257",
+      "sequence": ""
+    },
+    {
+      "duration": "false",
+      "id": "16",
+      "name": "See the confirmation: \"Good\"",
+      "nb_iteration": "0",
+      "optional": "false",
+      "type": "sight",
+      "x": "1090",
+      "y": "257",
+      "sequence": ""
+    }
+  ],
+  "components": [
+    {
+      "nameObject": "Obj_13",
+      "position": {
+        "x": 0.5777,
+        "y": -0.6236,
+        "z": 0.2985
+      },
+      "rotation": {
+        "x": 90.0,
+        "y": 354.26,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 0.0100000007,
+        "y": 0.03999998,
+        "z": 0.0100000016
+      },
+      "parameter": [
+        "Brake_Parking"
+      ],
+      "dataType": [
+        "bool"
+      ],
+      "param_path": [
+        "/controls/gear/brake-parking"
+      ],
+      "interaction": [
+        "Tap"
+      ],
+      "possible_values": [
+        []
+      ],
+      "IO_Data": [
+        "Both"
+      ]
+    }
+  ],
+  "feedback_group": [
+    {
+      "sequence": "BRAKE_RELEASE",
+      "objectIndicated": [
+        {
+          "name": "Obj_13",
+          "showRing": true,
+          "insideBox": true,
+          "showCheckMark": true,
+          "showLoading": false,
+          "sub_parameters": [
+            true
+          ],
+          "requiredValue": 0.0,
+          "correctPosition": false
+        }
+      ],
+      "showBox": false,
+      "adviceText": "Release the parking brake.",
+      "parameterText": "BRAKE",
+      "stageText": "3)Before taxi",
+      "textSpeak": "Release the parking brake.",
+      "showParamInAdviceText": false,
+      "isOnOhPanel": false
+    }
+  ],
+  "boxes": [
+    {
+      "sequence": "BRAKE_RELEASE",
+      "positionLeft": {
+        "x": 0.542875469,
+        "y": -0.6236,
+        "z": 0.2949995
+      },
+      "rotationLeft": {
+        "x": 90.0,
+        "y": 354.26,
+        "z": 0.0
+      },
+      "scaleLeft": {
+        "x": 0.0200000014,
+        "y": 0.2099999,
+        "z": 0.02
+      },
+      "positionTop": {
+        "x": 0.5681987,
+        "y": -0.6236,
+        "z": 0.39302364
+      },
+      "rotationTop": {
+        "x": 90.0,
+        "y": 354.26,
+        "z": 0.0
+      },
+      "scaleTop": {
+        "x": 0.09000006,
+        "y": 0.0199999958,
+        "z": 0.02
+      },
+      "positionRight": {
+        "x": 0.612524569,
+        "y": -0.6236,
+        "z": 0.3020005
+      },
+      "rotationRight": {
+        "x": 90.0,
+        "y": 354.26,
+        "z": 0.0
+      },
+      "scaleRight": {
+        "x": 0.0200000014,
+        "y": 0.2099999,
+        "z": 0.02
+      },
+      "positionBottom": {
+        "x": 0.587201357,
+        "y": -0.6236,
+        "z": 0.203976363
+      },
+      "rotationBottom": {
+        "x": 90.0,
+        "y": 354.26,
+        "z": 0.0
+      },
+      "scaleBottom": {
+        "x": 0.09000006,
+        "y": 0.0199999958,
+        "z": 0.02
+      }
+    }
+  ]
+}

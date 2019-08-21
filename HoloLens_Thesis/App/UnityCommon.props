@@ -1,8 +1,8 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
         <UnityWSASolutionName>HoloLens_Thesis</UnityWSASolutionName>
-        <UnityWSASolutionDir>C:\Users\Caverna\Desktop\Tesi_Laurea\HoloLens_Thesis\App\</UnityWSASolutionDir>
-        <UnityProjectDir>C:\Users\Caverna\Desktop\Tesi_Laurea\HoloLens_Thesis\</UnityProjectDir>
+        <UnityWSASolutionDir>D:\Università\materiale didattico\Facoltà di Scienze\Magistrale\TESI\Tesi_Laurea\HoloLens_Thesis\App\</UnityWSASolutionDir>
+        <UnityProjectDir>D:\Università\materiale didattico\Facoltà di Scienze\Magistrale\TESI\Tesi_Laurea\HoloLens_Thesis\</UnityProjectDir>
         <UnityWSAPlayerDir>C:\Program Files\Unity\Editor\Data\PlaybackEngines\MetroSupport\</UnityWSAPlayerDir>
         <UnityWSAToolsDir>$(UnityWSASolutionDir)Unity\Tools\</UnityWSAToolsDir>
     </PropertyGroup>

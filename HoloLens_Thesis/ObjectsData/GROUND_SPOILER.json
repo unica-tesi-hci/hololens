@@ -1,0 +1,189 @@
+{
+  "name": "GROUND_SPOILER",
+  "tasks": [
+    {
+      "duration": "false",
+      "id": "6",
+      "name": "Display 3D info",
+      "nb_iteration": "0",
+      "optional": "false",
+      "type": "output",
+      "x": "0",
+      "y": "223",
+      "sequence": ""
+    },
+    {
+      "duration": "false",
+      "id": "6",
+      "name": "Disarm Ground Spoiler",
+      "nb_iteration": "0",
+      "optional": "false",
+      "type": "input",
+      "x": "538",
+      "y": "223",
+      "sequence": ""
+    },
+    {
+      "duration": "false",
+      "id": "6",
+      "name": "Display 3D confirmation",
+      "nb_iteration": "0",
+      "optional": "false",
+      "type": "output",
+      "x": "541",
+      "y": "223",
+      "sequence": ""
+    },
+    {
+      "duration": "false",
+      "id": "6",
+      "name": "See the confirmation: \"Good\"",
+      "nb_iteration": "0",
+      "optional": "false",
+      "type": "sight",
+      "x": "543",
+      "y": "223",
+      "sequence": ""
+    }
+  ],
+  "components": [
+    {
+      "nameObject": "Obj_24",
+      "position": {
+        "x": 0.4832,
+        "y": -0.6198,
+        "z": 0.4083
+      },
+      "rotation": {
+        "x": 90.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 0.05,
+        "y": 0.05000015,
+        "z": 0.05000015
+      },
+      "parameter": [
+        "Spoiler",
+        "Spoiler_ARM"
+      ],
+      "dataType": [
+        "double",
+        "bool"
+      ],
+      "param_path": [
+        "/controls/flight/speedbrake",
+        "/controls/flight/ground-spoilers-armed"
+      ],
+      "interaction": [
+        "Navigation",
+        "Tap"
+      ],
+      "possible_values": [
+        [
+          0.0,
+          1.0,
+          0.5
+        ],
+        []
+      ],
+      "IO_Data": [
+        "Both",
+        "Both"
+      ]
+    }
+  ],
+  "feedback_group": [
+    {
+      "sequence": "GROUND_SPOILER",
+      "objectIndicated": [
+        {
+          "name": "Obj_24",
+          "showRing": true,
+          "insideBox": true,
+          "showCheckMark": true,
+          "showLoading": false,
+          "sub_parameters": [
+            false,
+            true
+          ],
+          "requiredValue": 0.0,
+          "correctPosition": false
+        }
+      ],
+      "showBox": true,
+      "adviceText": "Set the flaps to 1 and disarm the spoilers.",
+      "parameterText": "FLAPS/SPOILER",
+      "stageText": "4)Takeoff",
+      "textSpeak": "Set the flaps to 1 and disarm the spoilers.",
+      "showParamInAdviceText": false,
+      "isOnOhPanel": false
+    }
+  ],
+  "boxes": [
+    {
+      "sequence": "GROUND_SPOILER",
+      "positionLeft": {
+        "x": 0.4282,
+        "y": -0.617300034,
+        "z": 0.4173
+      },
+      "rotationLeft": {
+        "x": 90.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scaleLeft": {
+        "x": 0.02,
+        "y": 0.225000218,
+        "z": 0.02
+      },
+      "positionTop": {
+        "x": 0.55625,
+        "y": -0.617300034,
+        "z": 0.519800067
+      },
+      "rotationTop": {
+        "x": 90.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scaleTop": {
+        "x": 0.2761,
+        "y": 0.020000007,
+        "z": 0.02
+      },
+      "positionRight": {
+        "x": 0.6843,
+        "y": -0.617300034,
+        "z": 0.4173
+      },
+      "rotationRight": {
+        "x": 90.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scaleRight": {
+        "x": 0.02,
+        "y": 0.225000218,
+        "z": 0.02
+      },
+      "positionBottom": {
+        "x": 0.55625,
+        "y": -0.617300034,
+        "z": 0.314799964
+      },
+      "rotationBottom": {
+        "x": 90.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scaleBottom": {
+        "x": 0.2761,
+        "y": 0.020000007,
+        "z": 0.02
+      }
+    }
+  ]
+}

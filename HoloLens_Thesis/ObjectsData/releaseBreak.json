@@ -1,0 +1,159 @@
+{
+    "name":  "BRAKE_RELEASE",
+    "tasks": [
+      {
+        "duration": "false",
+        "id": "20",
+        "name": "Display 3D info",
+        "nb_iteration": "0",
+        "optional": "false",
+        "type": "output",
+        "x": "78",
+        "y": "257"
+      },
+      {
+        "duration": "false",
+        "id": "12",
+        "name": "Relase Brake",
+        "nb_iteration": "0",
+        "optional": "false",
+        "type": "input",
+        "x": "832",
+        "y": "257"
+      },
+      {
+        "duration": "false",
+        "id": "19",
+        "name": "Display 3D confirmation",
+        "nb_iteration": "0",
+        "optional": "false",
+        "type": "output",
+        "x": "933",
+        "y": "257"
+      },
+      {
+        "duration": "false",
+        "id": "16",
+        "name": "See the confirmation: \"Good\"",
+        "nb_iteration": "0",
+        "optional": "false",
+        "type": "sight",
+        "x": "1090",
+        "y": "257"
+      }
+    ],
+    "components": [
+        {
+            "nameObject": "Obj_13",
+            "position": {
+                "x": 0.5777000188827515,
+                "y": -0.6236000061035156,
+                "z": 0.2985000014305115
+            },
+            "rotation": {
+                "x": 90.0,
+                "y": 354.260009765625,
+                "z": 0.0
+            },
+            "scale": {
+                "x": 0.010000000707805157,
+                "y": 0.039999980479478839,
+                "z": 0.010000001639127732
+            },
+            "parameter": [ "Brake_Parking" ],
+            "dataType": [ "bool" ],
+            "param_path": [ "/controls/gear/brake-parking" ],
+            "interaction": [ "Tap" ],
+            "possible_values": [ [] ],
+            "IO_Data": [ "Both" ]
+        }
+    ],
+    "feedback_group": [
+        {
+            "sequence": "BRAKE_RELEASE",
+            "objectIndicated": [
+                {
+                    "name": "Obj_13",
+                    "showRing": true,
+                    "insideBox": true,
+                    "showCheckMark": true,
+                    "showLoading": false,
+                    "sub_parameters": [ true ],
+                    "requiredValue": 0.0
+                }
+            ],
+            "showBox": false,
+            "adviceText": "Release the parking brake.",
+            "parameterText": "BRAKE",
+            "stageText": "3)Before taxi",
+            "textSpeak": "Release the parking brake.",
+            "showParamInAdviceText": false,
+            "isOnOhPanel": false
+        }
+    ],
+    "boxes": [
+        {
+            "sequence": "BRAKE_RELEASE",
+            "positionLeft": {
+                "x": 0.5428754687309265,
+                "y": -0.6236000061035156,
+                "z": 0.29499951004981997
+            },
+            "rotationLeft": {
+                "x": 90.0,
+                "y": 354.260009765625,
+                "z": 0.0
+            },
+            "scaleLeft": {
+                "x": 0.020000001415610315,
+                "y": 0.2099999040365219,
+                "z": 0.019999999552965165
+            },
+            "positionTop": {
+                "x": 0.5681986808776856,
+                "y": -0.6236000061035156,
+                "z": 0.39302363991737368
+            },
+            "rotationTop": {
+                "x": 90.0,
+                "y": 354.260009765625,
+                "z": 0.0
+            },
+            "scaleTop": {
+                "x": 0.09000006318092346,
+                "y": 0.019999995827674867,
+                "z": 0.019999999552965165
+            },
+            "positionRight": {
+                "x": 0.6125245690345764,
+                "y": -0.6236000061035156,
+                "z": 0.302000492811203
+            },
+            "rotationRight": {
+                "x": 90.0,
+                "y": 354.260009765625,
+                "z": 0.0
+            },
+            "scaleRight": {
+                "x": 0.020000001415610315,
+                "y": 0.2099999040365219,
+                "z": 0.019999999552965165
+            },
+            "positionBottom": {
+                "x": 0.5872013568878174,
+                "y": -0.6236000061035156,
+                "z": 0.2039763629436493
+            },
+            "rotationBottom": {
+                "x": 90.0,
+                "y": 354.260009765625,
+                "z": 0.0
+            },
+            "scaleBottom": {
+                "x": 0.09000006318092346,
+                "y": 0.019999995827674867,
+                "z": 0.019999999552965165
+            }
+        }
+    ]
+}

@@ -87,6 +87,8 @@ public class Interpolator : MonoBehaviour
 
     private Vector3 oldPosition = Vector3.zero;
 
+    private bool enStatus = false;
+
     /// <summary>
     /// True if position, rotation or scale are animating; false otherwise.
     /// </summary>
@@ -116,10 +118,11 @@ public class Interpolator : MonoBehaviour
     public void SetTargetPosition(Vector3 target)
     {
         bool wasRunning = Running;
-
+        Vector3 oldTargetPosition = targetPosition;
         targetPosition = target;
 
-        float magsq = (targetPosition - transform.position).sqrMagnitude;
+        //float magsq = (targetPosition - transform.position).sqrMagnitude;
+        float magsq = (targetPosition - oldTargetPosition).sqrMagnitude;
         if (magsq > smallNumber)
         {
             AnimatingPosition = true;
@@ -146,10 +149,11 @@ public class Interpolator : MonoBehaviour
     public void SetTargetRotation(Quaternion target)
     {
         bool wasRunning = Running;
-
+        Quaternion oldTargetRotation = targetRotation;
         targetRotation = target;
 
-        if (Quaternion.Dot(transform.rotation, target) < 1.0f)
+        //if (Quaternion.Dot(transform.rotation, target) < 1.0f)
+        if (Quaternion.Dot(oldTargetRotation, target) < 1.0f)
         {
             AnimatingRotation = true;
             enabled = true;
@@ -204,14 +208,16 @@ public class Interpolator : MonoBehaviour
     public void SetTargetLocalScale(Vector3 target)
     {
         bool wasRunning = Running;
-
+        Vector3 oldLocaleScale = targetLocalScale;
         targetLocalScale = target;
 
-        float magsq = (targetLocalScale - transform.localScale).sqrMagnitude;
+        //float magsq = (targetLocalScale - transform.localScale).sqrMagnitude;
+        float magsq = (targetPosition - oldLocaleScale).sqrMagnitude;
         if (magsq > Mathf.Epsilon)
         {
             AnimatingLocalScale = true;
-            enabled = true;
+            //enabled = true;             //ERRORE
+            enStatus = true;
 
             if (InterpolationStarted != null && !wasRunning)
             {
@@ -258,6 +264,9 @@ public class Interpolator : MonoBehaviour
 
     public void Update()
     {
+        //modifica
+        enabled = enStatus;
+
         float deltaTime = UseUnscaledTime
             ? Time.unscaledDeltaTime
             : Time.deltaTime;

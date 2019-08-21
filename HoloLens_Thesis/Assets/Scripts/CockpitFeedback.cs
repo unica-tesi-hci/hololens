@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 [Serializable]
-public class CockpitFeedback {
+public class CockpitFeedback
+{
 
     public String name;
     public bool showRing;
@@ -13,6 +13,9 @@ public class CockpitFeedback {
     public bool showLoading;
     public bool[] sub_parameters;
     public double requiredValue;
+
+    //aggiunto GIOVANNI
+    public bool correctPosition;
 
     /**
      * This constructor contains the following parameters:
@@ -33,5 +36,7 @@ public class CockpitFeedback {
         showLoading = loading;
         sub_parameters = sub_param;
         requiredValue = value;
+
+        correctPosition = false;
     }
 }

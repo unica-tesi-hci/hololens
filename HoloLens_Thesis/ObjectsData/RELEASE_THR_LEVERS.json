@@ -1,0 +1,193 @@
+{
+  "name": "RELEASE_THR_LEVERS",
+  "tasks": [
+    {
+      "duration": "false",
+      "id": "6",
+      "name": "Display 3D info",
+      "nb_iteration": "0",
+      "optional": "false",
+      "type": "output",
+      "x": "-35",
+      "y": "232",
+      "sequence": ""
+    },
+    {
+      "duration": "false",
+      "id": "5",
+      "name": "Release Thrust Levers",
+      "nb_iteration": "0",
+      "optional": "false",
+      "type": "input",
+      "x": "637",
+      "y": "232",
+      "sequence": ""
+    },
+    {
+      "duration": "false",
+      "id": "5",
+      "name": "See the confirmation: \"Good\"",
+      "nb_iteration": "0",
+      "optional": "false",
+      "type": "sight",
+      "x": "642",
+      "y": "232",
+      "sequence": ""
+    },
+    {
+      "duration": "false",
+      "id": "12",
+      "name": "Display 3D confirmation",
+      "nb_iteration": "0",
+      "optional": "false",
+      "type": "output",
+      "x": "788",
+      "y": "232",
+      "sequence": ""
+    }
+  ],
+  "components": [
+    {
+      "nameObject": "Obj_16",
+      "position": {
+        "x": 0.5319,
+        "y": -0.526,
+        "z": 0.6447
+      },
+      "rotation": {
+        "x": 90.0,
+        "y": 355.59,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 0.200000152,
+        "y": 0.00999999,
+        "z": 0.2
+      },
+      "parameter": [
+        "Throttle1",
+        "Throttle2"
+      ],
+      "dataType": [
+        "double",
+        "double"
+      ],
+      "param_path": [
+        "/controls/engines/engine/throttle",
+        "/controls/engines/engine[1]/throttle"
+      ],
+      "interaction": [
+        "Navigation",
+        "Navigation"
+      ],
+      "possible_values": [
+        [
+          0.0,
+          1.0,
+          0.01
+        ],
+        [
+          0.0,
+          1.0,
+          0.01
+        ]
+      ],
+      "IO_Data": [
+        "Both",
+        "Both"
+      ]
+    }
+  ],
+  "feedback_group": [
+    {
+      "sequence": "RELEASE_THR_LEVERS",
+      "objectIndicated": [
+        {
+          "name": "Obj_16",
+          "showRing": true,
+          "insideBox": true,
+          "showCheckMark": true,
+          "showLoading": false,
+          "sub_parameters": [
+            true,
+            true
+          ],
+          "requiredValue": 1.0,
+          "correctPosition": false
+        }
+      ],
+      "showBox": false,
+      "adviceText": "Full in the Throttles to apply full power.",
+      "parameterText": "THROTTLE",
+      "stageText": "4)Takeoff",
+      "textSpeak": "Full in the Throttles to apply full power.",
+      "showParamInAdviceText": false,
+      "isOnOhPanel": false
+    }
+  ],
+  "boxes": [
+    {
+      "sequence": "RELEASE_THR_LEVERS",
+      "positionLeft": {
+        "x": 0.4022848,
+        "y": -0.526,
+        "z": 0.6347039
+      },
+      "rotationLeft": {
+        "x": 90.0,
+        "y": 355.59,
+        "z": 0.0
+      },
+      "scaleLeft": {
+        "x": 0.0200000033,
+        "y": 0.179999933,
+        "z": 0.02
+      },
+      "positionTop": {
+        "x": 0.525748551,
+        "y": -0.526,
+        "z": 0.7244631
+      },
+      "rotationTop": {
+        "x": 90.0,
+        "y": 355.59,
+        "z": 0.0
+      },
+      "scaleTop": {
+        "x": 0.2800002,
+        "y": 0.0199999958,
+        "z": 0.02
+      },
+      "positionRight": {
+        "x": 0.6615152,
+        "y": -0.526,
+        "z": 0.6546961
+      },
+      "rotationRight": {
+        "x": 90.0,
+        "y": 355.59,
+        "z": 0.0
+      },
+      "scaleRight": {
+        "x": 0.0200000033,
+        "y": 0.179999933,
+        "z": 0.02
+      },
+      "positionBottom": {
+        "x": 0.5380514,
+        "y": -0.526,
+        "z": 0.5649369
+      },
+      "rotationBottom": {
+        "x": 90.0,
+        "y": 355.59,
+        "z": 0.0
+      },
+      "scaleBottom": {
+        "x": 0.2800002,
+        "y": 0.0199999958,
+        "z": 0.02
+      }
+    }
+  ]
+}

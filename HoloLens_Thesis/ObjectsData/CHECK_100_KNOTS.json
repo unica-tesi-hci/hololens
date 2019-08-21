@@ -1,0 +1,178 @@
+{
+  "name": "CHECK_100_KNOTS",
+  "tasks": [
+    {
+      "duration": "false",
+      "id": "41",
+      "name": "Display 3D info",
+      "nb_iteration": "0",
+      "optional": "false",
+      "type": "output",
+      "x": "-320",
+      "y": "-351",
+      "sequence": ""
+    },
+    {
+      "duration": "true",
+      "id": "46",
+      "name": "Wait",
+      "nb_iteration": "0",
+      "optional": "false",
+      "type": "user",
+      "x": "202",
+      "y": "-351",
+      "sequence": ""
+    },
+    {
+      "duration": "false",
+      "id": "46",
+      "name": "Display 3D confirmation",
+      "nb_iteration": "0",
+      "optional": "false",
+      "type": "output",
+      "x": "205",
+      "y": "-351",
+      "sequence": ""
+    },
+    {
+      "duration": "false",
+      "id": "46",
+      "name": "See the confirmation: \"Good\"",
+      "nb_iteration": "0",
+      "optional": "false",
+      "type": "sight",
+      "x": "207",
+      "y": "-351",
+      "sequence": ""
+    }
+  ],
+  "components": [
+    {
+      "nameObject": "Obj_25",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 0.03,
+        "y": 0.03,
+        "z": 0.03
+      },
+      "parameter": [
+        "Anemometer"
+      ],
+      "dataType": [
+        "double"
+      ],
+      "param_path": [
+        "/velocities/airspeed-kt"
+      ],
+      "interaction": [
+        "None"
+      ],
+      "possible_values": [
+        []
+      ],
+      "IO_Data": [
+        "Output"
+      ]
+    }
+  ],
+  "feedback_group": [
+    {
+      "sequence": "CHECK_100_KNOTS",
+      "objectIndicated": [
+        {
+          "name": "Obj_25",
+          "showRing": false,
+          "insideBox": false,
+          "showCheckMark": false,
+          "showLoading": false,
+          "sub_parameters": [
+            true
+          ],
+          "requiredValue": 100.0,
+          "correctPosition": false
+        }
+      ],
+      "showBox": false,
+      "adviceText": "Wait for speed to reach 100 knots",
+      "parameterText": "VELOCITY",
+      "stageText": "4)Takeoff",
+      "textSpeak": "Wait for speed to reach 110 knots",
+      "showParamInAdviceText": false,
+      "isOnOhPanel": false
+    }
+  ],
+  "boxes": [
+    {
+      "sequence": "CHECK_100_KNOTS",
+      "positionLeft": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "rotationLeft": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scaleLeft": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "positionTop": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "rotationTop": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scaleTop": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "positionRight": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "rotationRight": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scaleRight": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "positionBottom": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "rotationBottom": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scaleBottom": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    }
+  ]
+}

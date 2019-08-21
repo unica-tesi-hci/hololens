@@ -1,0 +1,189 @@
+{
+  "name": "GAIN ALTITUDE",
+  "tasks": [
+    {
+      "duration": "false",
+      "id": "6",
+      "name": "Display 3D info",
+      "nb_iteration": "0",
+      "optional": "false",
+      "type": "output",
+      "x": "251",
+      "y": "279",
+      "sequence": ""
+    },
+    {
+      "duration": "false",
+      "id": "4",
+      "name": "Pull back the yoke",
+      "nb_iteration": "0",
+      "optional": "false",
+      "type": "input",
+      "x": "691",
+      "y": "276",
+      "sequence": ""
+    },
+    {
+      "duration": "false",
+      "id": "5",
+      "name": "Wait",
+      "nb_iteration": "0",
+      "optional": "false",
+      "type": "user",
+      "x": "908",
+      "y": "276",
+      "sequence": ""
+    },
+    {
+      "duration": "false",
+      "id": "7",
+      "name": "Display 3D confirmation",
+      "nb_iteration": "0",
+      "optional": "false",
+      "type": "output",
+      "x": "1015",
+      "y": "276",
+      "sequence": ""
+    },
+    {
+      "duration": "false",
+      "id": "8",
+      "name": "See the confirmation: \"Good\"",
+      "nb_iteration": "0",
+      "optional": "false",
+      "type": "sight",
+      "x": "1190",
+      "y": "290",
+      "sequence": ""
+    }
+  ],
+  "components": [
+    {
+      "nameObject": "Obj_26",
+            "position": {
+        "x": 0.5777,
+        "y": -0.6236,
+        "z": 0.2985
+      },
+      "rotation": {
+        "x": 90.0,
+        "y": 354.26,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 0.0100000007,
+        "y": 0.03999998,
+        "z": 0.0100000016
+      },
+      "parameter": [
+        "Altimeter"
+      ],
+      "dataType": [
+        "double"
+      ],
+      "param_path": [
+        "/position/altitude-ft"
+      ],
+      "interaction": [
+        "None"
+      ],
+      "possible_values": [
+        []
+      ],
+      "IO_Data": [
+        "Output"
+      ]
+    }
+  ],
+  "feedback_group": [
+    {
+      "sequence": "GAIN ALTITUDE",
+      "objectIndicated": [
+        {
+          "name": "Obj_26",
+          "showRing": false,
+          "insideBox": false,
+          "showCheckMark": false,
+          "showLoading": false,
+          "sub_parameters": [
+            true
+          ],
+          "requiredValue": 500.0,
+          "correctPosition": false
+        }
+      ],
+      "showBox": false,
+      "adviceText": "Pull back the yoke to take off. Go up until you reach 500 foot.",
+      "parameterText": "ALTITUDE",
+      "stageText": "4)Takeoff",
+      "textSpeak": "Pull back the yoke to take off. Go up until you reach 500 foot.",
+      "showParamInAdviceText": false,
+      "isOnOhPanel": false
+    }
+  ],
+  "boxes": [
+    {
+      "sequence": "GAIN ALTITUDE",
+      "positionLeft": {
+        "x": 0.542875469,
+        "y": -0.6236,
+        "z": 0.2949995
+      },
+      "rotationLeft": {
+        "x": 90.0,
+        "y": 354.26,
+        "z": 0.0
+      },
+      "scaleLeft": {
+        "x": 0.0200000014,
+        "y": 0.2099999,
+        "z": 0.02
+      },
+      "positionTop": {
+        "x": 0.5681987,
+        "y": -0.6236,
+        "z": 0.39302364
+      },
+      "rotationTop": {
+        "x": 90.0,
+        "y": 354.26,
+        "z": 0.0
+      },
+      "scaleTop": {
+        "x": 0.09000006,
+        "y": 0.0199999958,
+        "z": 0.02
+      },
+      "positionRight": {
+        "x": 0.612524569,
+        "y": -0.6236,
+        "z": 0.3020005
+      },
+      "rotationRight": {
+        "x": 90.0,
+        "y": 354.26,
+        "z": 0.0
+      },
+      "scaleRight": {
+        "x": 0.0200000014,
+        "y": 0.2099999,
+        "z": 0.02
+      },
+      "positionBottom": {
+        "x": 0.587201357,
+        "y": -0.6236,
+        "z": 0.203976363
+      },
+      "rotationBottom": {
+        "x": 90.0,
+        "y": 354.26,
+        "z": 0.0
+      },
+      "scaleBottom": {
+        "x": 0.09000006,
+        "y": 0.0199999958,
+        "z": 0.02
+      }
+    }
+  ]
+}

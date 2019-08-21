@@ -1,0 +1,189 @@
+{
+  "name": "GEAR_UP",
+  "tasks": [
+    {
+      "duration": "false",
+      "id": "8",
+      "name": "Display 3D info",
+      "nb_iteration": "0",
+      "optional": "false",
+      "type": "output",
+      "x": "0",
+      "y": "210",
+      "sequence": ""
+    },
+    {
+      "duration": "false",
+      "id": "8",
+      "name": "Move up the  gear lever",
+      "nb_iteration": "0",
+      "optional": "false",
+      "type": "input",
+      "x": "386",
+      "y": "210",
+      "sequence": ""
+    },
+    {
+      "duration": "false",
+      "id": "9",
+      "name": "Gear button \"Light Off\"",
+      "nb_iteration": "0",
+      "optional": "false",
+      "type": "output",
+      "x": "537",
+      "y": "210",
+      "sequence": ""
+    },
+    {
+      "duration": "false",
+      "id": "9",
+      "name": "Display 3D confirmation",
+      "nb_iteration": "0",
+      "optional": "false",
+      "type": "output",
+      "x": "540",
+      "y": "210",
+      "sequence": ""
+    },
+    {
+      "duration": "false",
+      "id": "9",
+      "name": "See the confirmation: \"Good\"",
+      "nb_iteration": "0",
+      "optional": "false",
+      "type": "sight",
+      "x": "542",
+      "y": "210",
+      "sequence": ""
+    }
+  ],
+  "components": [
+    {
+      "nameObject": "Obj_15",
+      "position": {
+        "x": 0.618,
+        "y": -0.4036,
+        "z": 0.9866
+      },
+      "rotation": {
+        "x": 16.9399948,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 0.03,
+        "y": 0.0600000024,
+        "z": 0.02
+      },
+      "parameter": [
+        "Gears"
+      ],
+      "dataType": [
+        "bool"
+      ],
+      "param_path": [
+        "/controls/gear/gear-down"
+      ],
+      "interaction": [
+        "Tap"
+      ],
+      "possible_values": [
+        []
+      ],
+      "IO_Data": [
+        "Both"
+      ]
+    }
+  ],
+  "feedback_group": [
+    {
+      "sequence": "GEAR_UP",
+      "objectIndicated": [
+        {
+          "name": "Obj_15",
+          "showRing": true,
+          "insideBox": true,
+          "showCheckMark": true,
+          "showLoading": false,
+          "sub_parameters": [
+            true
+          ],
+          "requiredValue": 0.0,
+          "correctPosition": false
+        }
+      ],
+      "showBox": false,
+      "adviceText": "Retract the landing gear.",
+      "parameterText": "GEAR",
+      "stageText": "4)Takeoff",
+      "textSpeak": "Retract the landing gear.",
+      "showParamInAdviceText": false,
+      "isOnOhPanel": false
+    }
+  ],
+  "boxes": [
+    {
+      "sequence": "GEAR_UP",
+      "positionLeft": {
+        "x": 0.572999954,
+        "y": -0.4036,
+        "z": 0.9866
+      },
+      "rotationLeft": {
+        "x": 16.9399948,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scaleLeft": {
+        "x": 0.02,
+        "y": 0.229999974,
+        "z": 0.02
+      },
+      "positionTop": {
+        "x": 0.618,
+        "y": -0.303155929,
+        "z": 1.01719379
+      },
+      "rotationTop": {
+        "x": 16.9399948,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scaleTop": {
+        "x": 0.110000029,
+        "y": 0.02,
+        "z": 0.02
+      },
+      "positionRight": {
+        "x": 0.663,
+        "y": -0.4036,
+        "z": 0.9866
+      },
+      "rotationRight": {
+        "x": 16.9399948,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scaleRight": {
+        "x": 0.02,
+        "y": 0.229999974,
+        "z": 0.02
+      },
+      "positionBottom": {
+        "x": 0.618,
+        "y": -0.5040441,
+        "z": 0.9560061
+      },
+      "rotationBottom": {
+        "x": 16.9399948,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scaleBottom": {
+        "x": 0.110000029,
+        "y": 0.02,
+        "z": 0.02
+      }
+    }
+  ]
+}

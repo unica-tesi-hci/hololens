@@ -102,6 +102,7 @@ public class CockpitObjectsAPI : MonoBehaviour {
      */
     public bool SetSimulationParameterValue(string path, double val)
     {
+        System.Threading.Thread.Sleep(700);
         bool b = Parameters.Instance.UpdateValue(path, val, "double");
 
         if (b)

@@ -1,0 +1,178 @@
+{
+  "name": "ACCELERATION",
+  "tasks": [
+    {
+      "duration": "false",
+      "id": "23",
+      "name": "Display 3D info",
+      "nb_iteration": "0",
+      "optional": "false",
+      "type": "output",
+      "x": "-864",
+      "y": "328",
+      "sequence": ""
+    },
+    {
+      "duration": "true",
+      "id": "27",
+      "name": "Wait",
+      "nb_iteration": "0",
+      "optional": "false",
+      "type": "user",
+      "x": "-337",
+      "y": "328",
+      "sequence": ""
+    },
+    {
+      "duration": "false",
+      "id": "23",
+      "name": "Display 3D confirmation",
+      "nb_iteration": "0",
+      "optional": "false",
+      "type": "output",
+      "x": "867",
+      "y": "328",
+      "sequence": ""
+    },
+    {
+      "duration": "false",
+      "id": "23",
+      "name": "See the confirmation: \"Good\"",
+      "nb_iteration": "0",
+      "optional": "false",
+      "type": "sight",
+      "x": "869",
+      "y": "328",
+      "sequence": ""
+    }
+  ],
+  "components": [
+    {
+      "nameObject": "Obj_25",
+      "position": {
+        "x": 0.557,
+        "y": 0.1,
+        "z": 0.421
+      },
+      "rotation": {
+        "x": -0.4731,
+        "y": -0.5254,
+        "z": -0.5254
+      },
+      "scale": {
+        "x": 0.03,
+        "y": 0.03,
+        "z": 0.03
+      },
+      "parameter": [
+        "Anemometer"
+      ],
+      "dataType": [
+        "double"
+      ],
+      "param_path": [
+        "/velocities/airspeed-kt"
+      ],
+      "interaction": [
+        "None"
+      ],
+      "possible_values": [
+        []
+      ],
+      "IO_Data": [
+        "Output"
+      ]
+    }
+  ],
+  "feedback_group": [
+    {
+      "sequence": "ACCELERATION",
+      "objectIndicated": [
+        {
+          "name": "Obj_25",
+          "showRing": false,
+          "insideBox": false,
+          "showCheckMark": false,
+          "showLoading": false,
+          "sub_parameters": [
+            true
+          ],
+          "requiredValue": 130.0,
+          "correctPosition": false
+        }
+      ],
+      "showBox": false,
+      "adviceText": "Wait until the airplane gains sufficient speed.",
+      "parameterText": "VELOCITY",
+      "stageText": "4)Takeoff",
+      "textSpeak": "Wait until the airplane gains sufficient speed.",
+      "showParamInAdviceText": false,
+      "isOnOhPanel": false
+    }
+  ],
+  "boxes": [
+    {
+      "sequence": "ACCELERATION",
+      "positionLeft": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "rotationLeft": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scaleLeft": {
+        "x": 0.02,
+        "y": 0.02,
+        "z": 0.02
+      },
+      "positionTop": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "rotationTop": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scaleTop": {
+        "x": 0.02,
+        "y": 0.02,
+        "z": 0.02
+      },
+      "positionRight": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "rotationRight": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scaleRight": {
+        "x": 0.02,
+        "y": 0.02,
+        "z": 0.02
+      },
+      "positionBottom": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "rotationBottom": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scaleBottom": {
+        "x": 0.02,
+        "y": 0.02,
+        "z": 0.02
+      }
+    }
+  ]
+}

@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System;
+using System.Text;
+using System.Xml;
+
 #if !UNITY_EDITOR
 using Windows.Storage;
 using System.Threading.Tasks;
@@ -10,8 +13,9 @@ using System.Threading.Tasks;
 
 public class FileDataReader : Singleton<FileDataReader>
 {
-
+    public List<JsonSaveObject> listaSequenze = new List<JsonSaveObject>();
     private JsonSaveObject file;
+    private JsonSaveObject2 mapValues;
     private GameObject component;
     public GameObject cockpit;
     private int max = -1;
@@ -57,12 +61,55 @@ public class FileDataReader : Singleton<FileDataReader>
 #if !UNITY_EDITOR
         Load();
 #else
-        LoadUnity();
+        LoadUnity2();
 #endif
 
+        //List<FeedbackGroup> sequenceFromFile = new List<FeedbackGroup>();
+
+        //modificato giovanni
+        List<List<FeedbackGroup>> sequencesFromFile = new List<List<FeedbackGroup>>();
+        List<List<Task>> tasksList = new List<List<Task>>();
+        List<Cockpit_Component_Json> components = new List<Cockpit_Component_Json>();
+        List<Container_Box_Json> boxes = new List<Container_Box_Json>();
+
+        foreach (JsonSaveObject seq in listaSequenze)
+        {
+            sequencesFromFile.Add(seq.feedback_group);
+            tasksList.Add(seq.tasks);
+
+            foreach (Cockpit_Component_Json comp in seq.components)
+            {
+                if (!components.Contains(comp))
+                    components.Add(comp);
+            }
+            foreach (Container_Box_Json box in seq.boxes)
+            {
+                if (!boxes.Contains(box))
+                    boxes.Add(box);
+            }
+        }
         try
         {
-            foreach (Cockpit_Component_Json cockpit_component in file.components)
+            //
+            foreach (Cockpit_Component_Json cockpit_component in mapValues.components)
+            {
+                component_instantiated = Instantiate(component);
+                component_instantiated.name = cockpit_component.nameObject;
+                component_instantiated.transform.position = cockpit_component.position;
+                component_instantiated.transform.rotation = Quaternion.Euler(cockpit_component.rotation);
+                component_instantiated.transform.localScale = cockpit_component.scale;
+                newParameterManager = component_instantiated.GetComponent<NewParameterManager>();
+
+                newParameterManager.setDataType(cockpit_component.dataType);
+                newParameterManager.setPath(cockpit_component.param_path);
+
+                for (i = 0; i < cockpit_component.parameter.Length; i++)
+                {
+                    Parameters.Instance.AddValue(cockpit_component.param_path[i], 0, cockpit_component.dataType[i], cockpit_component.IO_Data[i]);
+                }
+            }
+
+            foreach (Cockpit_Component_Json cockpit_component in components)// file.components)
             {
                 component_instantiated = Instantiate(component);
                 component_instantiated.name = cockpit_component.nameObject;
@@ -87,10 +134,10 @@ public class FileDataReader : Singleton<FileDataReader>
                     max = value;
                 }
 
-                for(i = 0; i < cockpit_component.parameter.Length; i++)
-                {
-                    Parameters.Instance.AddValue(cockpit_component.param_path[i], 0, cockpit_component.dataType[i], cockpit_component.IO_Data[i]);
-                }
+                //for(i = 0; i < cockpit_component.parameter.Length; i++)
+                //{
+                //    Parameters.Instance.AddValue(cockpit_component.param_path[i], 0, cockpit_component.dataType[i], cockpit_component.IO_Data[i]);
+                //}
 
                 map.Add(component_instantiated, newParameterManager);
             }
@@ -103,29 +150,40 @@ public class FileDataReader : Singleton<FileDataReader>
 
             int len = InputSequence.Instance.getSeqLength();
 
-            List<FeedbackGroup> sequenceFromFile = file.feedback_group;
+            //List<FeedbackGroup> sequenceFromFile = file.feedback_group;
+            List<FeedbackGroup> sequenceFromFile = sequencesFromFile[0];
 
-            InputSequence.Instance.InitSequenceObjects(sequenceFromFile);
+            //modificato
+            //string subRoutineName = file.name;
+            //List<Task> tasks = file.tasks;
+            //InputSequence.Instance.InitSequenceObjects(sequenceFromFile, listaSequenze[0].name, listaSequenze[0].tasks);
+            InputSequence.Instance.InitSequenceObjects(sequencesFromFile, listaSequenze);
 
             Container_Box_Json[] boxFromFile = new Container_Box_Json[len];
 
-            foreach (Container_Box_Json container_box in file.boxes)
+            //foreach (Container_Box_Json container_box in file.boxes)
+            foreach (JsonSaveObject seq in listaSequenze)
             {
-                while (sequenceFromFile[i].sequence != container_box.sequence)
-                {
-                    if (sequenceFromFile[i].sequence != "End")
-                    {
-                        boxFromFile[i] = null;
-                        ++i;
-                    }
-                    else
-                    {
-                        break;
-                    }
-                }
+                int j = 0;
 
-                boxFromFile[i] = container_box;
-                ++i;
+                foreach (Container_Box_Json container_box in boxes)
+                {
+                    while (seq.feedback_group[j].sequence != container_box.sequence)
+                    {
+                        if (seq.feedback_group[j].sequence != "End")
+                        {
+                            boxFromFile[i] = null;
+                            ++i;
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+
+                    boxFromFile[i] = container_box;
+                    ++i;
+                }
             }
 
             while (i < len)
@@ -133,6 +191,7 @@ public class FileDataReader : Singleton<FileDataReader>
                 boxFromFile[i] = null;
                 ++i;
             }
+
 
             GameObject.FindWithTag("ContainerBox").GetComponent<ContainerBox>().InitializeBoxFromFile(boxFromFile);
         }
@@ -223,6 +282,10 @@ public class FileDataReader : Singleton<FileDataReader>
     public void LoadUnity()
     {
         string path = String.Format("/ObjectsData/savedObjects.json");
+        path = String.Format("/ObjectsData/BRAKE_RELEASE.json");
+        ////path = String.Format("/ObjectsData/CHECK_100_KNOTS.json");
+        //path = String.Format("/ObjectsData/GEAR_UP.json");
+        //path = String.Format("/ObjectsData/BRAKE_RELEASE.json");
 
         if (!Directory.Exists(Application.dataPath + "/../ObjectsData"))
         {
@@ -238,7 +301,102 @@ public class FileDataReader : Singleton<FileDataReader>
         {
             try
             {
-                file = JsonUtility.FromJson<JsonSaveObject>(reader.ReadLine());
+                String line = null;
+                StringBuilder fullFile = new StringBuilder();
+                while ((line = reader.ReadLine()) != null)
+                {
+                    fullFile.Append(line).Append("\n\r");
+                }
+                file = JsonUtility.FromJson<JsonSaveObject>(fullFile.ToString());
+                int first = path.LastIndexOf("/") + 1;
+                file.name = path.Substring(first);
+                int last = file.name.LastIndexOf(".json");
+                file.name = file.name.Remove(last);
+            }
+            catch (Exception e)
+            {
+                Debug.Log(e.Message);
+            }
+        }
+
+        string pathValues = String.Format("/ObjectsData/mapValues.json");
+        using (StreamReader reader = new StreamReader(new FileStream(Application.dataPath + "/.." + pathValues, FileMode.Open)))
+        {
+            try
+            {
+                String line = null;
+                StringBuilder fullFile = new StringBuilder();
+                while ((line = reader.ReadLine()) != null)
+                {
+                    fullFile.Append(line).Append("\n\r");
+                }
+                mapValues = JsonUtility.FromJson<JsonSaveObject2>(fullFile.ToString());
+                int a = 0;
+                a++;
+            }
+            catch (Exception e)
+            {
+                Debug.Log(e.Message);
+            }
+        }
+    }
+
+    public void LoadUnity2()
+    {
+        string path = String.Format("/ObjectsData/sequences.json");
+        String line = "";
+        //modifica GIOVANNI
+        //questo serve per acquisire tutte le informazioni di tutti i json, affinchè sia possibile decidere se effettuare i task in modo sequenziale o meno
+        using (StreamReader reader = new StreamReader(new FileStream(Application.dataPath + "/.." + path, FileMode.Open)))
+        {
+            try
+            {
+                line = null;
+                while ((line = reader.ReadLine()) != null)
+                {
+                    if (!line.Equals("{") && !line.Equals("}"))
+                    {
+                        //analizzo la sequence i-esima
+                        using (StreamReader reader2 = new StreamReader(new FileStream(Application.dataPath + "/../ObjectsData/" + line.Replace("\t\"", "").Replace("\",", "").Replace("\"", ""), FileMode.Open)))
+                        {
+                            try
+                            {
+                                String line2 = null;
+                                StringBuilder fullFile = new StringBuilder();
+                                while ((line2 = reader2.ReadLine()) != null)
+                                {
+                                    fullFile.Append(line2).Append("\n\r");
+                                }
+                                listaSequenze.Add(JsonUtility.FromJson<JsonSaveObject>(fullFile.ToString()));
+                            }
+                            catch (Exception e)
+                            {
+                                Debug.Log(e.Message);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.Log(e.Message);
+            }
+        }
+
+        string pathValues = String.Format("/ObjectsData/mapValues.json");
+        using (StreamReader reader = new StreamReader(new FileStream(Application.dataPath + "/.." + pathValues, FileMode.Open)))
+        {
+            try
+            {
+                line = null;
+                StringBuilder fullFile = new StringBuilder();
+                while ((line = reader.ReadLine()) != null)
+                {
+                    fullFile.Append(line).Append("\n\r");
+                }
+                mapValues = JsonUtility.FromJson<JsonSaveObject2>(fullFile.ToString());
+                int a = 0;
+                a++;
             }
             catch (Exception e)
             {
@@ -247,5 +405,4 @@ public class FileDataReader : Singleton<FileDataReader>
         }
     }
 #endif
-
 }

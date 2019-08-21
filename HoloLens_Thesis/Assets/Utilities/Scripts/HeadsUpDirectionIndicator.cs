@@ -150,7 +150,7 @@ public class HeadsUpDirectionIndicator : MonoBehaviour
             {
                 TargetObject = boundingBox.center;
             }
-            else
+            else if(countTarget == 1)
             {
                 TargetObject = singleObject.transform.position;
             }

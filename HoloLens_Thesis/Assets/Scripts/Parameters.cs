@@ -8,49 +8,49 @@ public class Parameters : MonoBehaviour {
     public static Parameters Instance { get; private set; }
 
     //Key: the parameter's path; Value: its current value.
-    private Dictionary<string, double> mapValue = new Dictionary<string, double>();
+    public Dictionary<string, double> mapValue = new Dictionary<string, double>();
     //Key: the parameter's path; Value: its corresponding data type (bool, int or double).
-    private Dictionary<string, string> mapType = new Dictionary<string, string>();
+    public Dictionary<string, string> mapType = new Dictionary<string, string>();
     //Key: the parameter's path; Value: its corresponding IO value (Input, Output or Both).
-    private Dictionary<string, string> mapIO = new Dictionary<string, string>();
+    public Dictionary<string, string> mapIO = new Dictionary<string, string>();
 
-    /*private int EXT_PWR;
-    private int BAT;
-    private int BAT1;
-    private int BAT2;
-    private int APU_GEN;
-    private int APU_START;
-    private int APU_M_SW;
-    private int APU_BLEED;
-    private int LTK_PUMPS_1;
-    private int LTK_PUMPS_2;
-    private int PUMPS;
-    private int RTK_PUMPS_1;
-    private int RTK_PUMPS_2;
-    private int ENG_START_SW;
-    private int ENG1;
-    private int ENG2;
-    private double ENG1_N1;
-    private double ENG2_N1;
-    private int BRK_PRK;
-    private int ENG1_GEN;
-    private int ENG2_GEN;
-    private int PACK1;
-    private int PACK2;
-    private double throttle1;
-    private double throttle2;
-    private int auto_Brake;
-    private int spoiler_ARM;
-    private double spoiler_Speedbrake;
-    private int gear;
-    private double flaps;
-    private double aileron;
-    private double elevator;
-    private double rudder;
-    private double vertical_view;
-    private double horizontal_view;
-	private double velocity;
-	private double altitude;*/
+ //   private int EXT_PWR;
+ //   private int BAT;
+ //   private int BAT1;
+ //   private int BAT2;
+ //   private int APU_GEN;
+ //   private int APU_START;
+ //   private int APU_M_SW;
+ //   private int APU_BLEED;
+ //   private int LTK_PUMPS_1;
+ //   private int LTK_PUMPS_2;
+ //   private int PUMPS;
+ //   private int RTK_PUMPS_1;
+ //   private int RTK_PUMPS_2;
+ //   private int ENG_START_SW;
+ //   private int ENG1;
+ //   private int ENG2;
+ //   private double ENG1_N1;
+ //   private double ENG2_N1;
+ //   private int BRK_PRK;
+ //   private int ENG1_GEN;
+ //   private int ENG2_GEN;
+ //   private int PACK1;
+ //   private int PACK2;
+ //   private double throttle1;
+ //   private double throttle2;
+ //   private int auto_Brake;
+ //   private int spoiler_ARM;
+ //   private double spoiler_Speedbrake;
+ //   private int gear;
+ //   private double flaps;
+ //   private double aileron;
+ //   private double elevator;
+ //   private double rudder;
+ //   private double vertical_view;
+ //   private double horizontal_view;
+	//private double velocity;
+	//private double altitude;
     private double initialAltitude;
     private int HUD;
 
@@ -60,8 +60,9 @@ public class Parameters : MonoBehaviour {
     // Use this for initialization
     void Start () {
         Instance = this;
-
-        /*EXT_PWR = 0;
+    
+        /*
+        EXT_PWR = 0;
         BAT = 0;
         BAT1 = 0;
         BAT2 = 0;
@@ -174,10 +175,56 @@ public class Parameters : MonoBehaviour {
         set_HUD(Convert.ToInt32(newParameters[i].Substring(newParameters[i].IndexOf('=') + 1)));
     }
 
-    /*public void set_new_parameters(string value)
+    /*
+    public void set_new_parameters(string value)
     {
         newParameters = value.Split(';');
 
+        set_EXT_PWR(Convert.ToInt32(newParameters[0].Split('=')[1]));
+        set_APU_M_SW(Convert.ToInt32(newParameters[1].Split('=')[1]));
+        set_APU_START(Convert.ToInt32(newParameters[2].Split('=')[1]));
+        set_APU_GEN(Convert.ToInt32(newParameters[3].Split('=')[1]));
+        set_APU_BLEED(Convert.ToInt32(newParameters[4].Split('=')[1]));
+        set_BRK_PRK(Convert.ToInt32(newParameters[5].Split('=')[1]));
+        set_ENG_START_SW(Convert.ToInt32(newParameters[6].Split('=')[1]));
+        set_ENG1(Convert.ToInt32(newParameters[7].Split('=')[1]));
+        set_ENG2(Convert.ToInt32(newParameters[8].Split('=')[1]));
+        set_ENG1_GEN(Convert.ToInt32(newParameters[9].Split('=')[1]));
+        set_ENG2_GEN(Convert.ToInt32(newParameters[10].Split('=')[1]));
+        set_PACK1(Convert.ToInt32(newParameters[11].Split('=')[1]));
+        set_PACK2(Convert.ToInt32(newParameters[12].Split('=')[1]));
+        set_BAT(Convert.ToInt32(newParameters[13].Split('=')[1]));
+        set_flaps(Convert.ToDouble(newParameters[14].Split('=')[1]));
+        set_gear(Convert.ToInt32(newParameters[15].Split('=')[1]));
+        set_throttle1(Convert.ToDouble(newParameters[16].Split('=')[1]));
+        set_throttle2(Convert.ToDouble(newParameters[17].Split('=')[1]));
+        set_ENG1_N1(Convert.ToDouble(newParameters[18].Split('=')[1]));
+        set_ENG2_N1(Convert.ToDouble(newParameters[19].Split('=')[1]));
+        set_LTK_PUMPS_1(Convert.ToInt32(newParameters[20].Split('=')[1]));
+        set_LTK_PUMPS_2(Convert.ToInt32(newParameters[21].Split('=')[1]));
+        set_PUMPS(Convert.ToInt32(newParameters[22].Split('=')[1]));
+        set_RTK_PUMPS_1(Convert.ToInt32(newParameters[23].Split('=')[1]));
+        set_RTK_PUMPS_2(Convert.ToInt32(newParameters[24].Split('=')[1]));
+        set_AUTO_BRK(Convert.ToInt32(newParameters[25].Split('=')[1]));
+        set_spoiler_Speedbrake(Convert.ToDouble(newParameters[26].Split('=')[1]));
+        set_spoiler_ARM(Convert.ToInt32(newParameters[27].Split('=')[1]));
+        set_velocity(Convert.ToDouble(newParameters[28].Split('=')[1]));
+        set_altitude(Convert.ToDouble(newParameters[29].Split('=')[1]));
+        set_HUD(Convert.ToInt32(newParameters[30].Split('=')[1]));
+
+
+
+
+        
+        
+        /*set_aileron(Convert.ToDouble(newParameters[28].Split('=')[1]));
+        set_elevator(Convert.ToDouble(newParameters[0].Split('=')[1]));
+        set_rudder(Convert.ToDouble(newParameters[30].Split('=')[1]));
+        set_vertical_view(Convert.ToDouble(newParameters[31].Split('=')[1]));
+        set_horizontal_view(Convert.ToDouble(newParameters[32].Split('=')[1]));*/
+
+
+        /*
         set_EXT_PWR(Convert.ToInt32(newParameters[0].Substring(2, 1)));
 
         set_BAT(Convert.ToInt32(newParameters[1].Substring(3, 1)));
@@ -249,16 +296,17 @@ public class Parameters : MonoBehaviour {
 		set_altitude(Convert.ToDouble(newParameters[34].Substring(3, newParameters[34].Length - 4)));
 
         set_HUD(Convert.ToInt32(newParameters[35].Substring(4, 1)));
+        *//*
     }*/
 
     public string toFlightGear()
     {
         string s = "";
-
         foreach (KeyValuePair<string, double> kvp in mapValue)
         {
             if (mapIO[kvp.Key] != "Output")
             {
+
                 if (mapType[kvp.Key] == "int" || mapType[kvp.Key] == "bool")
                 {
                     s += Convert.ToInt32(kvp.Value) + ";";
@@ -270,39 +318,43 @@ public class Parameters : MonoBehaviour {
             }
         }
 
-        return s + get_HUD() + ";";
+        String msgFG = s + get_HUD() + ";\n\r";
+        return msgFG +"\n\r";
 
-        /*return String.Format(
-            "{0};{1};{2};{3};{4};{5};{6};{7};{8};{9};" +
-            "{10};{11};{12};{13};{14};{15};{16};{17};{18};{19};" +
-            "{20};{21};{22};{23};{24};{25};{26};\r\n",
-            get_EXT_PWR(),
-            get_BAT(),
-            get_APU_GEN(),
-            get_APU_START(),
-            get_APU_M_SW(),
-            get_APU_BLEED(),
-            get_LTK_PUMPS_1(),
-            get_LTK_PUMPS_2(),
-            get_PUMPS(),
-            get_RTK_PUMPS_1(),
-            get_RTK_PUMPS_2(),
-            get_ENG_START_SW(),
-            get_ENG1(),
-            get_ENG2(),
-            get_BRK_PRK(),
-            get_ENG1_GEN(),
-            get_ENG2_GEN(),
-            get_PACK1(),
-            get_PACK2(),
-            get_throttle1(),
-            get_throttle2(),
-            get_AUTO_BRK(),
-            get_Spoiler_ARM(),
-            get_Spoiler_Speedbrake(),
-            get_gear(),
-            get_flaps(),
-            get_HUD());*/
+        //return s + get_HUD() + ";";
+
+
+        //return String.Format(
+        //    "{0};{1};{2};{3};{4};{5};{6};{7};{8};{9};" +
+        //    "{10};{11};{12};{13};{14};{15};{16};{17};{18};{19};" +
+        //    "{20};{21};{22};{23};{24};{25};{26};\r\n",
+        //    get_EXT_PWR(),
+        //    get_BAT(),
+        //    get_APU_GEN(),
+        //    get_APU_START(),
+        //    get_APU_M_SW(),
+        //    get_APU_BLEED(),
+        //    get_LTK_PUMPS_1(),
+        //    get_LTK_PUMPS_2(),
+        //    get_PUMPS(),
+        //    get_RTK_PUMPS_1(),
+        //    get_RTK_PUMPS_2(),
+        //    get_ENG_START_SW(),
+        //    get_ENG1(),
+        //    get_ENG2(),
+        //    get_BRK_PRK(),
+        //    get_ENG1_GEN(),
+        //    get_ENG2_GEN(),
+        //    get_PACK1(),
+        //    get_PACK2(),
+        //    get_throttle1(),
+        //    get_throttle2(),
+        //    get_AUTO_BRK(),
+        //    get_Spoiler_ARM(),
+        //    get_Spoiler_Speedbrake(),
+        //    get_gear(),
+        //    get_flaps(),
+        //    get_HUD());
         //return "" + get_EXT_PWR() + ";" + get_BAT() + ";"/* + get_BAT1() + ";" + get_BAT2() + ";"*/ +
         //get_APU_GEN() + ";" + get_APU_START() + ";" + get_APU_M_SW() + ";" + get_APU_BLEED() + ";" + get_LTK_PUMPS_1() + ";" +
         //get_LTK_PUMPS_2() + ";" + get_PUMPS() + ";" + get_RTK_PUMPS_1() + ";" + get_RTK_PUMPS_2() + ";" + get_ENG_START_SW() + ";" +
@@ -311,7 +363,8 @@ public class Parameters : MonoBehaviour {
         //get_Spoiler_ARM() + ";" + get_Spoiler_Speedbrake() + ";" + get_gear() + ";" + get_flaps() + ";" + get_HUD() + ";";
     }
 
-    /*public int get_EXT_PWR()
+    /*
+    public int get_EXT_PWR()
     {
         return EXT_PWR;
     }
@@ -733,4 +786,16 @@ public class Parameters : MonoBehaviour {
         HUD = value;
     }
 
+    //aggiunto da giovanni
+    public bool isAllZero()
+    {
+        var buffer = new List<KeyValuePair<string, double>>(this.mapValue);
+        foreach (var val in buffer)
+        {
+            if (val.Value != 0.0)
+                return false;
+        }
+
+        return true;
+    }
 }

@@ -1,0 +1,3274 @@
+﻿{
+  "components": [
+    {
+      "nameObject": "Obj_0",
+      "position": {
+        "x": 0.5910000205039978,
+        "y": 0.44530001282691958,
+        "z": 0.2703999876976013
+      },
+      "rotation": {
+        "x": 299.5,
+        "y": 355.6999816894531,
+        "z": 4.3345485778445438e-7
+      },
+      "scale": {
+        "x": 0.019999999552965165,
+        "y": 0.020000023767352105,
+        "z": 0.005000004079192877
+      },
+      "parameter": [ "External_Power" ],
+      "dataType": [ "bool" ],
+      "param_path": [ "/controls/electric/external-power" ],
+      "interaction": [ "Tap" ],
+      "possible_values": [ [] ],
+      "IO_Data": [ "Both" ]
+    },
+    {
+      "nameObject": "Obj_1",
+      "position": {
+        "x": 0.5364999771118164,
+        "y": 0.33480000495910647,
+        "z": 0.46070000529289248
+      },
+      "rotation": {
+        "x": 299.5,
+        "y": 355.6999816894531,
+        "z": 4.3345485778445438e-7
+      },
+      "scale": {
+        "x": 0.019999999552965165,
+        "y": 0.020000023767352105,
+        "z": 0.005000004079192877
+      },
+      "parameter": [ "APU_Master_SW" ],
+      "dataType": [ "bool" ],
+      "param_path": [ "/controls/APU/master-switch" ],
+      "interaction": [ "Tap" ],
+      "possible_values": [ [] ],
+      "IO_Data": [ "Both" ]
+    },
+    {
+      "nameObject": "Obj_2",
+      "position": {
+        "x": 0.5346999764442444,
+        "y": 0.31700000166893008,
+        "z": 0.48820000886917117
+      },
+      "rotation": {
+        "x": 299.5,
+        "y": 355.6999816894531,
+        "z": 4.3345485778445438e-7
+      },
+      "scale": {
+        "x": 0.019999999552965165,
+        "y": 0.020000023767352105,
+        "z": 0.005000004079192877
+      },
+      "parameter": [ "APU_Start" ],
+      "dataType": [ "bool" ],
+      "param_path": [ "/controls/APU/starter" ],
+      "interaction": [ "Tap" ],
+      "possible_values": [ [] ],
+      "IO_Data": [ "Both" ]
+    },
+    {
+      "nameObject": "Obj_3",
+      "position": {
+        "x": 0.5063999891281128,
+        "y": 0.4449000060558319,
+        "z": 0.2644999921321869
+      },
+      "rotation": {
+        "x": 299.5,
+        "y": 355.6999816894531,
+        "z": 4.3345485778445438e-7
+      },
+      "scale": {
+        "x": 0.019999999552965165,
+        "y": 0.020000023767352105,
+        "z": 0.005000004079192877
+      },
+      "parameter": [ "APU_Gen" ],
+      "dataType": [ "bool" ],
+      "param_path": [ "/controls/electric/APU-generator" ],
+      "interaction": [ "Tap" ],
+      "possible_values": [ [] ],
+      "IO_Data": [ "Both" ]
+    },
+    {
+      "nameObject": "Obj_4",
+      "position": {
+        "x": 0.5429999828338623,
+        "y": 0.3862000107765198,
+        "z": 0.37139999866485598
+      },
+      "rotation": {
+        "x": 299.5,
+        "y": 355.6999816894531,
+        "z": 4.3345485778445438e-7
+      },
+      "scale": {
+        "x": 0.019999999552965165,
+        "y": 0.020000023767352105,
+        "z": 0.005000004079192877
+      },
+      "parameter": [ "APU_Bleed" ],
+      "dataType": [ "bool" ],
+      "param_path": [ "/controls/pneumatic/APU-bleed" ],
+      "interaction": [ "Tap" ],
+      "possible_values": [ [] ],
+      "IO_Data": [ "Both" ]
+    },
+    {
+      "nameObject": "Obj_5",
+      "position": {
+        "x": 0.5281000137329102,
+        "y": 0.47510001063346865,
+        "z": 0.21089999377727509
+      },
+      "rotation": {
+        "x": 299.5,
+        "y": 355.6999816894531,
+        "z": 4.3345485778445438e-7
+      },
+      "scale": {
+        "x": 0.019999999552965165,
+        "y": 0.020000023767352105,
+        "z": 0.005000004079192877
+      },
+      "parameter": [ "Battery" ],
+      "dataType": [ "bool" ],
+      "param_path": [ "/controls/electric/battery-switch" ],
+      "interaction": [ "Tap" ],
+      "possible_values": [ [] ],
+      "IO_Data": [ "Both" ]
+    },
+    {
+      "nameObject": "Obj_6",
+      "position": {
+        "x": 0.544700026512146,
+        "y": -0.6236000061035156,
+        "z": 0.4968000054359436
+      },
+      "rotation": {
+        "x": 90.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 0.013000000268220902,
+        "y": 0.0060000186786055569,
+        "z": 0.030000073835253717
+      },
+      "parameter": [ "ENG_Start_Switch" ],
+      "dataType": [ "int" ],
+      "param_path": [ "/controls/engines/engine-start-switch" ],
+      "interaction": [ "Navigation" ],
+      "possible_values": [ [ 0, 2, 1 ] ],
+      "IO_Data": [ "Both" ]
+    },
+    {
+      "nameObject": "Obj_7",
+      "position": {
+        "x": 0.5184999704360962,
+        "y": -0.6136999726295471,
+        "z": 0.5266000032424927
+      },
+      "rotation": {
+        "x": 90.0,
+        "y": 355.5899963378906,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 0.010000009089708329,
+        "y": 0.009999990463256836,
+        "z": 0.019999999552965165
+      },
+      "parameter": [ "Engine1" ],
+      "dataType": [ "bool" ],
+      "param_path": [ "/controls/engines/engine/cutoff-switch" ],
+      "interaction": [ "Tap" ],
+      "possible_values": [ [] ],
+      "IO_Data": [ "Both" ]
+    },
+    {
+      "nameObject": "Obj_8",
+      "position": {
+        "x": 0.5630999803543091,
+        "y": -0.6136999726295471,
+        "z": 0.5291000008583069
+      },
+      "rotation": {
+        "x": 90.0,
+        "y": 355.5899963378906,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 0.010000009089708329,
+        "y": 0.009999990463256836,
+        "z": 0.019999999552965165
+      },
+      "parameter": [ "Engine2" ],
+      "dataType": [ "bool" ],
+      "param_path": [ "/controls/engines/engine[1]/cutoff-switch" ],
+      "interaction": [ "Tap" ],
+      "possible_values": [ [] ],
+      "IO_Data": [ "Both" ]
+    },
+    {
+      "nameObject": "Obj_9",
+      "position": {
+        "x": 0.4456999897956848,
+        "y": 0.4447000026702881,
+        "z": 0.25920000672340395
+      },
+      "rotation": {
+        "x": 299.5,
+        "y": 355.6999816894531,
+        "z": 4.3345485778445438e-7
+      },
+      "scale": {
+        "x": 0.019999999552965165,
+        "y": 0.020000023767352105,
+        "z": 0.005000004079192877
+      },
+      "parameter": [ "Engine1_Gen" ],
+      "dataType": [ "bool" ],
+      "param_path": [ "/controls/electric/engine/generator" ],
+      "interaction": [ "Tap" ],
+      "possible_values": [ [] ],
+      "IO_Data": [ "Both" ]
+    },
+    {
+      "nameObject": "Obj_10",
+      "position": {
+        "x": 0.6466000080108643,
+        "y": 0.4447999894618988,
+        "z": 0.27390000224113467
+      },
+      "rotation": {
+        "x": 299.5,
+        "y": 355.6999816894531,
+        "z": 4.3345485778445438e-7
+      },
+      "scale": {
+        "x": 0.019999999552965165,
+        "y": 0.020000023767352105,
+        "z": 0.005000004079192877
+      },
+      "parameter": [ "Engine2_Gen" ],
+      "dataType": [ "bool" ],
+      "param_path": [ "/controls/electric/engine[1]/generator" ],
+      "interaction": [ "Tap" ],
+      "possible_values": [ [] ],
+      "IO_Data": [ "Both" ]
+    },
+    {
+      "nameObject": "Obj_11",
+      "position": {
+        "x": 0.4165000021457672,
+        "y": 0.4004000127315521,
+        "z": 0.3361000120639801
+      },
+      "rotation": {
+        "x": 299.5,
+        "y": 355.6999816894531,
+        "z": 4.3345485778445438e-7
+      },
+      "scale": {
+        "x": 0.019999999552965165,
+        "y": 0.020000023767352105,
+        "z": 0.005000004079192877
+      },
+      "parameter": [ "Pack1" ],
+      "dataType": [ "bool" ],
+      "param_path": [ "/controls/pressurization/pack/pack-on" ],
+      "interaction": [ "Tap" ],
+      "possible_values": [ [] ],
+      "IO_Data": [ "Both" ]
+    },
+    {
+      "nameObject": "Obj_12",
+      "position": {
+        "x": 0.6690000295639038,
+        "y": 0.40290001034736636,
+        "z": 0.3537999987602234
+      },
+      "rotation": {
+        "x": 299.5,
+        "y": 355.6999816894531,
+        "z": 4.3345485778445438e-7
+      },
+      "scale": {
+        "x": 0.019999999552965165,
+        "y": 0.020000023767352105,
+        "z": 0.005000004079192877
+      },
+      "parameter": [ "Pack2" ],
+      "dataType": [ "bool" ],
+      "param_path": [ "/controls/pressurization/pack[1]/pack-on" ],
+      "interaction": [ "Tap" ],
+      "possible_values": [ [] ],
+      "IO_Data": [ "Both" ]
+    },
+    {
+      "nameObject": "Obj_13",
+      "position": {
+        "x": 0.5777000188827515,
+        "y": -0.6236000061035156,
+        "z": 0.2985000014305115
+      },
+      "rotation": {
+        "x": 90.0,
+        "y": 354.260009765625,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 0.010000000707805157,
+        "y": 0.039999980479478839,
+        "z": 0.010000001639127732
+      },
+      "parameter": [ "Brake_Parking" ],
+      "dataType": [ "bool" ],
+      "param_path": [ "/controls/gear/brake-parking" ],
+      "interaction": [ "Tap" ],
+      "possible_values": [ [] ],
+      "IO_Data": [ "Both" ]
+    },
+    {
+      "nameObject": "Obj_14",
+      "position": {
+        "x": 0.6342999935150147,
+        "y": -0.6097999811172485,
+        "z": 0.43130001425743105
+      },
+      "rotation": {
+        "x": 90.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 0.03999999910593033,
+        "y": 0.0400000736117363,
+        "z": 0.0400000736117363
+      },
+      "parameter": [ "Flaps" ],
+      "dataType": [ "double" ],
+      "param_path": [ "/controls/flight/flaps" ],
+      "interaction": [ "Uneven_Nav" ],
+      "possible_values": [ [ 0.00, 0.25, 0.375, 0.5, 0.875 ] ],
+      "IO_Data": [ "Both" ]
+    },
+    {
+      "nameObject": "Obj_15",
+      "position": {
+        "x": 0.6179999709129334,
+        "y": -0.4036000072956085,
+        "z": 0.9865999817848206
+      },
+      "rotation": {
+        "x": 16.93999481201172,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 0.029999999329447748,
+        "y": 0.06000000238418579,
+        "z": 0.019999999552965165
+      },
+      "parameter": [ "Gears" ],
+      "dataType": [ "bool" ],
+      "param_path": [ "/controls/gear/gear-down" ],
+      "interaction": [ "Tap" ],
+      "possible_values": [ [] ],
+      "IO_Data": [ "Both" ]
+    },
+    {
+      "nameObject": "Obj_16",
+      "position": {
+        "x": 0.5318999886512756,
+        "y": -0.5260000228881836,
+        "z": 0.6446999907493591
+      },
+      "rotation": {
+        "x": 90.0,
+        "y": 355.5899963378906,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 0.20000015199184419,
+        "y": 0.009999990463256836,
+        "z": 0.20000000298023225
+      },
+      "parameter": [ "Throttle1", "Throttle2" ],
+      "dataType": [ "double", "double" ],
+      "param_path": [ "/controls/engines/engine/throttle", "/controls/engines/engine[1]/throttle" ],
+      "interaction": [ "Navigation", "Navigation" ],
+      "possible_values": [
+        [ 0, 1, 0.01 ],
+        [ 0, 1, 0.01 ]
+      ],
+      "IO_Data": [ "Both", "Both" ]
+    },
+    {
+      "nameObject": "Obj_17",
+      "position": {
+        "x": 0.49939998984336855,
+        "y": -0.37290000915527346,
+        "z": 0.9728000164031982
+      },
+      "rotation": {
+        "x": 15.000005722045899,
+        "y": 354.739990234375,
+        "z": 1.1048643955291482e-7
+      },
+      "scale": {
+        "x": 0.15000000596046449,
+        "y": 0.18000005185604096,
+        "z": 0.009999997913837433
+      },
+      "parameter": [ "Monitor1", "Monitor2" ],
+      "dataType": [ "double", "double" ],
+      "param_path": [ "/engines/engine/n1", "/engines/engine[1]/n1" ],
+      "interaction": [ "None", "None" ],
+      "possible_values": [
+        [],
+        []
+      ],
+      "IO_Data": [ "Output", "Output" ]
+    },
+    {
+      "nameObject": "Obj_18",
+      "position": {
+        "x": 0.43779999017715456,
+        "y": 0.49399998784065249,
+        "z": 0.1688999980688095
+      },
+      "rotation": {
+        "x": 299.5,
+        "y": 355.6999816894531,
+        "z": 4.3345485778445438e-7
+      },
+      "scale": {
+        "x": 0.019999999552965165,
+        "y": 0.020000023767352105,
+        "z": 0.005000004079192877
+      },
+      "parameter": [ "LTK_PUMPS_1" ],
+      "dataType": [ "bool" ],
+      "param_path": [ "/consumables/fuel/tank/selected" ],
+      "interaction": [ "Tap" ],
+      "possible_values": [ [] ],
+      "IO_Data": [ "Both" ]
+    },
+    {
+      "nameObject": "Obj_19",
+      "position": {
+        "x": 0.46869999170303347,
+        "y": 0.49399998784065249,
+        "z": 0.17020000517368318
+      },
+      "rotation": {
+        "x": 299.5,
+        "y": 355.6999816894531,
+        "z": 4.3345485778445438e-7
+      },
+      "scale": {
+        "x": 0.019999999552965165,
+        "y": 0.020000023767352105,
+        "z": 0.005000004079192877
+      },
+      "parameter": [ "LTK_PUMPS_2" ],
+      "dataType": [ "bool" ],
+      "param_path": [ "/consumables/fuel/tank[1]/selected" ],
+      "interaction": [ "Tap" ],
+      "possible_values": [ [] ],
+      "IO_Data": [ "Both" ]
+    },
+    {
+      "nameObject": "Obj_20",
+      "position": {
+        "x": 0.5241100192070007,
+        "y": 0.49474000930786135,
+        "z": 0.17387999594211579
+      },
+      "rotation": {
+        "x": 299.5,
+        "y": 355.6999816894531,
+        "z": 4.3345485778445438e-7
+      },
+      "scale": {
+        "x": 0.019999999552965165,
+        "y": 0.020000023767352105,
+        "z": 0.005000004079192877
+      },
+      "parameter": [ "Pumps" ],
+      "dataType": [ "bool" ],
+      "param_path": [ "/consumables/fuel/tank[3]/selected" ],
+      "interaction": [ "Tap" ],
+      "possible_values": [ [] ],
+      "IO_Data": [ "Both" ]
+    },
+    {
+      "nameObject": "Obj_21",
+      "position": {
+        "x": 0.63823002576828,
+        "y": 0.49779999256134035,
+        "z": 0.18424999713897706
+      },
+      "rotation": {
+        "x": 299.5,
+        "y": 355.6999816894531,
+        "z": 4.3345485778445438e-7
+      },
+      "scale": {
+        "x": 0.019999999552965165,
+        "y": 0.020000023767352105,
+        "z": 0.005000004079192877
+      },
+      "parameter": [ "RTK_PUMPS_1" ],
+      "dataType": [ "bool" ],
+      "param_path": [ "/consumables/fuel/tank[4]/selected" ],
+      "interaction": [ "Tap" ],
+      "possible_values": [ [] ],
+      "IO_Data": [ "Both" ]
+    },
+    {
+      "nameObject": "Obj_22",
+      "position": {
+        "x": 0.6694700121879578,
+        "y": 0.4966999888420105,
+        "z": 0.18605999648571015
+      },
+      "rotation": {
+        "x": 299.5,
+        "y": 355.6999816894531,
+        "z": 4.3345485778445438e-7
+      },
+      "scale": {
+        "x": 0.019999999552965165,
+        "y": 0.020000023767352105,
+        "z": 0.005000004079192877
+      },
+      "parameter": [ "RTK_PUMPS_2" ],
+      "dataType": [ "bool" ],
+      "param_path": [ "/consumables/fuel/tank[5]/selected" ],
+      "interaction": [ "Tap" ],
+      "possible_values": [ [] ],
+      "IO_Data": [ "Both" ]
+    },
+    {
+      "nameObject": "Obj_23",
+      "position": {
+        "x": 0.661620020866394,
+        "y": -0.2620700001716614,
+        "z": 1.0199899673461915
+      },
+      "rotation": {
+        "x": 14.040006637573243,
+        "y": 354.0,
+        "z": 2.2001604804700038e-7
+      },
+      "scale": {
+        "x": 0.014999990351498127,
+        "y": 0.012000001966953278,
+        "z": 0.0050000036135315899
+      },
+      "parameter": [ "Auto_Brake" ],
+      "dataType": [ "int" ],
+      "param_path": [ "/autopilot/autobrake/step" ],
+      "interaction": [ "Tap" ],
+      "possible_values": [ [ 3 ] ],
+      "IO_Data": [ "Both" ]
+    },
+    {
+      "nameObject": "Obj_24",
+      "position": {
+        "x": 0.4832000136375427,
+        "y": -0.6197999715805054,
+        "z": 0.4083000123500824
+      },
+      "rotation": {
+        "x": 90.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 0.05000000074505806,
+        "y": 0.05000014975667,
+        "z": 0.05000014975667
+      },
+      "parameter": [ "Spoiler", "Spoiler_ARM" ],
+      "dataType": [ "double", "bool" ],
+      "param_path": [ "/controls/flight/speedbrake", "/controls/flight/ground-spoilers-armed" ],
+      "interaction": [ "Navigation", "Tap" ],
+      "possible_values": [
+        [ 0, 1, 0.5 ],
+        []
+      ],
+      "IO_Data": [ "Both", "Both" ]
+    },
+    {
+      "nameObject": "Obj_25",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 0.029999999329447748,
+        "y": 0.029999999329447748,
+        "z": 0.029999999329447748
+      },
+      "parameter": [ "Anemometer" ],
+      "dataType": [ "double" ],
+      "param_path": [ "/velocities/airspeed-kt" ],
+      "interaction": [ "None" ],
+      "possible_values": [ [] ],
+      "IO_Data": [ "Output" ]
+    },
+    {
+      "nameObject": "Obj_26",
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": {
+        "x": 0.029999999329447748,
+        "y": 0.029999999329447748,
+        "z": 0.029999999329447748
+      },
+      "parameter": [ "Altimeter" ],
+      "dataType": [ "double" ],
+      "param_path": [ "/position/altitude-ft" ],
+      "interaction": [ "None" ],
+      "possible_values": [ [] ],
+      "IO_Data": [ "Output" ]
+    }
+  ],
+  "feedback_group": [
+    {
+      "sequence": "EXT_PWR_ON",
+      "objectIndicated": [
+        {
+          "name": "Obj_0",
+          "showRing": true,
+          "insideBox": true,
+          "showCheckMark": true,
+          "showLoading": false,
+          "sub_parameters": [ true ],
+          "requiredValue": 1.0
+        }
+      ],
+      "showBox": false,
+      "adviceText": "Turn on EXT PWR.",
+      "parameterText": "EXT PWR",
+      "stageText": "1)Preliminary cockpit preparation",
+      "textSpeak": "Turn on the External Power to give us the electrical power.",
+      "showParamInAdviceText": false,
+      "isOnOhPanel": true
+    },
+    {
+      "sequence": "BAT_ON",
+      "objectIndicated": [
+        {
+          "name": "Obj_5",
+          "showRing": true,
+          "insideBox": true,
+          "showCheckMark": true,
+          "showLoading": false,
+          "sub_parameters": [ true ],
+          "requiredValue": 1.0
+        }
+      ],
+      "showBox": false,
+      "adviceText": "Turn on BAT1 and BAT2.",
+      "parameterText": "BAT",
+      "stageText": "1)Preliminary cockpit preparation",
+      "textSpeak": "Turn on batteries 1 and 2.",
+      "showParamInAdviceText": false,
+      "isOnOhPanel": true
+    },
+    {
+      "sequence": "APU_MASTER_ON",
+      "objectIndicated": [
+        {
+          "name": "Obj_1",
+          "showRing": true,
+          "insideBox": true,
+          "showCheckMark": true,
+          "showLoading": false,
+          "sub_parameters": [ true ],
+          "requiredValue": 1.0
+        }
+      ],
+      "showBox": false,
+      "adviceText": "Turn on MASTER SWITCH in APU.",
+      "parameterText": "APU MASTER SW",
+      "stageText": "1)Preliminary cockpit preparation",
+      "textSpeak": "Turn the APU Master switch on to start the engines.",
+      "showParamInAdviceText": false,
+      "isOnOhPanel": true
+    },
+    {
+      "sequence": "APU_START_ON",
+      "objectIndicated": [
+        {
+          "name": "Obj_2",
+          "showRing": true,
+          "insideBox": true,
+          "showCheckMark": true,
+          "showLoading": false,
+          "sub_parameters": [ true ],
+          "requiredValue": 1.0
+        }
+      ],
+      "showBox": false,
+      "adviceText": "Turn on START in APU.",
+      "parameterText": "APU START",
+      "stageText": "1)Preliminary cockpit preparation",
+      "textSpeak": "Turn the APU Start switch on.",
+      "showParamInAdviceText": false,
+      "isOnOhPanel": true
+    },
+    {
+      "sequence": "APU_GEN_ON",
+      "objectIndicated": [
+        {
+          "name": "Obj_3",
+          "showRing": true,
+          "insideBox": true,
+          "showCheckMark": true,
+          "showLoading": false,
+          "sub_parameters": [ true ],
+          "requiredValue": 1.0
+        }
+      ],
+      "showBox": false,
+      "adviceText": "Turn on APU GEN.",
+      "parameterText": "APU GEN",
+      "stageText": "1)Preliminary cockpit preparation",
+      "textSpeak": "Turn on the APU Generator to give the airplane the electrical power without external assistance.",
+      "showParamInAdviceText": false,
+      "isOnOhPanel": true
+    },
+    {
+      "sequence": "EXT_PWR_OFF",
+      "objectIndicated": [
+        {
+          "name": "Obj_0",
+          "showRing": true,
+          "insideBox": true,
+          "showCheckMark": true,
+          "showLoading": false,
+          "sub_parameters": [ true ],
+          "requiredValue": 0.0
+        }
+      ],
+      "showBox": false,
+      "adviceText": "Turn off EXT PWR.",
+      "parameterText": "EXT PWR",
+      "stageText": "1)Preliminary cockpit preparation",
+      "textSpeak": "Turn off the External Power, since we don't need it anymore.",
+      "showParamInAdviceText": false,
+      "isOnOhPanel": true
+    },
+    {
+      "sequence": "APU_BLEED_ON",
+      "objectIndicated": [
+        {
+          "name": "Obj_4",
+          "showRing": true,
+          "insideBox": true,
+          "showCheckMark": true,
+          "showLoading": false,
+          "sub_parameters": [ true ],
+          "requiredValue": 1.0
+        }
+      ],
+      "showBox": false,
+      "adviceText": "Turn on APU BLEED.",
+      "parameterText": "APU BLEED",
+      "stageText": "1)Preliminary cockpit preparation",
+      "textSpeak": "Turn on the APU BLEED.",
+      "showParamInAdviceText": false,
+      "isOnOhPanel": true
+    },
+    {
+      "sequence": "PUMPS_ON",
+      "objectIndicated": [
+        {
+          "name": "Obj_18",
+          "showRing": true,
+          "insideBox": true,
+          "showCheckMark": true,
+          "showLoading": false,
+          "sub_parameters": [ true ],
+          "requiredValue": 1.0
+        },
+        {
+          "name": "Obj_19",
+          "showRing": true,
+          "insideBox": true,
+          "showCheckMark": true,
+          "showLoading": false,
+          "sub_parameters": [ true ],
+          "requiredValue": 1.0
+        },
+        {
+          "name": "Obj_20",
+          "showRing": true,
+          "insideBox": true,
+          "showCheckMark": true,
+          "showLoading": false,
+          "sub_parameters": [ true ],
+          "requiredValue": 1.0
+        },
+        {
+          "name": "Obj_21",
+          "showRing": true,
+          "insideBox": true,
+          "showCheckMark": true,
+          "showLoading": false,
+          "sub_parameters": [ true ],
+          "requiredValue": 1.0
+        },
+        {
+          "name": "Obj_22",
+          "showRing": true,
+          "insideBox": true,
+          "showCheckMark": true,
+          "showLoading": false,
+          "sub_parameters": [ true ],
+          "requiredValue": 1.0
+        }
+      ],
+      "showBox": true,
+      "adviceText": "Set on all the following fuel's PUMPS:\n",
+      "parameterText": "FUEL PUMPS",
+      "stageText": "2)Engine start",
+      "textSpeak": "Set on all the fuel's Pumps.",
+      "showParamInAdviceText": true,
+      "isOnOhPanel": true
+    },
+    {
+      "sequence": "ENG_SWITCH_START",
+      "objectIndicated": [
+        {
+          "name": "Obj_6",
+          "showRing": true,
+          "insideBox": true,
+          "showCheckMark": true,
+          "showLoading": false,
+          "sub_parameters": [ true ],
+          "requiredValue": 2.0
+        }
+      ],
+      "showBox": false,
+      "adviceText": "Set ENG SWITCH on START.",
+      "parameterText": "ENG SW",
+      "stageText": "2)Engine start",
+      "textSpeak": "Set the Engines Switch to the value 'START'.",
+      "showParamInAdviceText": false,
+      "isOnOhPanel": false
+    },
+    {
+      "sequence": "ENG_ON",
+      "objectIndicated": [
+        {
+          "name": "Obj_7",
+          "showRing": true,
+          "insideBox": true,
+          "showCheckMark": true,
+          "showLoading": false,
+          "sub_parameters": [ true ],
+          "requiredValue": 0.0
+        },
+        {
+          "name": "Obj_8",
+          "showRing": true,
+          "insideBox": true,
+          "showCheckMark": true,
+          "showLoading": false,
+          "sub_parameters": [ true ],
+          "requiredValue": 0.0
+        }
+      ],
+      "showBox": false,
+      "adviceText": "Switch on the following components:\n",
+      "parameterText": "ENG1 / ENG2",
+      "stageText": "2)Engine start",
+      "textSpeak": "Switch the engines master 1 and 2 to start the respective engines.",
+      "showParamInAdviceText": true,
+      "isOnOhPanel": false
+    },
+    {
+      "sequence": "ENG_LOAD",
+      "objectIndicated": [
+        {
+          "name": "Obj_17",
+          "showRing": false,
+          "insideBox": true,
+          "showCheckMark": true,
+          "showLoading": false,
+          "sub_parameters": [ true, true ],
+          "requiredValue": 30.0
+        }
+      ],
+      "showBox": true,
+      "adviceText": "Wait until the engines reach the value 30% on the monitor.",
+      "parameterText": "",
+      "stageText": "2)Engine start",
+      "textSpeak": "Now wait the engines to spool up to 30%, so that they become responsive.",
+      "showParamInAdviceText": false,
+      "isOnOhPanel": false
+    },
+    {
+      "sequence": "ENG_SWITCH_NORM",
+      "objectIndicated": [
+        {
+          "name": "Obj_6",
+          "showRing": true,
+          "insideBox": true,
+          "showCheckMark": true,
+          "showLoading": false,
+          "sub_parameters": [ true ],
+          "requiredValue": 1.0
+        }
+      ],
+      "showBox": false,
+      "adviceText": "Switch ENG SWITCH on NORM.",
+      "parameterText": "ENG SW",
+      "stageText": "2)Engine start",
+      "textSpeak": "Switch the Engine Switch back to the value 'NORM'.",
+      "showParamInAdviceText": false,
+      "isOnOhPanel": false
+    },
+    {
+      "sequence": "GENERATOR_ON",
+      "objectIndicated": [
+        {
+          "name": "Obj_9",
+          "showRing": true,
+          "insideBox": true,
+          "showCheckMark": true,
+          "showLoading": false,
+          "sub_parameters": [ true ],
+          "requiredValue": 1.0
+        },
+        {
+          "name": "Obj_10",
+          "showRing": true,
+          "insideBox": true,
+          "showCheckMark": true,
+          "showLoading": false,
+          "sub_parameters": [ true ],
+          "requiredValue": 1.0
+        }
+      ],
+      "showBox": true,
+      "adviceText": "Turn on the following components:\n",
+      "parameterText": "GEN1 / GEN2",
+      "stageText": "2)Engine start",
+      "textSpeak": "Turn on the engine generators 1 and 2.",
+      "showParamInAdviceText": true,
+      "isOnOhPanel": true
+    },
+    {
+      "sequence": "APU_BLEED_OFF",
+      "objectIndicated": [
+        {
+          "name": "Obj_4",
+          "showRing": true,
+          "insideBox": true,
+          "showCheckMark": true,
+          "showLoading": false,
+          "sub_parameters": [ true ],
+          "requiredValue": 0.0
+        }
+      ],
+      "showBox": false,
+      "adviceText": "Turn off APU BLEED.",
+      "parameterText": "APU BLEED",
+      "stageText": "2)Engine start",
+      "textSpeak": "Turn off the APU BLEED.",
+      "showParamInAdviceText": false,
+      "isOnOhPanel": true
+    },
+    {
+      "sequence": "PACK_ON",
+      "objectIndicated": [
+        {
+          "name": "Obj_11",
+          "showRing": true,
+          "insideBox": true,
+          "showCheckMark": true,
+          "showLoading": false,
+          "sub_parameters": [ true ],
+          "requiredValue": 1.0
+        },
+        {
+          "name": "Obj_12",
+          "showRing": true,
+          "insideBox": true,
+          "showCheckMark": true,
+          "showLoading": false,
+          "sub_parameters": [ true ],
+          "requiredValue": 1.0
+        }
+      ],
+      "showBox": true,
+      "adviceText": "Turn on the following components:\n",
+      "parameterText": "PACK1 / PACK2",
+      "stageText": "2)Engine start",
+      "textSpeak": "Turn on Pack 1 and Pack 2.",
+      "showParamInAdviceText": true,
+      "isOnOhPanel": true
+    },
+    {
+      "sequence": "APU_OFF",
+      "objectIndicated": [
+        {
+          "name": "Obj_3",
+          "showRing": true,
+          "insideBox": true,
+          "showCheckMark": true,
+          "showLoading": false,
+          "sub_parameters": [ true ],
+          "requiredValue": 0.0
+        },
+        {
+          "name": "Obj_1",
+          "showRing": true,
+          "insideBox": true,
+          "showCheckMark": true,
+          "showLoading": false,
+          "sub_parameters": [ true ],
+          "requiredValue": 0.0
+        },
+        {
+          "name": "Obj_2",
+          "showRing": true,
+          "insideBox": true,
+          "showCheckMark": true,
+          "showLoading": false,
+          "sub_parameters": [ true ],
+          "requiredValue": 0.0
+        }
+      ],
+      "showBox": true,
+      "adviceText": "Turn off the following components:\n",
+      "parameterText": "APU",
+      "stageText": "2)Engine start",
+      "textSpeak": "Since we are generating electrical power through the engines, turn off the APU Generator, APU Start and APU Master switches.",
+      "showParamInAdviceText": true,
+      "isOnOhPanel": true
+    },
+    {
+      "sequence": "BRAKE_RELEASE",
+      "objectIndicated": [
+        {
+          "name": "Obj_13",
+          "showRing": true,
+          "insideBox": true,
+          "showCheckMark": true,
+          "showLoading": false,
+          "sub_parameters": [ true ],
+          "requiredValue": 0.0
+        }
+      ],
+      "showBox": false,
+      "adviceText": "Release the parking brake.",
+      "parameterText": "BRAKE",
+      "stageText": "3)Before taxi",
+      "textSpeak": "Release the parking brake.",
+      "showParamInAdviceText": false,
+      "isOnOhPanel": false
+    },
+    {
+      "sequence": "AUTOBRAKE_MAX",
+      "objectIndicated": [
+        {
+          "name": "Obj_23",
+          "showRing": true,
+          "insideBox": true,
+          "showCheckMark": true,
+          "showLoading": false,
+          "sub_parameters": [ true ],
+          "requiredValue": 3.0
+        }
+      ],
+      "showBox": false,
+      "adviceText": "Set the Auto Brake to MAX.",
+      "parameterText": "AUTO BRAKE",
+      "stageText": "3)Before taxi",
+      "textSpeak": "Set the Auto Brake to MAX.",
+      "showParamInAdviceText": false,
+      "isOnOhPanel": false
+    },
+    {
+      "sequence": "SPOILER_ARM",
+      "objectIndicated": [
+        {
+          "name": "Obj_24",
+          "showRing": true,
+          "insideBox": true,
+          "showCheckMark": true,
+          "showLoading": false,
+          "sub_parameters": [ false, true ],
+          "requiredValue": 1.0
+        }
+      ],
+      "showBox": false,
+      "adviceText": "Set the spoiler armed.",
+      "parameterText": "SPOILER",
+      "stageText": "3)Before taxi",
+      "textSpeak": "Set the spoiler armed.",
+      "showParamInAdviceText": false,
+      "isOnOhPanel": false
+    },
+    {
+      "sequence": "FLAPS",
+      "objectIndicated": [
+        {
+          "name": "Obj_14",
+          "showRing": true,
+          "insideBox": true,
+          "showCheckMark": true,
+          "showLoading": false,
+          "sub_parameters": [ true ],
+          "requiredValue": 0.375
+        }
+      ],
+      "showBox": false,
+      "adviceText": "Set the flaps to 2.",
+      "parameterText": "FLAPS",
+      "stageText": "3)Before taxi",
+      "textSpeak": "Set the flaps to 2.",
+      "showParamInAdviceText": false,
+      "isOnOhPanel": false
+    },
+    {
+      "sequence": "PACK_OFF",
+      "objectIndicated": [
+        {
+          "name": "Obj_11",
+          "showRing": true,
+          "insideBox": true,
+          "showCheckMark": true,
+          "showLoading": false,
+          "sub_parameters": [ true ],
+          "requiredValue": 0.0
+        },
+        {
+          "name": "Obj_12",
+          "showRing": true,
+          "insideBox": true,
+          "showCheckMark": true,
+          "showLoading": false,
+          "sub_parameters": [ true ],
+          "requiredValue": 0.0
+        }
+      ],
+      "showBox": true,
+      "adviceText": "Turn off the following components:\n",
+      "parameterText": "PACK1 / PACK2",
+      "stageText": "3)Before taxi",
+      "textSpeak": "Turn off Pack 1 and Pack 2.",
+      "showParamInAdviceText": true,
+      "isOnOhPanel": true
+    },
+    {
+      "sequence": "THROTTLE_FULL",
+      "objectIndicated": [
+        {
+          "name": "Obj_16",
+          "showRing": true,
+          "insideBox": true,
+          "showCheckMark": true,
+          "showLoading": false,
+          "sub_parameters": [ true, true ],
+          "requiredValue": 1.0
+        }
+      ],
+      "showBox": false,
+      "adviceText": "Full in the Throttles to apply full power.",
+      "parameterText": "THROTTLE",
+      "stageText": "4)Takeoff",
+      "textSpeak": "Full in the Throttles to apply full power.",
+      "showParamInAdviceText": false,
+      "isOnOhPanel": false
+    },
+    {
+        "sequence": "ACCELERATION",
+        "objectIndicated": [
+            {
+                "name": "Obj_25",
+                "showRing": false,
+                "insideBox": false,
+                "showCheckMark": false,
+                "showLoading": false,
+                "sub_parameters": [ true ],
+                "requiredValue": 145.0
+            }
+        ],
+        "showBox": false,
+        "adviceText": "Wait until the airplane gains sufficient speed.",
+        "parameterText": "VELOCITY",
+        "stageText": "4)Takeoff",
+        "textSpeak": "Wait until the airplane gains sufficient speed.",
+        "showParamInAdviceText": false,
+        "isOnOhPanel": false
+    },
+    {
+        "sequence": "TAKEOFF",
+        "objectIndicated": [
+            {
+                "name": "Obj_26",
+                "showRing": false,
+                "insideBox": false,
+                "showCheckMark": false,
+                "showLoading": false,
+                "sub_parameters": [ true ],
+                "requiredValue": 500.0
+            }
+        ],
+        "showBox": false,
+        "adviceText": "Pull back the yoke to take off. Go up until you reach 500 foot.",
+        "parameterText": "ALTITUDE",
+        "stageText": "4)Takeoff",
+        "textSpeak": "Pull back the yoke to take off. Go up until you reach 500 foot.",
+        "showParamInAdviceText": false,
+        "isOnOhPanel": false
+    },
+    {
+      "sequence": "GEAR_OFF",
+      "objectIndicated": [
+        {
+          "name": "Obj_15",
+          "showRing": true,
+          "insideBox": true,
+          "showCheckMark": true,
+          "showLoading": false,
+          "sub_parameters": [ true ],
+          "requiredValue": 0.0
+        }
+      ],
+      "showBox": false,
+      "adviceText": "Retract the landing gear.",
+      "parameterText": "GEAR",
+      "stageText": "4)Takeoff",
+      "textSpeak": "Retract the landing gear.",
+      "showParamInAdviceText": false,
+      "isOnOhPanel": false
+    },
+    {
+        "sequence": "VELOCITY",
+        "objectIndicated": [
+            {
+                "name": "Obj_25",
+                "showRing": false,
+                "insideBox": false,
+                "showCheckMark": false,
+                "showLoading": false,
+                "sub_parameters": [ true ],
+                "requiredValue": 85.0
+            }
+        ],
+        "showBox": false,
+        "adviceText": "Wait for speed to reach 85 knots",
+        "parameterText": "VELOCITY",
+        "stageText": "",
+        "textSpeak": "Wait for speed to reach 85 knots",
+        "showParamInAdviceText": false,
+        "isOnOhPanel": false
+    },
+    {
+      "sequence": "SPOILER_DISARM_AND_FLAPS",
+      "objectIndicated": [
+        {
+          "name": "Obj_14",
+          "showRing": true,
+          "insideBox": true,
+          "showCheckMark": true,
+          "showLoading": false,
+          "sub_parameters": [ true ],
+          "requiredValue": 0.25
+        },
+        {
+          "name": "Obj_24",
+          "showRing": true,
+          "insideBox": true,
+          "showCheckMark": true,
+          "showLoading": false,
+          "sub_parameters": [ false, true ],
+          "requiredValue": 0.0
+        }
+      ],
+      "showBox": true,
+      "adviceText": "Set the flaps to 1 and disarm the spoilers.",
+      "parameterText": "FLAPS/SPOILER",
+      "stageText": "4)Takeoff",
+      "textSpeak": "Set the flaps to 1 and disarm the spoilers.",
+      "showParamInAdviceText": false,
+      "isOnOhPanel": false
+    },
+    {
+        "sequence": "VELOCITY2",
+        "objectIndicated": [
+            {
+                "name": "Obj_25",
+                "showRing": false,
+                "insideBox": false,
+                "showCheckMark": false,
+                "showLoading": false,
+                "sub_parameters": [ true ],
+                "requiredValue": 110.0
+            }
+        ],
+        "showBox": false,
+        "adviceText": "Wait for speed to reach 110 knots",
+        "parameterText": "VELOCITY",
+        "stageText": "4)Takeoff",
+        "textSpeak": "Wait for speed to reach 110 knots",
+        "showParamInAdviceText": false,
+        "isOnOhPanel": false
+    },
+    {
+      "sequence": "FLAPS2",
+      "objectIndicated": [
+        {
+          "name": "Obj_14",
+          "showRing": true,
+          "insideBox": true,
+          "showCheckMark": true,
+          "showLoading": false,
+          "sub_parameters": [ true ],
+          "requiredValue": 0.0
+        }
+      ],
+      "showBox": false,
+      "adviceText": "Set the flaps to 0.",
+      "parameterText": "FLAPS",
+      "stageText": "4)Takeoff",
+      "textSpeak": "Set the flaps to 0.",
+      "showParamInAdviceText": false,
+      "isOnOhPanel": false
+    },
+    {
+      "sequence": "END",
+      "objectIndicated": [],
+      "showBox": false,
+      "adviceText": "",
+      "parameterText": "",
+      "stageText": "",
+      "textSpeak": "Tutorial completed!",
+      "showParamInAdviceText": false,
+      "isOnOhPanel": false
+    }
+  ],
+  "boxes": [
+    {
+      "sequence": "EXT_PWR_ON",
+      "positionLeft": {
+        "x": 0.5511125922203064,
+        "y": 0.44530001282691958,
+        "z": 0.2674008011817932
+      },
+      "rotationLeft": {
+        "x": 299.5,
+        "y": 355.6999816894531,
+        "z": 4.3345485778445438e-7
+      },
+      "scaleLeft": {
+        "x": 0.019999999552965165,
+        "y": 0.19000007212162019,
+        "z": 0.019999999552965165
+      },
+      "positionTop": {
+        "x": 0.59654700756073,
+        "y": 0.4871560335159302,
+        "z": 0.19662798941135407
+      },
+      "rotationTop": {
+        "x": 299.5,
+        "y": 355.6999816894531,
+        "z": 4.3345485778445438e-7
+      },
+      "scaleTop": {
+        "x": 0.1000000536441803,
+        "y": 0.020000003278255464,
+        "z": 0.019999999552965165
+      },
+      "positionRight": {
+        "x": 0.6308874487876892,
+        "y": 0.44530001282691958,
+        "z": 0.2733991742134094
+      },
+      "rotationRight": {
+        "x": 299.5,
+        "y": 355.6999816894531,
+        "z": 4.3345485778445438e-7
+      },
+      "scaleRight": {
+        "x": 0.019999999552965165,
+        "y": 0.19000007212162019,
+        "z": 0.019999999552965165
+      },
+      "positionBottom": {
+        "x": 0.5854530334472656,
+        "y": 0.40344399213790896,
+        "z": 0.34417200088500979
+      },
+      "rotationBottom": {
+        "x": 299.5,
+        "y": 355.6999816894531,
+        "z": 4.3345485778445438e-7
+      },
+      "scaleBottom": {
+        "x": 0.1000000536441803,
+        "y": 0.020000003278255464,
+        "z": 0.019999999552965165
+      }
+    },
+    {
+      "sequence": "BAT_ON",
+      "positionLeft": {
+        "x": 0.48821261525154116,
+        "y": 0.47510001063346865,
+        "z": 0.20790082216262818
+      },
+      "rotationLeft": {
+        "x": 299.5,
+        "y": 355.6999816894531,
+        "z": 4.3345485778445438e-7
+      },
+      "scaleLeft": {
+        "x": 0.019999999552965165,
+        "y": 0.19000007212162019,
+        "z": 0.019999999552965165
+      },
+      "positionTop": {
+        "x": 0.5336470007896423,
+        "y": 0.5169560313224793,
+        "z": 0.13712799549102784
+      },
+      "rotationTop": {
+        "x": 299.5,
+        "y": 355.6999816894531,
+        "z": 4.3345485778445438e-7
+      },
+      "scaleTop": {
+        "x": 0.10000002384185791,
+        "y": 0.020000003278255464,
+        "z": 0.019999999552965165
+      },
+      "positionRight": {
+        "x": 0.5679874420166016,
+        "y": 0.47510001063346865,
+        "z": 0.213899165391922
+      },
+      "rotationRight": {
+        "x": 299.5,
+        "y": 355.6999816894531,
+        "z": 4.3345485778445438e-7
+      },
+      "scaleRight": {
+        "x": 0.019999999552965165,
+        "y": 0.19000007212162019,
+        "z": 0.019999999552965165
+      },
+      "positionBottom": {
+        "x": 0.522553026676178,
+        "y": 0.433243989944458,
+        "z": 0.28467199206352236
+      },
+      "rotationBottom": {
+        "x": 299.5,
+        "y": 355.6999816894531,
+        "z": 4.3345485778445438e-7
+      },
+      "scaleBottom": {
+        "x": 0.10000002384185791,
+        "y": 0.020000003278255464,
+        "z": 0.019999999552965165
+      }
+    },
+    {
+      "sequence": "APU_MASTER_ON",
+      "positionLeft": {
+        "x": 0.4966125786304474,
+        "y": 0.33480000495910647,
+        "z": 0.45770084857940676
+      },
+      "rotationLeft": {
+        "x": 299.5,
+        "y": 355.6999816894531,
+        "z": 4.3345485778445438e-7
+      },
+      "scaleLeft": {
+        "x": 0.019999999552965165,
+        "y": 0.19000007212162019,
+        "z": 0.019999999552965165
+      },
+      "positionTop": {
+        "x": 0.5420469641685486,
+        "y": 0.37665602564811709,
+        "z": 0.3869280219078064
+      },
+      "rotationTop": {
+        "x": 299.5,
+        "y": 355.6999816894531,
+        "z": 4.3345485778445438e-7
+      },
+      "scaleTop": {
+        "x": 0.10000002384185791,
+        "y": 0.020000003278255464,
+        "z": 0.019999999552965165
+      },
+      "positionRight": {
+        "x": 0.5763874053955078,
+        "y": 0.33480000495910647,
+        "z": 0.46369919180870058
+      },
+      "rotationRight": {
+        "x": 299.5,
+        "y": 355.6999816894531,
+        "z": 4.3345485778445438e-7
+      },
+      "scaleRight": {
+        "x": 0.019999999552965165,
+        "y": 0.19000007212162019,
+        "z": 0.019999999552965165
+      },
+      "positionBottom": {
+        "x": 0.5309529900550842,
+        "y": 0.2929439842700958,
+        "z": 0.5344719886779785
+      },
+      "rotationBottom": {
+        "x": 299.5,
+        "y": 355.6999816894531,
+        "z": 4.3345485778445438e-7
+      },
+      "scaleBottom": {
+        "x": 0.10000002384185791,
+        "y": 0.020000003278255464,
+        "z": 0.019999999552965165
+      }
+    },
+    {
+      "sequence": "APU_START_ON",
+      "positionLeft": {
+        "x": 0.49481257796287539,
+        "y": 0.31700000166893008,
+        "z": 0.4852008521556854
+      },
+      "rotationLeft": {
+        "x": 299.5,
+        "y": 355.6999816894531,
+        "z": 4.3345485778445438e-7
+      },
+      "scaleLeft": {
+        "x": 0.019999999552965165,
+        "y": 0.19000007212162019,
+        "z": 0.019999999552965165
+      },
+      "positionTop": {
+        "x": 0.5402469635009766,
+        "y": 0.3588560223579407,
+        "z": 0.4144279956817627
+      },
+      "rotationTop": {
+        "x": 299.5,
+        "y": 355.6999816894531,
+        "z": 4.3345485778445438e-7
+      },
+      "scaleTop": {
+        "x": 0.10000002384185791,
+        "y": 0.020000003278255464,
+        "z": 0.019999999552965165
+      },
+      "positionRight": {
+        "x": 0.5745874047279358,
+        "y": 0.31700000166893008,
+        "z": 0.49119919538497927
+      },
+      "rotationRight": {
+        "x": 299.5,
+        "y": 355.6999816894531,
+        "z": 4.3345485778445438e-7
+      },
+      "scaleRight": {
+        "x": 0.019999999552965165,
+        "y": 0.19000007212162019,
+        "z": 0.019999999552965165
+      },
+      "positionBottom": {
+        "x": 0.5291529893875122,
+        "y": 0.27514398097991946,
+        "z": 0.5619720220565796
+      },
+      "rotationBottom": {
+        "x": 299.5,
+        "y": 355.6999816894531,
+        "z": 4.3345485778445438e-7
+      },
+      "scaleBottom": {
+        "x": 0.10000002384185791,
+        "y": 0.020000003278255464,
+        "z": 0.019999999552965165
+      }
+    },
+    {
+      "sequence": "APU_GEN_ON",
+      "positionLeft": {
+        "x": 0.4665125906467438,
+        "y": 0.4449000060558319,
+        "z": 0.26150083541870119
+      },
+      "rotationLeft": {
+        "x": 299.5,
+        "y": 355.6999816894531,
+        "z": 4.3345485778445438e-7
+      },
+      "scaleLeft": {
+        "x": 0.019999999552965165,
+        "y": 0.19000007212162019,
+        "z": 0.019999999552965165
+      },
+      "positionTop": {
+        "x": 0.511946976184845,
+        "y": 0.48675602674484255,
+        "z": 0.19072799384593965
+      },
+      "rotationTop": {
+        "x": 299.5,
+        "y": 355.6999816894531,
+        "z": 4.3345485778445438e-7
+      },
+      "scaleTop": {
+        "x": 0.10000002384185791,
+        "y": 0.020000003278255464,
+        "z": 0.019999999552965165
+      },
+      "positionRight": {
+        "x": 0.5462874174118042,
+        "y": 0.4449000060558319,
+        "z": 0.267499178647995
+      },
+      "rotationRight": {
+        "x": 299.5,
+        "y": 355.6999816894531,
+        "z": 4.3345485778445438e-7
+      },
+      "scaleRight": {
+        "x": 0.019999999552965165,
+        "y": 0.19000007212162019,
+        "z": 0.019999999552965165
+      },
+      "positionBottom": {
+        "x": 0.5008530020713806,
+        "y": 0.4030439853668213,
+        "z": 0.33827197551727297
+      },
+      "rotationBottom": {
+        "x": 299.5,
+        "y": 355.6999816894531,
+        "z": 4.3345485778445438e-7
+      },
+      "scaleBottom": {
+        "x": 0.10000002384185791,
+        "y": 0.020000003278255464,
+        "z": 0.019999999552965165
+      }
+    },
+    {
+      "sequence": "EXT_PWR_OFF",
+      "positionLeft": {
+        "x": 0.5511125922203064,
+        "y": 0.44530001282691958,
+        "z": 0.2674008011817932
+      },
+      "rotationLeft": {
+        "x": 299.5,
+        "y": 355.6999816894531,
+        "z": 4.3345485778445438e-7
+      },
+      "scaleLeft": {
+        "x": 0.019999999552965165,
+        "y": 0.19000007212162019,
+        "z": 0.019999999552965165
+      },
+      "positionTop": {
+        "x": 0.59654700756073,
+        "y": 0.4871560335159302,
+        "z": 0.19662798941135407
+      },
+      "rotationTop": {
+        "x": 299.5,
+        "y": 355.6999816894531,
+        "z": 4.3345485778445438e-7
+      },
+      "scaleTop": {
+        "x": 0.1000000536441803,
+        "y": 0.020000003278255464,
+        "z": 0.019999999552965165
+      },
+      "positionRight": {
+        "x": 0.6308874487876892,
+        "y": 0.44530001282691958,
+        "z": 0.2733991742134094
+      },
+      "rotationRight": {
+        "x": 299.5,
+        "y": 355.6999816894531,
+        "z": 4.3345485778445438e-7
+      },
+      "scaleRight": {
+        "x": 0.019999999552965165,
+        "y": 0.19000007212162019,
+        "z": 0.019999999552965165
+      },
+      "positionBottom": {
+        "x": 0.5854530334472656,
+        "y": 0.40344399213790896,
+        "z": 0.34417200088500979
+      },
+      "rotationBottom": {
+        "x": 299.5,
+        "y": 355.6999816894531,
+        "z": 4.3345485778445438e-7
+      },
+      "scaleBottom": {
+        "x": 0.1000000536441803,
+        "y": 0.020000003278255464,
+        "z": 0.019999999552965165
+      }
+    },
+    {
+      "sequence": "APU_BLEED_ON",
+      "positionLeft": {
+        "x": 0.5031125545501709,
+        "y": 0.3862000107765198,
+        "z": 0.36840081214904787
+      },
+      "rotationLeft": {
+        "x": 299.5,
+        "y": 355.6999816894531,
+        "z": 4.3345485778445438e-7
+      },
+      "scaleLeft": {
+        "x": 0.019999999552965165,
+        "y": 0.19000007212162019,
+        "z": 0.019999999552965165
+      },
+      "positionTop": {
+        "x": 0.5485469698905945,
+        "y": 0.4280560314655304,
+        "z": 0.2976279854774475
+      },
+      "rotationTop": {
+        "x": 299.5,
+        "y": 355.6999816894531,
+        "z": 4.3345485778445438e-7
+      },
+      "scaleTop": {
+        "x": 0.1000000536441803,
+        "y": 0.020000003278255464,
+        "z": 0.019999999552965165
+      },
+      "positionRight": {
+        "x": 0.5828874111175537,
+        "y": 0.3862000107765198,
+        "z": 0.37439918518066409
+      },
+      "rotationRight": {
+        "x": 299.5,
+        "y": 355.6999816894531,
+        "z": 4.3345485778445438e-7
+      },
+      "scaleRight": {
+        "x": 0.019999999552965165,
+        "y": 0.19000007212162019,
+        "z": 0.019999999552965165
+      },
+      "positionBottom": {
+        "x": 0.5374529957771301,
+        "y": 0.34434399008750918,
+        "z": 0.4451720118522644
+      },
+      "rotationBottom": {
+        "x": 299.5,
+        "y": 355.6999816894531,
+        "z": 4.3345485778445438e-7
+      },
+      "scaleBottom": {
+        "x": 0.1000000536441803,
+        "y": 0.020000003278255464,
+        "z": 0.019999999552965165
+      }
+    },
+    {
+      "sequence": "PUMPS_ON",
+      "positionLeft": {
+        "x": 0.3982386589050293,
+        "y": 0.4959000051021576,
+        "z": 0.16579559445381165
+      },
+      "rotationLeft": {
+        "x": 299.5,
+        "y": 355.6999816894531,
+        "z": 4.3345485778445438e-7
+      },
+      "scaleLeft": {
+        "x": 0.019999999552965165,
+        "y": 0.19380009174346925,
+        "z": 0.019999999552965165
+      },
+      "positionTop": {
+        "x": 0.5593059659004211,
+        "y": 0.5386916399002075,
+        "z": 0.10205896198749542
+      },
+      "rotationTop": {
+        "x": 299.5,
+        "y": 355.6999816894531,
+        "z": 4.3345485778445438e-7
+      },
+      "scaleTop": {
+        "x": 0.33167004585266116,
+        "y": 0.020000003278255464,
+        "z": 0.019999999552965165
+      },
+      "positionRight": {
+        "x": 0.709031343460083,
+        "y": 0.4959000051021576,
+        "z": 0.189164400100708
+      },
+      "rotationRight": {
+        "x": 299.5,
+        "y": 355.6999816894531,
+        "z": 4.3345485778445438e-7
+      },
+      "scaleRight": {
+        "x": 0.019999999552965165,
+        "y": 0.19380009174346925,
+        "z": 0.019999999552965165
+      },
+      "positionBottom": {
+        "x": 0.5479640364646912,
+        "y": 0.45310837030410769,
+        "z": 0.25290101766586306
+      },
+      "rotationBottom": {
+        "x": 299.5,
+        "y": 355.6999816894531,
+        "z": 4.3345485778445438e-7
+      },
+      "scaleBottom": {
+        "x": 0.33167004585266116,
+        "y": 0.020000003278255464,
+        "z": 0.019999999552965165
+      }
+    },
+    {
+      "sequence": "ENG_SWITCH_START",
+      "positionLeft": {
+        "x": 0.5082000494003296,
+        "y": -0.6236000061035156,
+        "z": 0.4968000054359436
+      },
+      "rotationLeft": {
+        "x": 90.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scaleLeft": {
+        "x": 0.019999999552965165,
+        "y": 0.17600007355213166,
+        "z": 0.019999999552965165
+      },
+      "positionTop": {
+        "x": 0.544700026512146,
+        "y": -0.6236000061035156,
+        "z": 0.5748000144958496
+      },
+      "rotationTop": {
+        "x": 90.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scaleTop": {
+        "x": 0.09299995005130768,
+        "y": 0.02000000700354576,
+        "z": 0.019999999552965165
+      },
+      "positionRight": {
+        "x": 0.5812000036239624,
+        "y": -0.6236000061035156,
+        "z": 0.4968000054359436
+      },
+      "rotationRight": {
+        "x": 90.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scaleRight": {
+        "x": 0.019999999552965165,
+        "y": 0.17600007355213166,
+        "z": 0.019999999552965165
+      },
+      "positionBottom": {
+        "x": 0.544700026512146,
+        "y": -0.6236000061035156,
+        "z": 0.4187999963760376
+      },
+      "rotationBottom": {
+        "x": 90.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scaleBottom": {
+        "x": 0.09299995005130768,
+        "y": 0.02000000700354576,
+        "z": 0.019999999552965165
+      }
+    },
+    {
+      "sequence": "ENG_ON",
+      "positionLeft": {
+        "x": 0.48366960883140566,
+        "y": -0.6136999726295471,
+        "z": 0.5234440565109253
+      },
+      "rotationLeft": {
+        "x": 90.0,
+        "y": 355.5899963378906,
+        "z": 0.0
+      },
+      "scaleLeft": {
+        "x": 0.020000003278255464,
+        "y": 0.1799999326467514,
+        "z": 0.019999999552965165
+      },
+      "positionTop": {
+        "x": 0.5346485376358032,
+        "y": -0.6136999726295471,
+        "z": 0.6076131463050842
+      },
+      "rotationTop": {
+        "x": 90.0,
+        "y": 355.5899963378906,
+        "z": 0.0
+      },
+      "scaleTop": {
+        "x": 0.13460002839565278,
+        "y": 0.019999995827674867,
+        "z": 0.019999999552965165
+      },
+      "positionRight": {
+        "x": 0.597930371761322,
+        "y": -0.6136999726295471,
+        "z": 0.532256007194519
+      },
+      "rotationRight": {
+        "x": 90.0,
+        "y": 355.5899963378906,
+        "z": 0.0
+      },
+      "scaleRight": {
+        "x": 0.020000003278255464,
+        "y": 0.1799999326467514,
+        "z": 0.019999999552965165
+      },
+      "positionBottom": {
+        "x": 0.546951413154602,
+        "y": -0.6136999726295471,
+        "z": 0.4480869174003601
+      },
+      "rotationBottom": {
+        "x": 90.0,
+        "y": 355.5899963378906,
+        "z": 0.0
+      },
+      "scaleBottom": {
+        "x": 0.13460002839565278,
+        "y": 0.019999995827674867,
+        "z": 0.019999999552965165
+      }
+    },
+    {
+      "sequence": "ENG_LOAD",
+      "positionLeft": {
+        "x": 0.39484214782714846,
+        "y": -0.37290000915527346,
+        "z": 0.9631741046905518
+      },
+      "rotationLeft": {
+        "x": 15.000009536743164,
+        "y": 354.739990234375,
+        "z": 1.1048643955291482e-7
+      },
+      "scaleLeft": {
+        "x": 0.019999995827674867,
+        "y": 0.3500000536441803,
+        "z": 0.019999999552965165
+      },
+      "positionTop": {
+        "x": 0.49548497796058657,
+        "y": -0.21352222561836244,
+        "z": 1.0153253078460694
+      },
+      "rotationTop": {
+        "x": 15.000009536743164,
+        "y": 354.739990234375,
+        "z": 1.1048643955291482e-7
+      },
+      "scaleTop": {
+        "x": 0.22999997437000276,
+        "y": 0.019999999552965165,
+        "z": 0.019999999552965165
+      },
+      "positionRight": {
+        "x": 0.6039578318595886,
+        "y": -0.37290000915527346,
+        "z": 0.9824259281158447
+      },
+      "rotationRight": {
+        "x": 15.000009536743164,
+        "y": 354.739990234375,
+        "z": 1.1048643955291482e-7
+      },
+      "scaleRight": {
+        "x": 0.019999995827674867,
+        "y": 0.3500000536441803,
+        "z": 0.019999999552965165
+      },
+      "positionBottom": {
+        "x": 0.5033150315284729,
+        "y": -0.5322778224945068,
+        "z": 0.9302746653556824
+      },
+      "rotationBottom": {
+        "x": 15.000009536743164,
+        "y": 354.739990234375,
+        "z": 1.1048643955291482e-7
+      },
+      "scaleBottom": {
+        "x": 0.22999997437000276,
+        "y": 0.019999999552965165,
+        "z": 0.019999999552965165
+      }
+    },
+    {
+      "sequence": "ENG_SWITCH_NORM",
+      "positionLeft": {
+        "x": 0.5082000494003296,
+        "y": -0.6236000061035156,
+        "z": 0.4968000054359436
+      },
+      "rotationLeft": {
+        "x": 90.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scaleLeft": {
+        "x": 0.019999999552965165,
+        "y": 0.17600007355213166,
+        "z": 0.019999999552965165
+      },
+      "positionTop": {
+        "x": 0.544700026512146,
+        "y": -0.6236000061035156,
+        "z": 0.5748000144958496
+      },
+      "rotationTop": {
+        "x": 90.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scaleTop": {
+        "x": 0.09299995005130768,
+        "y": 0.02000000700354576,
+        "z": 0.019999999552965165
+      },
+      "positionRight": {
+        "x": 0.5812000036239624,
+        "y": -0.6236000061035156,
+        "z": 0.4968000054359436
+      },
+      "rotationRight": {
+        "x": 90.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scaleRight": {
+        "x": 0.019999999552965165,
+        "y": 0.17600007355213166,
+        "z": 0.019999999552965165
+      },
+      "positionBottom": {
+        "x": 0.544700026512146,
+        "y": -0.6236000061035156,
+        "z": 0.4187999963760376
+      },
+      "rotationBottom": {
+        "x": 90.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scaleBottom": {
+        "x": 0.09299995005130768,
+        "y": 0.02000000700354576,
+        "z": 0.019999999552965165
+      }
+    },
+    {
+      "sequence": "GENERATOR_ON",
+      "positionLeft": {
+        "x": 0.40609535574913027,
+        "y": 0.44475001096725466,
+        "z": 0.2560191750526428
+      },
+      "rotationLeft": {
+        "x": 299.5,
+        "y": 355.6999816894531,
+        "z": 4.3345485778445438e-7
+      },
+      "scaleLeft": {
+        "x": 0.019999999552965165,
+        "y": 0.1901000738143921,
+        "z": 0.019999999552965165
+      },
+      "positionTop": {
+        "x": 0.5517002940177918,
+        "y": 0.4866306185722351,
+        "z": 0.19273462891578675
+      },
+      "rotationTop": {
+        "x": 299.5,
+        "y": 355.6999816894531,
+        "z": 4.3345485778445438e-7
+      },
+      "scaleTop": {
+        "x": 0.30090004205703738,
+        "y": 0.020000003278255464,
+        "z": 0.019999999552965165
+      },
+      "positionRight": {
+        "x": 0.6862046718597412,
+        "y": 0.44475001096725466,
+        "z": 0.27708083391189577
+      },
+      "rotationRight": {
+        "x": 299.5,
+        "y": 355.6999816894531,
+        "z": 4.3345485778445438e-7
+      },
+      "scaleRight": {
+        "x": 0.019999999552965165,
+        "y": 0.1901000738143921,
+        "z": 0.019999999552965165
+      },
+      "positionBottom": {
+        "x": 0.5405997633934021,
+        "y": 0.4028693735599518,
+        "z": 0.3403654098510742
+      },
+      "rotationBottom": {
+        "x": 299.5,
+        "y": 355.6999816894531,
+        "z": 4.3345485778445438e-7
+      },
+      "scaleBottom": {
+        "x": 0.30090004205703738,
+        "y": 0.020000003278255464,
+        "z": 0.019999999552965165
+      }
+    },
+    {
+      "sequence": "APU_BLEED_OFF",
+      "positionLeft": {
+        "x": 0.5031125545501709,
+        "y": 0.3862000107765198,
+        "z": 0.36840081214904787
+      },
+      "rotationLeft": {
+        "x": 299.5,
+        "y": 355.6999816894531,
+        "z": 4.3345485778445438e-7
+      },
+      "scaleLeft": {
+        "x": 0.019999999552965165,
+        "y": 0.19000007212162019,
+        "z": 0.019999999552965165
+      },
+      "positionTop": {
+        "x": 0.5485469698905945,
+        "y": 0.4280560314655304,
+        "z": 0.2976279854774475
+      },
+      "rotationTop": {
+        "x": 299.5,
+        "y": 355.6999816894531,
+        "z": 4.3345485778445438e-7
+      },
+      "scaleTop": {
+        "x": 0.1000000536441803,
+        "y": 0.020000003278255464,
+        "z": 0.019999999552965165
+      },
+      "positionRight": {
+        "x": 0.5828874111175537,
+        "y": 0.3862000107765198,
+        "z": 0.37439918518066409
+      },
+      "rotationRight": {
+        "x": 299.5,
+        "y": 355.6999816894531,
+        "z": 4.3345485778445438e-7
+      },
+      "scaleRight": {
+        "x": 0.019999999552965165,
+        "y": 0.19000007212162019,
+        "z": 0.019999999552965165
+      },
+      "positionBottom": {
+        "x": 0.5374529957771301,
+        "y": 0.34434399008750918,
+        "z": 0.4451720118522644
+      },
+      "rotationBottom": {
+        "x": 299.5,
+        "y": 355.6999816894531,
+        "z": 4.3345485778445438e-7
+      },
+      "scaleBottom": {
+        "x": 0.1000000536441803,
+        "y": 0.020000003278255464,
+        "z": 0.019999999552965165
+      }
+    },
+    {
+      "sequence": "PACK_ON",
+      "positionLeft": {
+        "x": 0.37696796655654909,
+        "y": 0.40165001153945925,
+        "z": 0.33248472213745119
+      },
+      "rotationLeft": {
+        "x": 299.5,
+        "y": 355.6999816894531,
+        "z": 4.3345485778445438e-7
+      },
+      "scaleLeft": {
+        "x": 0.019999999552965165,
+        "y": 0.1925000697374344,
+        "z": 0.019999999552965165
+      },
+      "positionTop": {
+        "x": 0.548378586769104,
+        "y": 0.4441215395927429,
+        "z": 0.2700931429862976
+      },
+      "rotationTop": {
+        "x": 299.5,
+        "y": 355.6999816894531,
+        "z": 4.3345485778445438e-7
+      },
+      "scaleTop": {
+        "x": 0.3525000512599945,
+        "y": 0.020000003278255464,
+        "z": 0.019999999552965165
+      },
+      "positionRight": {
+        "x": 0.7085320949554443,
+        "y": 0.40165001153945925,
+        "z": 0.3574153184890747
+      },
+      "rotationRight": {
+        "x": 299.5,
+        "y": 355.6999816894531,
+        "z": 4.3345485778445438e-7
+      },
+      "scaleRight": {
+        "x": 0.019999999552965165,
+        "y": 0.1925000697374344,
+        "z": 0.019999999552965165
+      },
+      "positionBottom": {
+        "x": 0.5371214151382446,
+        "y": 0.35917848348617556,
+        "z": 0.41980689764022829
+      },
+      "rotationBottom": {
+        "x": 299.5,
+        "y": 355.6999816894531,
+        "z": 4.3345485778445438e-7
+      },
+      "scaleBottom": {
+        "x": 0.3525000512599945,
+        "y": 0.020000003278255464,
+        "z": 0.019999999552965165
+      }
+    },
+    {
+      "sequence": "APU_OFF",
+      "positionLeft": {
+        "x": 0.4665549695491791,
+        "y": 0.380950003862381,
+        "z": 0.372222363948822
+      },
+      "rotationLeft": {
+        "x": 299.5,
+        "y": 355.6999816894531,
+        "z": 4.3345485778445438e-7
+      },
+      "scaleLeft": {
+        "x": 0.019999999552965165,
+        "y": 0.317900151014328,
+        "z": 0.019999999552965165
+      },
+      "positionTop": {
+        "x": 0.5311702489852905,
+        "y": 0.4542964994907379,
+        "z": 0.2470754086971283
+      },
+      "rotationTop": {
+        "x": 299.5,
+        "y": 355.6999816894531,
+        "z": 4.3345485778445438e-7
+      },
+      "scaleTop": {
+        "x": 0.13010002672672273,
+        "y": 0.020000003278255464,
+        "z": 0.019999999552965165
+      },
+      "positionRight": {
+        "x": 0.5763450264930725,
+        "y": 0.380950003862381,
+        "z": 0.3804776072502136
+      },
+      "rotationRight": {
+        "x": 299.5,
+        "y": 355.6999816894531,
+        "z": 4.3345485778445438e-7
+      },
+      "scaleRight": {
+        "x": 0.019999999552965165,
+        "y": 0.317900151014328,
+        "z": 0.019999999552965165
+      },
+      "positionBottom": {
+        "x": 0.5117297172546387,
+        "y": 0.30760350823402407,
+        "z": 0.505624532699585
+      },
+      "rotationBottom": {
+        "x": 299.5,
+        "y": 355.6999816894531,
+        "z": 4.3345485778445438e-7
+      },
+      "scaleBottom": {
+        "x": 0.13010002672672273,
+        "y": 0.020000003278255464,
+        "z": 0.019999999552965165
+      }
+    },
+    {
+      "sequence": "BRAKE_RELEASE",
+      "positionLeft": {
+        "x": 0.5428754687309265,
+        "y": -0.6236000061035156,
+        "z": 0.29499951004981997
+      },
+      "rotationLeft": {
+        "x": 90.0,
+        "y": 354.260009765625,
+        "z": 0.0
+      },
+      "scaleLeft": {
+        "x": 0.020000001415610315,
+        "y": 0.2099999040365219,
+        "z": 0.019999999552965165
+      },
+      "positionTop": {
+        "x": 0.5681986808776856,
+        "y": -0.6236000061035156,
+        "z": 0.39302363991737368
+      },
+      "rotationTop": {
+        "x": 90.0,
+        "y": 354.260009765625,
+        "z": 0.0
+      },
+      "scaleTop": {
+        "x": 0.09000006318092346,
+        "y": 0.019999995827674867,
+        "z": 0.019999999552965165
+      },
+      "positionRight": {
+        "x": 0.6125245690345764,
+        "y": -0.6236000061035156,
+        "z": 0.302000492811203
+      },
+      "rotationRight": {
+        "x": 90.0,
+        "y": 354.260009765625,
+        "z": 0.0
+      },
+      "scaleRight": {
+        "x": 0.020000001415610315,
+        "y": 0.2099999040365219,
+        "z": 0.019999999552965165
+      },
+      "positionBottom": {
+        "x": 0.5872013568878174,
+        "y": -0.6236000061035156,
+        "z": 0.2039763629436493
+      },
+      "rotationBottom": {
+        "x": 90.0,
+        "y": 354.260009765625,
+        "z": 0.0
+      },
+      "scaleBottom": {
+        "x": 0.09000006318092346,
+        "y": 0.019999995827674867,
+        "z": 0.019999999552965165
+      }
+    },
+    {
+      "sequence": "AUTOBRAKE_MAX",
+      "positionLeft": {
+        "x": 0.6243254542350769,
+        "y": -0.2620700001716614,
+        "z": 1.0160701274871827
+      },
+      "rotationLeft": {
+        "x": 14.040006637573243,
+        "y": 354.0,
+        "z": 2.2001604804700038e-7
+      },
+      "scaleLeft": {
+        "x": 0.019999999552965165,
+        "y": 0.18199999630451203,
+        "z": 0.019999999552965165
+      },
+      "positionTop": {
+        "x": 0.6595659852027893,
+        "y": -0.18348973989486695,
+        "z": 1.0395328998565674
+      },
+      "rotationTop": {
+        "x": 14.040006637573243,
+        "y": 354.0,
+        "z": 2.2001604804700038e-7
+      },
+      "scaleTop": {
+        "x": 0.09500004351139069,
+        "y": 0.019999999552965165,
+        "z": 0.019999999552965165
+      },
+      "positionRight": {
+        "x": 0.6989145874977112,
+        "y": -0.2620700001716614,
+        "z": 1.0239098072052003
+      },
+      "rotationRight": {
+        "x": 14.040006637573243,
+        "y": 354.0,
+        "z": 2.2001604804700038e-7
+      },
+      "scaleRight": {
+        "x": 0.019999999552965165,
+        "y": 0.18199999630451203,
+        "z": 0.019999999552965165
+      },
+      "positionBottom": {
+        "x": 0.6636740565299988,
+        "y": -0.3406502604484558,
+        "z": 1.0004470348358155
+      },
+      "rotationBottom": {
+        "x": 14.040006637573243,
+        "y": 354.0,
+        "z": 2.2001604804700038e-7
+      },
+      "scaleBottom": {
+        "x": 0.09500004351139069,
+        "y": 0.019999999552965165,
+        "z": 0.019999999552965165
+      }
+    },
+    {
+      "sequence": "SPOILER_ARM",
+      "positionLeft": {
+        "x": 0.42820000648498537,
+        "y": -0.6197999715805054,
+        "z": 0.4083000123500824
+      },
+      "rotationLeft": {
+        "x": 90.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scaleLeft": {
+        "x": 0.019999999552965165,
+        "y": 0.2200002819299698,
+        "z": 0.019999999552965165
+      },
+      "positionTop": {
+        "x": 0.4832000136375427,
+        "y": -0.6197999715805054,
+        "z": 0.5083001255989075
+      },
+      "rotationTop": {
+        "x": 90.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scaleTop": {
+        "x": 0.1300000101327896,
+        "y": 0.02000000700354576,
+        "z": 0.019999999552965165
+      },
+      "positionRight": {
+        "x": 0.5382000207901001,
+        "y": -0.6197999715805054,
+        "z": 0.4083000123500824
+      },
+      "rotationRight": {
+        "x": 90.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scaleRight": {
+        "x": 0.019999999552965165,
+        "y": 0.2200002819299698,
+        "z": 0.019999999552965165
+      },
+      "positionBottom": {
+        "x": 0.4832000136375427,
+        "y": -0.6197999715805054,
+        "z": 0.3082998991012573
+      },
+      "rotationBottom": {
+        "x": 90.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scaleBottom": {
+        "x": 0.1300000101327896,
+        "y": 0.02000000700354576,
+        "z": 0.019999999552965165
+      }
+    },
+    {
+      "sequence": "FLAPS",
+      "positionLeft": {
+        "x": 0.5842999815940857,
+        "y": -0.6097999811172485,
+        "z": 0.43130001425743105
+      },
+      "rotationLeft": {
+        "x": 90.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scaleLeft": {
+        "x": 0.019999999552965165,
+        "y": 0.2100001722574234,
+        "z": 0.019999999552965165
+      },
+      "positionTop": {
+        "x": 0.6342999935150147,
+        "y": -0.6097999811172485,
+        "z": 0.5263000726699829
+      },
+      "rotationTop": {
+        "x": 90.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scaleTop": {
+        "x": 0.12000001966953278,
+        "y": 0.02000000700354576,
+        "z": 0.019999999552965165
+      },
+      "positionRight": {
+        "x": 0.6843000054359436,
+        "y": -0.6097999811172485,
+        "z": 0.43130001425743105
+      },
+      "rotationRight": {
+        "x": 90.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scaleRight": {
+        "x": 0.019999999552965165,
+        "y": 0.2100001722574234,
+        "z": 0.019999999552965165
+      },
+      "positionBottom": {
+        "x": 0.6342999935150147,
+        "y": -0.6097999811172485,
+        "z": 0.33629995584487917
+      },
+      "rotationBottom": {
+        "x": 90.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scaleBottom": {
+        "x": 0.12000001966953278,
+        "y": 0.02000000700354576,
+        "z": 0.019999999552965165
+      }
+    },
+    {
+      "sequence": "PACK_OFF",
+      "positionLeft": {
+        "x": 0.37696796655654909,
+        "y": 0.40165001153945925,
+        "z": 0.33248472213745119
+      },
+      "rotationLeft": {
+        "x": 299.5,
+        "y": 355.6999816894531,
+        "z": 4.3345485778445438e-7
+      },
+      "scaleLeft": {
+        "x": 0.019999999552965165,
+        "y": 0.1925000697374344,
+        "z": 0.019999999552965165
+      },
+      "positionTop": {
+        "x": 0.548378586769104,
+        "y": 0.4441215395927429,
+        "z": 0.2700931429862976
+      },
+      "rotationTop": {
+        "x": 299.5,
+        "y": 355.6999816894531,
+        "z": 4.3345485778445438e-7
+      },
+      "scaleTop": {
+        "x": 0.3525000512599945,
+        "y": 0.020000003278255464,
+        "z": 0.019999999552965165
+      },
+      "positionRight": {
+        "x": 0.7085320949554443,
+        "y": 0.40165001153945925,
+        "z": 0.3574153184890747
+      },
+      "rotationRight": {
+        "x": 299.5,
+        "y": 355.6999816894531,
+        "z": 4.3345485778445438e-7
+      },
+      "scaleRight": {
+        "x": 0.019999999552965165,
+        "y": 0.1925000697374344,
+        "z": 0.019999999552965165
+      },
+      "positionBottom": {
+        "x": 0.5371214151382446,
+        "y": 0.35917848348617556,
+        "z": 0.41980689764022829
+      },
+      "rotationBottom": {
+        "x": 299.5,
+        "y": 355.6999816894531,
+        "z": 4.3345485778445438e-7
+      },
+      "scaleBottom": {
+        "x": 0.3525000512599945,
+        "y": 0.020000003278255464,
+        "z": 0.019999999552965165
+      }
+    },
+    {
+      "sequence": "THROTTLE_FULL",
+      "positionLeft": {
+        "x": 0.40228480100631716,
+        "y": -0.5260000228881836,
+        "z": 0.6347038745880127
+      },
+      "rotationLeft": {
+        "x": 90.0,
+        "y": 355.5899963378906,
+        "z": 0.0
+      },
+      "scaleLeft": {
+        "x": 0.020000003278255464,
+        "y": 0.1799999326467514,
+        "z": 0.019999999552965165
+      },
+      "positionTop": {
+        "x": 0.5257485508918762,
+        "y": -0.5260000228881836,
+        "z": 0.7244631052017212
+      },
+      "rotationTop": {
+        "x": 90.0,
+        "y": 355.5899963378906,
+        "z": 0.0
+      },
+      "scaleTop": {
+        "x": 0.2800002098083496,
+        "y": 0.019999995827674867,
+        "z": 0.019999999552965165
+      },
+      "positionRight": {
+        "x": 0.6615151762962341,
+        "y": -0.5260000228881836,
+        "z": 0.6546961069107056
+      },
+      "rotationRight": {
+        "x": 90.0,
+        "y": 355.5899963378906,
+        "z": 0.0
+      },
+      "scaleRight": {
+        "x": 0.020000003278255464,
+        "y": 0.1799999326467514,
+        "z": 0.019999999552965165
+      },
+      "positionBottom": {
+        "x": 0.538051426410675,
+        "y": -0.5260000228881836,
+        "z": 0.5649368762969971
+      },
+      "rotationBottom": {
+        "x": 90.0,
+        "y": 355.5899963378906,
+        "z": 0.0
+      },
+      "scaleBottom": {
+        "x": 0.2800002098083496,
+        "y": 0.019999995827674867,
+        "z": 0.019999999552965165
+      }
+    },
+    {
+      "sequence": "ACCELERATION",
+      "positionLeft": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "rotationLeft": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scaleLeft": {
+        "x": 0.019999999552965165,
+        "y": 0.019999999552965165,
+        "z": 0.019999999552965165
+      },
+      "positionTop": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "rotationTop": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scaleTop": {
+        "x": 0.019999999552965165,
+        "y": 0.019999999552965165,
+        "z": 0.019999999552965165
+      },
+      "positionRight": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "rotationRight": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scaleRight": {
+        "x": 0.019999999552965165,
+        "y": 0.019999999552965165,
+        "z": 0.019999999552965165
+      },
+      "positionBottom": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "rotationBottom": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scaleBottom": {
+        "x": 0.019999999552965165,
+        "y": 0.019999999552965165,
+        "z": 0.019999999552965165
+      }
+    },
+    {
+      "sequence": "TAKEOFF",
+      "positionLeft": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "rotationLeft": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scaleLeft": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "positionTop": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "rotationTop": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scaleTop": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "positionRight": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "rotationRight": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scaleRight": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "positionBottom": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "rotationBottom": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scaleBottom": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "sequence": "GEAR_OFF",
+      "positionLeft": {
+        "x": 0.5729999542236328,
+        "y": -0.4036000072956085,
+        "z": 0.9865999817848206
+      },
+      "rotationLeft": {
+        "x": 16.93999481201172,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scaleLeft": {
+        "x": 0.019999999552965165,
+        "y": 0.22999997437000276,
+        "z": 0.019999999552965165
+      },
+      "positionTop": {
+        "x": 0.6179999709129334,
+        "y": -0.30315592885017397,
+        "z": 1.0171937942504883
+      },
+      "rotationTop": {
+        "x": 16.93999481201172,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scaleTop": {
+        "x": 0.11000002920627594,
+        "y": 0.019999999552965165,
+        "z": 0.019999999552965165
+      },
+      "positionRight": {
+        "x": 0.6629999876022339,
+        "y": -0.4036000072956085,
+        "z": 0.9865999817848206
+      },
+      "rotationRight": {
+        "x": 16.93999481201172,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scaleRight": {
+        "x": 0.019999999552965165,
+        "y": 0.22999997437000276,
+        "z": 0.019999999552965165
+      },
+      "positionBottom": {
+        "x": 0.6179999709129334,
+        "y": -0.5040441155433655,
+        "z": 0.9560061097145081
+      },
+      "rotationBottom": {
+        "x": 16.93999481201172,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scaleBottom": {
+        "x": 0.11000002920627594,
+        "y": 0.019999999552965165,
+        "z": 0.019999999552965165
+      }
+    },
+    {
+      "sequence": "VELOCITY",
+      "positionLeft": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "rotationLeft": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scaleLeft": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "positionTop": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "rotationTop": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scaleTop": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "positionRight": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "rotationRight": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scaleRight": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "positionBottom": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "rotationBottom": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scaleBottom": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "sequence": "SPOILER_DISARM_AND_FLAPS",
+      "positionLeft": {
+        "x": 0.42820000648498537,
+        "y": -0.6173000335693359,
+        "z": 0.4172999858856201
+      },
+      "rotationLeft": {
+        "x": 90.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scaleLeft": {
+        "x": 0.019999999552965165,
+        "y": 0.22500021755695344,
+        "z": 0.019999999552965165
+      },
+      "positionTop": {
+        "x": 0.5562499761581421,
+        "y": -0.6173000335693359,
+        "z": 0.519800066947937
+      },
+      "rotationTop": {
+        "x": 90.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scaleTop": {
+        "x": 0.2761000096797943,
+        "y": 0.02000000700354576,
+        "z": 0.019999999552965165
+      },
+      "positionRight": {
+        "x": 0.6843000054359436,
+        "y": -0.6173000335693359,
+        "z": 0.4172999858856201
+      },
+      "rotationRight": {
+        "x": 90.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scaleRight": {
+        "x": 0.019999999552965165,
+        "y": 0.22500021755695344,
+        "z": 0.019999999552965165
+      },
+      "positionBottom": {
+        "x": 0.5562499761581421,
+        "y": -0.6173000335693359,
+        "z": 0.314799964427948
+      },
+      "rotationBottom": {
+        "x": 90.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scaleBottom": {
+        "x": 0.2761000096797943,
+        "y": 0.02000000700354576,
+        "z": 0.019999999552965165
+      }
+    },
+    {
+      "sequence": "VELOCITY2",
+      "positionLeft": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "rotationLeft": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scaleLeft": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "positionTop": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "rotationTop": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scaleTop": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "positionRight": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "rotationRight": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scaleRight": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "positionBottom": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "rotationBottom": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scaleBottom": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+    {
+      "sequence": "FLAPS2",
+      "positionLeft": {
+        "x": 0.5842999815940857,
+        "y": -0.6097999811172485,
+        "z": 0.43130001425743105
+      },
+      "rotationLeft": {
+        "x": 90.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scaleLeft": {
+        "x": 0.019999999552965165,
+        "y": 0.2100001722574234,
+        "z": 0.019999999552965165
+      },
+      "positionTop": {
+        "x": 0.6342999935150147,
+        "y": -0.6097999811172485,
+        "z": 0.5263000726699829
+      },
+      "rotationTop": {
+        "x": 90.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scaleTop": {
+        "x": 0.12000001966953278,
+        "y": 0.02000000700354576,
+        "z": 0.019999999552965165
+      },
+      "positionRight": {
+        "x": 0.6843000054359436,
+        "y": -0.6097999811172485,
+        "z": 0.43130001425743105
+      },
+      "rotationRight": {
+        "x": 90.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scaleRight": {
+        "x": 0.019999999552965165,
+        "y": 0.2100001722574234,
+        "z": 0.019999999552965165
+      },
+      "positionBottom": {
+        "x": 0.6342999935150147,
+        "y": -0.6097999811172485,
+        "z": 0.33629995584487917
+      },
+      "rotationBottom": {
+        "x": 90.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scaleBottom": {
+        "x": 0.12000001966953278,
+        "y": 0.02000000700354576,
+        "z": 0.019999999552965165
+      }
+    },
+    {
+      "sequence": "END",
+      "positionLeft": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "rotationLeft": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scaleLeft": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "positionTop": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "rotationTop": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scaleTop": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "positionRight": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "rotationRight": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scaleRight": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "positionBottom": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "rotationBottom": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scaleBottom": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      }
+    }
+  ]
+}
