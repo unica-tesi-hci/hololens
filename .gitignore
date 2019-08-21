@@ -1,0 +1,13 @@
+HoloLens_Thesis/.vs
+HoloLens_Thesis/Temp
+HoloLens_Thesis/Library
+HoloLens_Thesis/UnityPackageManager
+HoloLens_Thesis.csproj
+HoloLens_Thesis.Plugins.csproj
+HoloLens_Thesis.Editor.csproj
+HoloLens_Thesis.Editor.Plugins.csproj
+JsonGenerator/.vs
+JsonGenerator/JsonGenerator/bin
+JsonGenerator/JsonGenerator/obj
+JsonGenerator/hmst
+JsonGenerator/result
